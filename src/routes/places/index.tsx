@@ -3,7 +3,7 @@ import {createEffect, createMemo, createSignal, lazy} from "solid-js";
 import {actionPositionHandler, addressSearchHandler, getAddresses} from "~/lib/addresses";
 import FooterMenu from "~/components/layouts/partials/footer-menu";
 
-import SearchForm from "~/components/ui/search-form";
+import AddressSearchForm from "~/components/addresses/forms/address-search-form";
 import {LookupResult, OsmOutput} from "~/lib/store";
 import {MapIcon} from "~/components/svg";
 import GeoMap from "~/components/addresses/partials/geo-map";
@@ -55,7 +55,7 @@ export default function Addresses() {
                         sectionClass={'flex justify-between items-center w-full space-x-4'}
                         title={<MapIcon class={'size-full stroke-mint-11 p-0.5 fill-green-2'}/>}
                         variant={'ghost'} size={'icon'}>
-                <SearchForm contextId={'map1'} class={'w-full sm:max-w-sm'}/>
+                <AddressSearchForm contextId={'map1'} class={'w-full sm:max-w-sm'}/>
             </FooterMenu>
         </ResponsiveDrawer>
     );

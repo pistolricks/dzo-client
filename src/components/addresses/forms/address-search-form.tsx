@@ -1,7 +1,7 @@
 import {Component, createEffect, createMemo, JSX, Show} from "solid-js";
 import {useSubmission} from "@solidjs/router";
 import {TextField, TextFieldErrorMessage, TextFieldInput} from "~/components/ui/text-field";
-import {Button} from "./button";
+import {Button} from "../../ui/button";
 import {showToast} from "~/components/ui/toast";
 import {BackspaceIcon, MagnifyingGlassCircle, SpinnerIcon, XMark} from "~/components/svg";
 import {addressSearchHandler} from "~/lib/addresses";
@@ -10,7 +10,7 @@ import Drawer from "@corvu/drawer";
 
 type PROPS = { class?: string, contextId: string };
 
-const SearchForm: Component<PROPS> = props => {
+const AddressSearchForm: Component<PROPS> = props => {
     const {getViewbox, getQuery, setQuery, setStoreCollection} = useLayoutContext();
     const submission = useSubmission(addressSearchHandler);
     const {open, setOpen} = Drawer.useDialogContext('map1')
@@ -104,4 +104,4 @@ const SearchForm: Component<PROPS> = props => {
 }
 
 
-export default SearchForm;
+export default AddressSearchForm;

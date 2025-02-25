@@ -1,13 +1,12 @@
-import {Accessor, createContext, createSignal, JSX, onMount, Setter, useContext} from "solid-js";
-import {Coordinate} from "ol/coordinate";
+import {Accessor, Component, createContext, createSignal, JSX, onMount, Setter, useContext} from "solid-js";
 import {Feature} from "~/lib/store";
 
 import {createStore, SetStoreFunction, Store} from "solid-js/store";
-import {GeoJSONFeatureCollection} from "ol/format/GeoJSON";
 import {FeatureCollection} from "geojson";
-import Point from "ol/geom/Point.js";
-import {mapPin} from "~/components/svg";
-
+import VendorsIcon from '~/svgs/menu/vendors.svg'
+import PlacesIcon from '~/svgs/menu/places.svg'
+import ContentsIcon from '~/svgs/menu/contents.svg'
+import CategoriesIcon from '~/svgs/menu/categories.svg'
 
 export type MenuItem = {
     title: string;
@@ -16,15 +15,15 @@ export type MenuItem = {
     icon?: string;
 }
 
-type POSITION = [number, number]|undefined
+type POSITION = [number, number] | undefined
 
 type LayoutType = {
     getStoreCollection: Store<FeatureCollection>
     setStoreCollection: SetStoreFunction<FeatureCollection>
-    getViewbox: Accessor<number[]|undefined>
-    setViewbox: Setter<number[]|undefined>
-    getMyLocation: Accessor<Feature|undefined>
-    setMyLocation: Setter<Feature|undefined>
+    getViewbox: Accessor<number[] | undefined>
+    setViewbox: Setter<number[] | undefined>
+    getMyLocation: Accessor<Feature | undefined>
+    setMyLocation: Setter<Feature | undefined>
     getPosition: Accessor<POSITION>
     setPosition: Setter<POSITION>
     getHeight: Accessor<number>
@@ -40,8 +39,8 @@ let footerHeight = import.meta.env.VITE_FOOTER_HEIGHT
 
 
 export const LayoutContext = createContext<LayoutType>();
-export function LayoutProvider(props: { children: JSX.Element }) {
 
+export function LayoutProvider(props: { children: JSX.Element }) {
 
 
     const [getStoreCollection, setStoreCollection] = createStore<FeatureCollection>({
@@ -50,9 +49,9 @@ export function LayoutProvider(props: { children: JSX.Element }) {
     })
 
 
-        const [getPosition, setPosition] = createSignal<POSITION>(undefined)
-    const [getMyLocation, setMyLocation] = createSignal<Feature|undefined>(undefined)
-    const [getViewbox, setViewbox] = createSignal<number[]|undefined>(undefined)
+    const [getPosition, setPosition] = createSignal<POSITION>(undefined)
+    const [getMyLocation, setMyLocation] = createSignal<Feature | undefined>(undefined)
+    const [getViewbox, setViewbox] = createSignal<number[] | undefined>(undefined)
     const [getHeight, setHeight] = createSignal(0)
     const [getQuery, setQuery] = createSignal("")
 
@@ -66,12 +65,11 @@ export function LayoutProvider(props: { children: JSX.Element }) {
     const [getIsDesktop, setIsDesktop] = createSignal(false)
 
 
-
     const menu: MenuItem[] = [
-        {title: "vendors", href: "/vendors"},
-        {title: "places", href: "/places", icon: mapPin},
-        {title: "contents", href: "/contents"},
-        {title: "categories", href: "/categories"}
+        {title: "vendors", href: "/vendors", icon: VendorsIcon},
+        {title: "places", href: "/places", icon: PlacesIcon},
+        {title: "contents", href: "/contents", icon: ContentsIcon},
+        {title: "categories", href: "/categories", icon: CategoriesIcon}
     ]
 
     const apps: MenuItem[] = [
@@ -85,9 +83,7 @@ export function LayoutProvider(props: { children: JSX.Element }) {
 
 
     onMount(() => {
-
         handleHeight();
-
 
     })
 

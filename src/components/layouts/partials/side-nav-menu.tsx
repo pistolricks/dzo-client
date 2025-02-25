@@ -3,6 +3,7 @@ import {A} from "@solidjs/router";
 import Drawer from "@corvu/drawer";
 import {USER} from "~/lib/store";
 import {useLayoutContext} from "~/context/layout-provider";
+import {Dynamic} from "solid-js/web";
 
 const LogoutUserForm = lazy(() => import("~/components/users/forms/logout-user-form"));
 type PROPS = {
@@ -51,7 +52,9 @@ const SideNavMenu: Component<PROPS> = props => {
                         <For each={menu}>
                             {(item) => (
                                 <li class="px-3">
-                                    <MenuItem contextId={'sd1'} {...item}/>
+                                    <MenuItem contextId={'sd1'} {...item}>
+                                        <Dynamic component={item.icon} class={'fill-blue-8'}/>
+                                    </MenuItem>
                                 </li>
                             )}
                         </For>
@@ -76,12 +79,12 @@ const SideNavMenu: Component<PROPS> = props => {
                     <ul class="flex flex-col flex-1 gap-1 py-3">
                         <li class="px-3">
                             <a href="#"
-                               class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-emerald-500 hover:bg-emerald-50 focus:bg-emerald-50 aria-[current=page]:text-emerald-500 aria-[current=page]:bg-emerald-50 ">
+                               class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-blue-500 hover:bg-blue-50 focus:bg-blue-50 aria-[current=page]:text-blue-500 aria-[current=page]:bg-blue-50 ">
             <span class="relative inline-flex items-center justify-center w-6 h-6 text-white rounded-full">
               <img src="https://i.pravatar.cc/24?img=3" alt="user name" title="user name" width="24" height="24"
                    class="max-w-full rounded-full"/>
               <span
-                  class="absolute inline-flex items-center justify-center gap-1 p-1 text-sm text-white border-2 border-white rounded-full bg-emerald-500 -top-1 -right-1">
+                  class="absolute inline-flex items-center justify-center gap-1 p-1 text-sm text-white border-2 border-white rounded-full bg-blue-500 -top-1 -right-1">
                 <span class="sr-only"> offline </span>
               </span>
             </span>
@@ -118,7 +121,7 @@ export const MenuItem: Component<MenuItem & { contextId: string, children?: JSXE
     const children = () => props.children;
     return (
         <Drawer.Trigger contextId={contextId()} as={A} href={href()}
-                        class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-emerald-500 hover:bg-emerald-50 focus:bg-emerald-50 aria-[current=page]:text-emerald-500 aria-[current=page]:bg-emerald-50 ">
+                        class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-blue-500 hover:bg-blue-50 focus:bg-blue-50 aria-[current=page]:text-blue-500 aria-[current=page]:bg-blue-50 ">
             <div class="flex items-center self-center w-6">
 
                 {children() || <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

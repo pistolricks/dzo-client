@@ -1,5 +1,6 @@
 import { defineConfig } from "@solidjs/start/config";
 import tailwindcss from '@tailwindcss/vite';
+import solidSvg from 'vite-plugin-solid-svg'
 
 export default defineConfig({
    server: {
@@ -8,19 +9,20 @@ export default defineConfig({
       }
    },
    ssr: false,
-//   vite: {
-//
-//      // vite options
-//      plugins: [
-//          tailwindcss()
-//      ],
-//      server: {
-//         port: 3000,
-//      },
-//      build: {
-//         target: 'esnext',
-//      },
-//   },
+   vite: {
+
+      // vite options
+      plugins: [
+          tailwindcss(),
+          solidSvg()
+      ],
+      server: {
+         port: 3000,
+      },
+      build: {
+         target: 'esnext',
+      },
+   },
 }).addRouter({
    name: "ws",
    type: "http",

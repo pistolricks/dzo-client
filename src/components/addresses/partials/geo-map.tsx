@@ -17,7 +17,7 @@ import Drawer from "@corvu/drawer";
 import {useAction} from "@solidjs/router";
 import {actionPositionHandler} from "~/lib/addresses";
 import {MapPin} from "~/components/svg";
-import SearchForm from "~/components/ui/search-form";
+import AddressSearchForm from "~/components/addresses/forms/address-search-form";
 import {cn, throttle} from "~/lib/utils";
 import {FeatureCollection} from "geojson";
 import PlaceCard from "~/components/addresses/partials/place-card";
@@ -350,7 +350,7 @@ const GeoMap: Component<PROPS> = (props) => {
                     "fixed right-0 bottom-0 z-50 w-screen h-screen sm:max-w-md  mt-0 flex flex-col rounded-t-[10px] border bg-background after:absolute after:inset-x-0 after:top-full after:h-1/2 after:bg-inherit data-[transitioning]:transition-transform data-[transitioning]:duration-300 md:select-none",
                 )}>
                 <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"/>
-                <SearchForm contextId={'map1'} class={'absolute inset-x-0 top-0 py-3 px-2.5'}/>
+                <AddressSearchForm contextId={'map1'} class={'absolute inset-x-0 top-0 py-3 px-2.5'}/>
                 <div
                     style={{
                         height: getHeight() + 'px',

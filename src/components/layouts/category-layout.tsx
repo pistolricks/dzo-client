@@ -11,7 +11,7 @@ const CategoryLayout: Component<PROPS> = props => {
 
         <div style={{
             height: getHeight() + 'px'
-        }} class="relative container mx-auto overflow-hide">
+        }} class="relative container mx-auto overflow-hide scrollbar-hide">
             {props.children}
         </div>
 
