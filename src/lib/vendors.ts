@@ -1,14 +1,14 @@
 import {action, query, redirect} from "@solidjs/router";
 import {baseApi, getUserToken} from "~/lib/server";
 
-export const getVendors = query(async () => {
+export const getVendors = query(async (params?: string) => {
     "use server";
     let token = await getUserToken();
     if (!token) throw redirect("/")
 
     console.log("Bearer:", token.token)
 
-    const response = await fetch(`${baseApi}/vendors`, {
+    const response = await fetch(params ?`${baseApi}/vendors?${params}` : `${baseApi}/vendors`, {
         headers: {
             Authorization: `Bearer ${token.token}`
         },
@@ -18,6 +18,7 @@ export const getVendors = query(async () => {
     console.log('response', res);
     return res;
 }, "vendors")
+
 
 export const getVendor = query(async (id: number) => {
     "use server";

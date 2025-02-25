@@ -1,6 +1,8 @@
-import {Component, createEffect, createSignal, For} from "solid-js";
+import {Component, createEffect, createSignal, For, JSX} from "solid-js";
 import {Button} from "~/components/ui/button";
 import {MagnifyingGlass, MapPin} from "~/components/svg";
+import {A} from "@solidjs/router";
+import {useLayoutContext} from "~/context/layout-provider";
 
 
 type PROPS = {
@@ -8,7 +10,7 @@ type PROPS = {
 }
 
 const HomeSection: Component<PROPS> = props => {
-
+    const {getQuery, setQuery} = useLayoutContext();
     const [currentIndex, setCurrentIndex] = createSignal(0)
 
     const images: () => string[] = () => props.background_images as string[];
@@ -19,6 +21,13 @@ const HomeSection: Component<PROPS> = props => {
         }, 5000)
         return () => clearInterval(interval)
     })
+
+
+
+    const handleQuery: JSX.EventHandler<HTMLInputElement, InputEvent> = (event) => {
+        console.log("Query Input changed to", event.currentTarget.value)
+        setQuery(event.currentTarget.value)
+    }
 
     return (
         <div class={'h-full w-full'}>
@@ -47,12 +56,13 @@ const HomeSection: Component<PROPS> = props => {
                         <MapPin class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400"/>
                         <input
                             id={'search-1'}
+                            onInput={handleQuery}
                             type="search"
                             placeholder="Search..."
                             class="pl-12 pr-16 py-3 w-full rounded-full bg-white/90 focus:bg-white shadow-lg"
                         />
                         <div class="absolute right-1 top-1/2 -translate-y-1/2 flex">
-                            <Button size="icon" class={'rounded-full'}>
+                            <Button as={A} type={'button'} href={'/categories'} size="icon" class={'rounded-full'}>
                                 <MagnifyingGlass class="w-6 h-6 p-1 text-blue-400"/>
                             </Button>
                         </div>

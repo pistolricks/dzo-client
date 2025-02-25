@@ -73,12 +73,12 @@ export function LayoutProvider(props: { children: JSX.Element }) {
     ]
 
     const apps: MenuItem[] = [
-        {title: "beauty", href: "categories/beauty"},
-        {title: "car wash", href: "categories/car-wash"},
-        {title: "cleaning", href: "categories/cleaning"},
-        {title: "entertainment", href: "categories/entertainment"},
-        {title: "handyman", href: "categories/handyman"},
-        {title: "homemade food", href: "categories/homemade-food"},
+        {title: "beauty", href: "/categories/beauty"},
+        {title: "car wash", href: "/categories/car-wash"},
+        {title: "cleaning", href: "/categories/cleaning"},
+        {title: "entertainment", href: "/categories/entertainment"},
+        {title: "handyman", href: "/categories/handyman"},
+        {title: "homemade food", href: "/categories/homemade-food"},
     ]
 
 
