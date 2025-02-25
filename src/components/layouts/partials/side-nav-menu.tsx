@@ -65,7 +65,7 @@ const SideNavMenu: Component<PROPS> = props => {
                         <For each={apps}>
                             {(item) => (
                                 <MenuItem contextId={'sd1'}{...item}>
-                                    <img src={`/${item.href}.jpg`}
+                                    <img src={`${item.href}.jpg`}
                                          class={'h-full w-full rounded border border-gray-500'} alt={item.title}/>
                                 </MenuItem>
                             )}

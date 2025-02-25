@@ -1,6 +1,6 @@
 import {A, AccessorWithLatest, createAsync} from "@solidjs/router";
 import {VendorsData} from "~/lib/store";
-import {createEffect, lazy} from "solid-js";
+import {createEffect, lazy, Show} from "solid-js";
 import {getVendors} from "~/lib/vendors";
 import FooterMenu from "~/components/layouts/partials/footer-menu";
 import Dialog from "@corvu/dialog";
@@ -28,7 +28,11 @@ export default function Vendors() {
     createEffect(() => {
         console.log("vendors", vendorsData())
     })
+
+
+
     return (
+        <Show when={vendorsData()}>
         <CategoryLayout {...vendorsData()}>
 
             <VendorsList vendors={vendorsData()}/>
@@ -47,5 +51,6 @@ export default function Vendors() {
                 </FooterMenu>
             </BaseDialog>
         </CategoryLayout>
+        </Show>
     );
 }

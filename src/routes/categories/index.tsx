@@ -8,7 +8,7 @@ import FooterMenu from "~/components/layouts/partials/footer-menu";
 import {BuildingOffice2Icon} from "~/components/svg";
 
 const Categories: Component<ParentProps> = props => {
-    const {apps, getIsDesktop} = useLayoutContext();
+    const {apps} = useLayoutContext();
 
     return (
         <div class={"h-full w-full scrollbar-hide relative overflow-y-auto md:overflow-y-hidden container px-2 py-6"}>
