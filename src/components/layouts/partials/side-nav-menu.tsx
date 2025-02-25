@@ -4,6 +4,10 @@ import Drawer from "@corvu/drawer";
 import {USER} from "~/lib/store";
 import {useLayoutContext} from "~/context/layout-provider";
 import {Dynamic} from "solid-js/web";
+import {handleInitials, handleUserName} from "~/lib/utils";
+import {Button} from "~/components/ui/button";
+import {UserCircle} from "~/components/svg";
+import {Avatar, AvatarFallback, AvatarImage} from "~/components/ui/avatar";
 
 const LogoutUserForm = lazy(() => import("~/components/users/forms/logout-user-form"));
 type PROPS = {
@@ -26,24 +30,25 @@ const SideNavMenu: Component<PROPS> = props => {
                class=" flex flex-col  border-r-slate-200">
             <div class="flex flex-col items-center gap-4 p-6 border-b border-slate-200">
                 <div class="shrink-0">
-                    <a href="#" class="relative flex items-center justify-center w-12 h-12 text-white rounded-full">
-                        <img src="https://i.pravatar.cc/40?img=7" alt="user name" title="user name" width="48"
-                             height="48" class="max-w-full rounded-full"/>
-                        <span
-                            class="absolute bottom-0 right-0 inline-flex items-center justify-center gap-1 p-1 text-sm text-white border-2 border-white rounded-full bg-emerald-500"><span
-                            class="sr-only"> online </span></span>
-                    </a>
+                    <Avatar class={'relative size-12 ring-2 ring-green-8'}>
+                        <AvatarImage src={""}/>
+                        <AvatarFallback>{handleInitials(user()?.name)}</AvatarFallback>
+                    </Avatar>
                 </div>
                 <div class="flex flex-col gap-0 min-h-[2rem] items-start justify-center w-full min-w-0 text-center">
                     <h4 class="w-full text-base truncate text-slate-700">
                         {title()}
                     </h4>
-                    <p class="w-full text-sm truncate text-slate-500">Jedi warrior</p>
+                    <p class="w-full text-xs truncate text-slate-500">{handleUserName(user()?.name)}</p>
                 </div>
             </div>
-            <div class="p-3 border-b border-slate-200 grid grid-cols-3 gap-2">
-                <div></div>
-                <div></div>
+            <div class="p-3 border-b border-slate-200 flex justify-between items-center w-full">
+
+                <Drawer.Trigger contextId={'sd1'} as={A} class={'bg-gray-4 hover:bg-gray-8 h-10 w-24 rounded flex justify-center space-x-1 items-center text-gray-11 hover:text-blue-8'} href={'/users/profile'}>
+                    <UserCircle/>
+                    <h3>Profile</h3>
+                </Drawer.Trigger>
+
                 <LogoutUserForm/>
             </div>
             <div aria-label="side navigation" class="flex-1 overflow-auto divide-y divide-slate-100">

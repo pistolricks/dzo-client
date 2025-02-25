@@ -243,3 +243,71 @@ export type ReverseLookupResults = {
     extratags?: any
 
 }
+
+
+
+export type AttendeeProps = {
+    first_name: string;
+    last_name: string;
+    nickname: string;
+    imageSrc: string;
+}
+
+export type LocationProps = {
+    name: string;
+    imageSrc: string;
+    street_number: string;
+    street_address: string;
+    unit?: string;
+    city: string;
+    state: string;
+    zip_code: string;
+}
+
+export type EventProps = {
+    title: string;
+    description: string;
+    imageSrc?: string;
+    href?: string;
+    start_date: string;
+    end_date: string;
+    start_time: string;
+    end_time: string;
+    location?: LocationProps;
+    attendees?: AttendeeProps[];
+    owner: AttendeeProps;
+}
+
+export type FriendProps = {
+    first_name: string;
+    last_name: string;
+    nickname: string;
+    imageSrc: string;
+}
+
+
+export type ProfileDetailProps = {
+    id?: number;
+    name?: string;
+    email?: string;
+    phone?: string;
+    activated?: boolean;
+    created_at?: string;
+    username?: string;
+    imageSrc?: string;
+    coverSrc?: string;
+    friends?: FriendProps[];
+    reviews?: ReviewProps[];
+    events?: EventProps[];
+    locations?: LocationProps[];
+    features?: FeatureCollection;
+}
+
+export type ReviewProps = {
+    name: string;
+    imageSrc: string;
+    date: string;
+    location: string;
+    rating: number;
+    review: string;
+}
