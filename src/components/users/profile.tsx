@@ -23,9 +23,7 @@ const UserProfile: Component<Feature> = props => {
 
         setStoreCollection({
             feature: {
-                properties: {
-                    profile: props.properties
-                }
+                properties: props.properties
             }
         })
         console.log(getStoreCollection)
