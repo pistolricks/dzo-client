@@ -18,7 +18,7 @@ const Register: Component<RouteSectionProps> = props => {
         }
     })
     return (
-        <FormLayout>
+        <FormLayout title={'Register'}>
             <RegisterUserForm/>
         </FormLayout>
     );

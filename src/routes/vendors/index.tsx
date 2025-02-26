@@ -47,7 +47,7 @@ export default function Vendors() {
                 </Dialog.Content>
 
                 <FooterMenu title={<BuildingOffice2Icon class={'size-full stroke-bronze-11 p-0.5 fill-green-2'}/>} variant={'ghost'} size={'icon'}>
-
+                    <div></div>
                 </FooterMenu>
             </BaseDialog>
         </CategoryLayout>

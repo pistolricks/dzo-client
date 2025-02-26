@@ -35,7 +35,7 @@ const AppLayout: Component<PROPS> = props => {
     return (
         <SideDrawer>
             <Show when={getPath()}>
-                <WsClient initialSocketUrl={'ws://localhost:4000'}/>
+               {/* <WsClient initialSocketUrl={'ws://localhost:4000'}/> */}
                 <Nav user={user()} path={getPath()}/>
             </Show>
             <main

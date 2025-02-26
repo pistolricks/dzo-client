@@ -5,7 +5,7 @@ type PROPS = {}
 const Beauty: Component<PROPS> = props => {
 
     return (
-        <div>
+        <div class={'h-full w-full'}>
 
         </div>
     );

@@ -19,7 +19,7 @@ const Login: Component<RouteSectionProps> = props => {
 
     return (
 
-        <FormLayout>
+        <FormLayout title={'Login'}>
             <LoginUserForm/>
         </FormLayout>
     );
