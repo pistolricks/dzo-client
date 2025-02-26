@@ -32,7 +32,7 @@ const Profile: Component<ParentProps> = props => {
 
 
     return (
-        <div class={'h-full w-full'}>
+        <div class={'h-full w-full relative'}>
             <UserProfile  {...profile()}/>
         </div>
     );

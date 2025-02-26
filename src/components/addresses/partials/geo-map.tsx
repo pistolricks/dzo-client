@@ -329,7 +329,7 @@ const GeoMap: Component<PROPS> = (props) => {
             }}
             class={'relative w-screen'}>
             <div ref={setMapElement} class={'absolute inset-0 w-full h-full'}/>
-            <span id="status">&nbsp;0 selected features</span>
+            <span id="status"/>
 
             <div class={'absolute right-5 top-5 z-30'}>
                 <Show when={getShowPosition()}>

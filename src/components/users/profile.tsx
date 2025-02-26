@@ -11,7 +11,6 @@ import {useAction} from "@solidjs/router";
 import {getUserDetailsHandler} from "~/lib/users";
 
 
-
 const UserProfile: Component<ProfileDetailProps> = props => {
     const name = () => props.name;
     const username = () => props.username;
@@ -74,8 +73,8 @@ const UserProfile: Component<ProfileDetailProps> = props => {
                 </div>
             </div>
 
-            <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-                <Tabs defaultValue="account" class="mt-6 sm:mt-2 2xl:mt-5">
+
+                <Tabs defaultValue="account" class="container   mx-auto mt-6 sm:mt-2 2xl:mt-5">
                     <TabsList class="-mb-px  flex space-x-8 bg-transparent border-b border-gray-200 pb-4 rounded-none">
                         <TabsTrigger
                             class={'whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 shadow-none data-[selected]:shadow-none data-[selected]:border-pink-500 rounded-none'}
@@ -100,25 +99,25 @@ const UserProfile: Component<ProfileDetailProps> = props => {
                         </TabsTrigger>
                     </TabsList>
                     <TabsContent value="profile"
-                                 class={'mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
+                                 class={'mx-auto px-4 sm:px-6 lg:px-8 pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
                         <UserDetails {...props}/>
                     </TabsContent>
                     <TabsContent value="vendor"
-                                 class={'mx-auto max-w-5xl  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
+                                 class={'mx-auto  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
 
                     </TabsContent>
                     <TabsContent value="reviews"
-                                 class={'mx-auto max-w-5xl  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
+                                 class={'mx-auto  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
                         <ReviewDetails list={reviews()}/>
                     </TabsContent>
 
                     <TabsContent value="events"
-                                 class={'mx-auto max-w-5xl  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
+                                 class={'mx-auto  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
                         <EventDetails list={events()}/>
                     </TabsContent>
 
                 </Tabs>
-            </div>
+
 
 
         </article>
