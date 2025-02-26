@@ -372,9 +372,9 @@ const GeoMap: Component<PROPS> = (props) => {
 
                                 <PlaceCard
                                     geometry={properties?.geometry}
-                                    properties={properties?.loc}
+                                    properties={properties?.profile}
                                     type={"Feature"}
-                                    id={properties.type}
+                                    id={properties.profile}
                                     bbox={properties.geometry}
                                 />
 

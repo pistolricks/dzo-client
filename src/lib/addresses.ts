@@ -119,8 +119,8 @@ export const actionPositionHandler = action(async (data: FormData) => {
     console.log("res", res)
 
     let mapInput = {
-        title: res.results?.properties?.loc?.display,
-        filename: `${res.results?.properties?.loc?.osm_type}-${res.results?.id}`,
+        title: res.results?.properties?.profile?.display,
+        filename: `${res.results?.properties?.profile?.osm_type}-${res.results?.id}`,
         lat: res.query.lat,
         lng: res.query.lon,
     }

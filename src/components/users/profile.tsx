@@ -12,13 +12,24 @@ import {useLayoutContext} from "~/context/layout-provider";
 
 
 const UserProfile: Component<Feature> = props => {
-    const {storedCurrentUser} = useLayoutContext();
+    const {storedCurrentUser, getStoreCollection, setStoreCollection} = useLayoutContext();
     const name = () => storedCurrentUser?.name;
     const imageSrc = () => "";
     const coverSrc = () => "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
-    const vendor = () => props.properties?.type?.vendor;
+    const vendor = () => props.properties?.profile?.vendor;
 
-    createEffect(() => console.log("usr", props.properties))
+    createEffect(() => {
+        console.log("usr", props.properties)
+
+        setStoreCollection({
+            feature: {
+                properties: {
+                    profile: props.properties
+                }
+            }
+        })
+        console.log(getStoreCollection)
+    })
 
 
     return (

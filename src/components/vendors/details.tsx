@@ -16,9 +16,9 @@ function VendorDetails (props: { details: Feature<Point, number, any> }){
                         <p class={'border border-amber-normal bg-amber-action text-amber-dim p-1'}>{vendor().id}</p>
                         <p class={'border border-orange-normal bg-orange-action text-orange-dim p-1'}>{vendor().geometry.coordinates}</p>
                         <p class={'border border-red-normal bg-red-action text-red-dim p-1'}>
-                            {vendor().properties.type.vendor.title}
+                            {vendor().properties.profile.vendor.title}
                         </p>
-                        <For each={vendor()?.properties.type.vendor.genres}>
+                        <For each={vendor()?.properties.profile.vendor.genres}>
                             {(genre) => (
                                 <p class={'capitalize'}>{genre}</p>
                             )}
