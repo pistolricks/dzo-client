@@ -11,7 +11,10 @@ const BaseDialog: Component<PROPS> = props => {
         <Dialog contextId={props.contextId}>
             {children()}
             <Dialog.Portal contextId={props.contextId}>
-                <Dialog.Overlay contextId={props.contextId}/>
+               {/* <Dialog.Overlay contextId={props.contextId}/>*/}
+                <Dialog.Trigger contextId={props.contextId}>
+                   Close
+                </Dialog.Trigger>
 
             </Dialog.Portal>
         </Dialog>

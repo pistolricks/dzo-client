@@ -1,10 +1,10 @@
-import {Component, createMemo, JSXElement, Show} from "solid-js";
+import {Component, createMemo, JSXElement} from "solid-js";
 import {Button} from "~/components/ui/button";
 import {Bases, Sizes, Variants} from "~/lib/utils";
 import {useLayoutContext} from "~/context/layout-provider";
 import ResponsiveNav from "~/components/ui/dialogs/responsive-nav";
-import DrawerPrimitive from "@corvu/drawer";
 import {useLocation} from "@solidjs/router";
+import Popover from "@corvu/popover";
 
 type PROPS = {
     title?: string | JSXElement
@@ -43,17 +43,24 @@ const FooterMenu: Component<PROPS> = props => {
     })
 
     return (
-        <footer
-            class={'bg-slate-ui fixed  left-1/2 -translate-x-1/2 bottom-0 w-screen mx-auto px-4 rounded-none border-gray-normal h-16 flex items-center'}>
-            <div class={sectionClass()}>
-                <ResponsiveNav title={splitPath()?.[1]}>
-                    <Button class={titleClass()} variant={variant()} base={base()} size={size()}>{title()}</Button>
-                </ResponsiveNav>
-                <div class={childClass()}>
-                    {children()}
+        <ResponsiveNav title={splitPath()?.[1]}>
+            <footer
+                class={'bg-slate-ui fixed  inset-x-0 bottom-0 w-screen mx-auto px-4 rounded-none border-gray-normal h-16 flex items-center'}>
+                <div class={sectionClass()}>
+                    <Popover.Trigger
+                        as={Button<"button">}
+                        class={titleClass()} variant={variant()} base={base()} size={size()}>
+                        {title()}
+                        <span class="sr-only">{title()}</span>
+                    </Popover.Trigger>
+
+
+                    <div class={childClass()}>
+                        {children()}
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </ResponsiveNav>
     );
 };
 

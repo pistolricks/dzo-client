@@ -44,8 +44,11 @@ const fetchLogout = async () =>
         })
     ).json()
 
-const fetchUser = async (userInput: { email: string, tokenPlaintext: string }) =>
+const fetchUser = async (userInput: { email: string, token: string }) =>
     (await fetch(`${baseApi}/users/find`, {
+            headers: {
+                Authorization: `Bearer ${userInput.token}`
+            },
             method: "POST",
             body: JSON.stringify(userInput),
         })
@@ -71,7 +74,7 @@ export const db = {
         async logout() {
             return await fetchLogout();
         },
-        async findUser({where: {userInput}}: { where: { userInput: { email: string; tokenPlaintext: string } } }) {
+        async findUser({where: {userInput}}: { where: { userInput: { email: string; token: string } } }) {
             return await fetchUser(userInput);
         },
     }

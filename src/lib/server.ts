@@ -49,3 +49,9 @@ export const getUserFolder = query(async () => {
     console.log("getUserFolder")
     return (await getSessionFolder() as string);
 }, 'folder')
+
+export async function getUserDetails(userInput: { email: string, token: string}) {
+    const res = await db.user.findUser({where: {userInput}});
+    console.log('details-res', res)
+    return res;
+}

@@ -289,14 +289,16 @@ export type FriendProps = {
 
 export interface ProfileDetailProps extends SessionUser {
     username?: string;
+    email?: string;
+    phone?: string;
     imageSrc?: string;
     coverSrc?: string;
-    phone?: string;
     friends?: FriendProps[];
     reviews?: ReviewProps[];
     events?: EventProps[];
     locations?: LocationProps[];
     features?: FeatureCollection;
+    vendor?: VENDOR
 }
 
 export type ReviewProps = {

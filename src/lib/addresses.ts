@@ -119,13 +119,15 @@ export const actionPositionHandler = action(async (data: FormData) => {
     console.log("res", res)
 
     let mapInput = {
-        title: res.results.display_name,
-        filename: `${res.results.osm_type}-${res.results.osm_id}`,
-        lat: res.results.lat,
-        lng: res.results.lon,
+        title: res.results?.properties?.loc?.display,
+        filename: `${res.results?.properties?.loc?.osm_type}-${res.results?.id}`,
+        lat: res.query.lat,
+        lng: res.query.lon,
     }
 
-     // await createPositionMapHandler(mapInput)
+    console.log("mapInput", mapInput)
+
+     await createPositionMapHandler(mapInput)
 
 
     return res;
@@ -144,8 +146,8 @@ export const createPositionMapHandler = async (mapInput: {
     console.log("Bearer:", token.token)
 
     const mapInputs = {
-        title: `Lat: ${mapInput.lat} Lng: ${mapInput.lng} TC: ${Date.now()}`, // mapInput.title,
-        filename: mapInput.filename,
+        title: `[${mapInput.lat}, ${mapInput.lng}] ${mapInput.filename}`, // mapInput.title,
+        filename: `${mapInput.filename}_${Date.now()}`,
         lat: mapInput.lat,
         lng: mapInput.lng,
     }

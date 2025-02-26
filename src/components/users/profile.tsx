@@ -1,13 +1,15 @@
-import {Component} from "solid-js";
-import {A} from "@solidjs/router";
-import {ProfileDetailProps} from "~/lib/store";
+import {Component, createSignal} from "solid-js";
+import {ProfileDetailProps, VENDOR} from "~/lib/store";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "~/components/ui/tabs"
-import ProfileDetails from "~/components/profiles/profile-details";
-import FriendsDetails from "~/components/profiles/friends-details";
-import EventDetails from "~/components/profiles/event-details";
-import ReviewDetails from "~/components/profiles/review-details";
+
 import {Avatar, AvatarFallback, AvatarImage} from "~/components/ui/avatar";
-import {handleInitials, handleSplit} from "~/lib/utils";
+import {handleInitials} from "~/lib/utils";
+import UserDetails from "~/components/profiles/user-details";
+import ReviewDetails from "~/components/profiles/review-details";
+import EventDetails from "~/components/profiles/event-details";
+import {useAction} from "@solidjs/router";
+import {getUserDetailsHandler} from "~/lib/users";
+
 
 
 const UserProfile: Component<ProfileDetailProps> = props => {
@@ -21,6 +23,23 @@ const UserProfile: Component<ProfileDetailProps> = props => {
     const events = () => props.events ?? [];
     const locations = () => props.locations ?? [];
 
+    const submit = useAction(getUserDetailsHandler);
+
+    const [getVendor, setVendor] = createSignal<VENDOR>()
+
+    const onSubmit = async () => {
+        const formData = new FormData();
+        let e = email();
+        if (!e) return
+        formData.append('email', e)
+
+        let res = await submit(formData)
+
+        setVendor(res.vendor)
+        console.log("vendor", getVendor())
+    }
+
+
     return (
         <article class={'bg-white w-full h-full overflow-y-auto md:overflow-hidden'}>
             <div>
@@ -30,6 +49,7 @@ const UserProfile: Component<ProfileDetailProps> = props => {
                          alt=""/>
                 </div>
                 <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
                     <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                         <div class="flex">
 
@@ -38,12 +58,14 @@ const UserProfile: Component<ProfileDetailProps> = props => {
                                 <AvatarFallback>{handleInitials(name())}</AvatarFallback>
                             </Avatar>
 
+
                         </div>
                         <div
                             class="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                             <div class="mt-6 min-w-0 flex-1 sm:hidden 2xl:block">
                                 <h1 class="truncate text-2xl font-bold text-gray-900">{name()}</h1>
                             </div>
+
                         </div>
                     </div>
                     <div class="mt-6 hidden min-w-0 flex-1 sm:block 2xl:hidden">
@@ -61,14 +83,15 @@ const UserProfile: Component<ProfileDetailProps> = props => {
                             Profile
                         </TabsTrigger>
                         <TabsTrigger
+                            onClick={onSubmit}
                             class={'whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 shadow-none data-[selected]:shadow-none data-[selected]:border-pink-500 rounded-none'}
-                            value="reviews">
-                            Reviews
+                            value="vendor">
+                            My Service
                         </TabsTrigger>
                         <TabsTrigger
                             class={'whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 shadow-none data-[selected]:shadow-none data-[selected]:border-pink-500 rounded-none'}
-                            value="friends">
-                            Friends
+                            value="reviews">
+                            Reviews
                         </TabsTrigger>
                         <TabsTrigger
                             class={'whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 shadow-none data-[selected]:shadow-none data-[selected]:border-pink-500 rounded-none'}
@@ -78,16 +101,17 @@ const UserProfile: Component<ProfileDetailProps> = props => {
                     </TabsList>
                     <TabsContent value="profile"
                                  class={'mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
-                        <ProfileDetails {...props}/>
+                        <UserDetails {...props}/>
+                    </TabsContent>
+                    <TabsContent value="vendor"
+                                 class={'mx-auto max-w-5xl  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
+
                     </TabsContent>
                     <TabsContent value="reviews"
                                  class={'mx-auto max-w-5xl  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
                         <ReviewDetails list={reviews()}/>
                     </TabsContent>
-                    <TabsContent value="friends"
-                                 class={'mx-auto max-w-5xl  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
-                        <FriendsDetails list={friends()}/>
-                    </TabsContent>
+
                     <TabsContent value="events"
                                  class={'mx-auto max-w-5xl  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
                         <EventDetails list={events()}/>
