@@ -1,10 +1,11 @@
 import { createEventSignal } from "@solid-primitives/event-listener";
 import { createWS, createWSState } from "@solid-primitives/websocket";
-import { createEffect, For } from "solid-js";
+import {createEffect, For, Show} from "solid-js";
 import { createStore, produce } from "solid-js/store";
 
 interface Props {
     initialSocketUrl: string;
+    open?: boolean;
 }
 
 export default function WSClient(props: Props) {
@@ -18,14 +19,16 @@ export default function WSClient(props: Props) {
     const socketMessageEvent = createEventSignal(socket, "message");
     const socketMessage = () => socketMessageEvent()?.data;
 
-    const [messageList, setMessageList] = createStore<string[]>([]);
+    const [messageList, setMessageList] = createStore<any[]>([]);
+
+    const open = () => props.open ?? false;
 
     createEffect(() => {
         if (socketMessage()) {
             setMessageList(
                 produce((messages) => {
                     messages.push(socketMessage());
-
+                    console.log(messages)
                     return messages;
                 })
             );
@@ -34,7 +37,7 @@ export default function WSClient(props: Props) {
 
 
     return (
-        <>
+        <Show when={open()}>
             <ul class="h-52 overflow-y-auto font-black">
                 <For each={messageList} fallback={<li>No messages yet</li>}>
                     {(message) => (
@@ -64,6 +67,6 @@ export default function WSClient(props: Props) {
                     send
                 </button>
             </form>
-        </>
+        </Show>
     );
 }

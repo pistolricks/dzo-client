@@ -3,7 +3,7 @@ import {Component, ParentProps} from "solid-js";
 const VendorsLayout: Component<ParentProps> = props => {
 
     return (
-        <div>
+        <div class={'h-full w-full'}>
             {props.children}
         </div>
     );

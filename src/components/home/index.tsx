@@ -3,6 +3,7 @@ import {Button} from "~/components/ui/button";
 import {MagnifyingGlass, MapPin} from "~/components/svg";
 import {A} from "@solidjs/router";
 import {useLayoutContext} from "~/context/layout-provider";
+import WSClient from "~/components/ws/ws-client";
 
 
 type PROPS = {

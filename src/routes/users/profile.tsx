@@ -1,10 +1,12 @@
-import {Component, createMemo, ParentProps} from "solid-js";
+import {Component, createMemo, onMount, ParentProps} from "solid-js";
 import UserProfile from "~/components/users/profile";
 import { ProfileDetailProps } from "~/lib/store";
-import {AccessorWithLatest, createAsync} from "@solidjs/router";
+import {AccessorWithLatest, createAsync, redirect} from "@solidjs/router";
 import {USER} from "~/lib/store";
 import {getUser} from "~/lib/users";
 import {handleUserName} from "~/lib/utils";
+import {clientOnly} from "@solidjs/start";
+
 
 
 
@@ -29,6 +31,7 @@ const Profile: Component<ParentProps> = props => {
 
     return (
         <div class={'h-full w-full'}>
+
             <UserProfile  {...profile()}/>
         </div>
     );

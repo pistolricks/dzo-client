@@ -1,5 +1,6 @@
 import {GeoJSON, GeoJsonObject, Geometry, GeometryCollection} from "geojson";
 import {createStore} from "solid-js/store";
+import {SessionUser} from "~/lib/session";
 
 export type USER = {
     id: number;
@@ -286,16 +287,11 @@ export type FriendProps = {
 }
 
 
-export type ProfileDetailProps = {
-    id?: number;
-    name?: string;
-    email?: string;
-    phone?: string;
-    activated?: boolean;
-    created_at?: string;
+export interface ProfileDetailProps extends SessionUser {
     username?: string;
     imageSrc?: string;
     coverSrc?: string;
+    phone?: string;
     friends?: FriendProps[];
     reviews?: ReviewProps[];
     events?: EventProps[];

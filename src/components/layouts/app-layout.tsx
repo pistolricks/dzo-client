@@ -5,6 +5,8 @@ import {AccessorWithLatest, createAsync, useLocation} from "@solidjs/router";
 import {USER} from "~/lib/store";
 import {getUser} from "~/lib/users";
 import {useLayoutContext} from "~/context/layout-provider";
+import {clientOnly} from "@solidjs/start";
+const WsClient = clientOnly(() => import("~/components/ws/ws-client"));
 
 type PROPS = ParentProps
 export const route = {
@@ -33,6 +35,7 @@ const AppLayout: Component<PROPS> = props => {
     return (
         <SideDrawer>
             <Show when={getPath()}>
+                <WsClient initialSocketUrl={'ws://localhost:4000'}/>
                 <Nav user={user()} path={getPath()}/>
             </Show>
             <main

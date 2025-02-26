@@ -9,6 +9,9 @@ const ProfileDetails: Component<ProfileDetailProps> = props => {
     const username = () => props.username;
     const email = () => props.email;
     const phone = () => props.phone ?? "(714) 555-5559";
+    const folder = () => props.folder;
+    const activated = () => props.activated;
+    const created_at = () => props.created_at;
     const imageSrc = () => props.imageSrc;
     const coverSrc = () => props.coverSrc;
     const reviews = () => props.reviews;
