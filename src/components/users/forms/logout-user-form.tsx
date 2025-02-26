@@ -8,6 +8,7 @@ import Drawer from "@corvu/drawer";
 type PROPS = {}
 
 const LogoutUserForm: Component<PROPS> = props => {
+    const submission = useSubmission(logoutUserHandler);
 
     return (
         <>

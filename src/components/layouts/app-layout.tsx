@@ -18,10 +18,9 @@ export const route = {
 const AppLayout: Component<PROPS> = props => {
 
     const {getHeight, setCurrentUser, storedCurrentUser} = useLayoutContext();
-    const children = () => props.children;
-
     const user: AccessorWithLatest<SessionUser | undefined> = createAsync(async () => getUser());
 
+    const children = () => props.children;
     const location = useLocation();
     const [getPath, setPath] = createSignal<string | undefined>()
 
@@ -30,9 +29,22 @@ const AppLayout: Component<PROPS> = props => {
 
     createEffect(() => {
 
-        setCurrentUser(user())
+        if(!user()?.name) {
+            setCurrentUser(undefined)
+        }
+
+        if(!storedCurrentUser && user()?.name) {
+            setCurrentUser(user())
+        }
+
+        if(storedCurrentUser?.folder !== user()?.folder) {
+            setCurrentUser(user())
+        }
+
+
+
         console.log("storedCurrentUser", storedCurrentUser)
-        setPath(() => location.pathname)
+        setPath(() => location?.pathname)
 
     })
 
