@@ -1,9 +1,6 @@
-import {Component, createMemo} from "solid-js";
+import {Component} from "solid-js";
 import UserProfile from "~/components/users/profile";
-import {ProfileDetailProps} from "~/lib/store";
-import {handleUserName} from "~/lib/utils";
-import {createAsync, RouteDefinition, useParams} from "@solidjs/router";
-import {getUser} from "~/lib/users";
+import {createAsync, RouteDefinition} from "@solidjs/router";
 import {getOwnerModels} from "~/lib/owners";
 
 type PROPS = {}
