@@ -17,7 +17,7 @@ export const route = {
 }
 const AppLayout: Component<PROPS> = props => {
 
-    const {getHeight} = useLayoutContext();
+    const {getHeight, setCurrentUser, storedCurrentUser} = useLayoutContext();
     const children = () => props.children;
 
     const user: AccessorWithLatest<SessionUser | undefined> = createAsync(async () => getUser());
@@ -29,6 +29,9 @@ const AppLayout: Component<PROPS> = props => {
 
 
     createEffect(() => {
+
+        setCurrentUser(user())
+        console.log("storedCurrentUser", storedCurrentUser)
         setPath(() => location.pathname)
 
     })

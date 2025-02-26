@@ -7,6 +7,7 @@ import VendorsIcon from '~/svgs/menu/vendors.svg'
 import PlacesIcon from '~/svgs/menu/places.svg'
 import ContentsIcon from '~/svgs/menu/contents.svg'
 import CategoriesIcon from '~/svgs/menu/categories.svg'
+import {SessionUser} from "~/lib/session";
 
 export type MenuItem = {
     title: string;
@@ -18,6 +19,8 @@ export type MenuItem = {
 type POSITION = [number, number] | undefined
 
 type LayoutType = {
+    storedCurrentUser: Store<SessionUser>
+    setCurrentUser: SetStoreFunction<SessionUser>
     getStoreCollection: Store<FeatureCollection>
     setStoreCollection: SetStoreFunction<FeatureCollection>
     getViewbox: Accessor<number[] | undefined>
@@ -41,6 +44,8 @@ let footerHeight = import.meta.env.VITE_FOOTER_HEIGHT
 export const LayoutContext = createContext<LayoutType>();
 
 export function LayoutProvider(props: { children: JSX.Element }) {
+
+    const [storedCurrentUser, setCurrentUser] = createStore<SessionUser>()
 
 
     const [getStoreCollection, setStoreCollection] = createStore<FeatureCollection>({
@@ -89,6 +94,8 @@ export function LayoutProvider(props: { children: JSX.Element }) {
 
     return (
         <LayoutContext.Provider value={{
+            storedCurrentUser,
+            setCurrentUser,
             getStoreCollection,
             setStoreCollection,
             getQuery,

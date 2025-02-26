@@ -4,16 +4,14 @@ import FormLayout from "~/components/layouts/form-layout";
 import {AccessorWithLatest, createAsync, RouteSectionProps, useNavigate} from "@solidjs/router";
 import {USER} from "~/lib/store";
 import {getUser} from "~/lib/users";
+import {useLayoutContext} from "~/context/layout-provider";
 
 const Activate: Component<RouteSectionProps> = props => {
     const navigate = useNavigate();
-
-    const userData: AccessorWithLatest<USER | undefined> = createAsync(async () => getUser());
-
-    const user = () => userData() ?? undefined;
+    const {storedCurrentUser} = useLayoutContext();
 
     createEffect(() => {
-        if (user()?.activated) {
+        if (storedCurrentUser?.activated) {
             navigate('/')
         }
     })
@@ -21,10 +19,10 @@ const Activate: Component<RouteSectionProps> = props => {
     return (
         <FormLayout>
             <Switch>
-                <Match when={!user()?.activated}>
+                <Match when={!storedCurrentUser?.activated}>
                     <ActivateUserForm/>
                 </Match>
-                <Match when={!user()}>
+                <Match when={!storedCurrentUser}>
                     <ActivateUserForm/>
                 </Match>
             </Switch>

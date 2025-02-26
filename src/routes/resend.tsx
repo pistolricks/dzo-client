@@ -3,6 +3,8 @@ import {AccessorWithLatest, createAsync, RouteSectionProps, useNavigate} from "@
 import {USER} from "~/lib/store";
 import {getUser} from "~/lib/users";
 import {redirectTo} from "~/lib";
+import {useLayoutContext} from "~/context/layout-provider";
+import {SessionUser} from "~/lib/session";
 
 const ResendActivateEmailForm = lazy(() => import( "~/components/users/forms/resend-activate-email-form"));
 const LoginUserForm = lazy(() => import('~/components/users/forms/login-user-form'));
@@ -10,12 +12,13 @@ const FormLayout = lazy(() => import("~/components/layouts/form-layout"));
 
 
 const Resend: Component<RouteSectionProps> = props => {
-    const navigate = useNavigate();
-    const user: AccessorWithLatest<USER | undefined> = createAsync(async () => getUser());
 
+    const {storedCurrentUser} = useLayoutContext();
+    const navigate = useNavigate();
 
     createEffect(() => {
-        if (user()?.activated) {
+
+        if (storedCurrentUser?.activated) {
             navigate('/', {replace: true});
         }
     })
@@ -24,8 +27,8 @@ const Resend: Component<RouteSectionProps> = props => {
         <FormLayout>
             <Show
                 fallback={<LoginUserForm/>}
-                when={user()} keyed>
-                {(user: USER) => (
+                when={storedCurrentUser?.name} keyed>
+                {(user: SessionUser) => (
                     <Show
                         fallback={<ResendActivateEmailForm/>}
                         when={user?.activated}>

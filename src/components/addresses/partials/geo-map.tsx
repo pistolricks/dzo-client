@@ -326,9 +326,15 @@ const GeoMap: Component<PROPS> = (props) => {
         <div
             style={{
                 height: getHeight() + 'px',
+                width: '100%'
             }}
-            class={'relative w-screen'}>
-            <div ref={setMapElement} class={'absolute inset-0 w-full h-full'}/>
+            class={'relative'}>
+            <div
+                style={{
+                    height: '100%',
+                    width: '100%'
+                }}
+                ref={setMapElement}/>
             <span id="status"/>
 
             <div class={'absolute right-5 top-5 z-30'}>
