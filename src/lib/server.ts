@@ -36,8 +36,8 @@ export async function login(userInput: { email: string, password: string }) {
 
 export async function logout() {
     await clearSessionUser();
-    await db.user.logout();
-    throw redirect("/");
+    return await db.user.logout();
+
 }
 
 export const getUserToken = query(async () => {
