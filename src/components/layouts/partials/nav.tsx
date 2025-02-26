@@ -5,10 +5,11 @@ import Drawer from "@corvu/drawer";
 import {UserCircle} from "~/components/svg";
 import Breadcrumbs from "~/components/layouts/partials/breadcrumbs";
 import SideNavMenu from "~/components/layouts/partials/side-nav-menu";
+import {SessionUser} from "~/lib/session";
 
 
 type PROPS = {
-    user: USER | undefined;
+    user: SessionUser | undefined;
     path?: string;
 }
 const Nav: Component<PROPS> = props => {

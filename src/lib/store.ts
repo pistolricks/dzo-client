@@ -287,7 +287,9 @@ export type FriendProps = {
 }
 
 
-export interface ProfileDetailProps extends SessionUser {
+export interface ProfileDetailProps {
+    id: number;
+    name?: string;
     username?: string;
     email?: string;
     phone?: string;

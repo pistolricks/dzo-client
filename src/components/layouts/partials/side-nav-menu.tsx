@@ -8,10 +8,11 @@ import {handleInitials, handleUserName} from "~/lib/utils";
 import {Button} from "~/components/ui/button";
 import {UserCircle} from "~/components/svg";
 import {Avatar, AvatarFallback, AvatarImage} from "~/components/ui/avatar";
+import {SessionUser} from "~/lib/session";
 
 const LogoutUserForm = lazy(() => import("~/components/users/forms/logout-user-form"));
 type PROPS = {
-    user?: USER
+    user?: SessionUser
 }
 
 const SideNavMenu: Component<PROPS> = props => {
@@ -44,7 +45,7 @@ const SideNavMenu: Component<PROPS> = props => {
             </div>
             <div class="p-3 border-b border-slate-200 flex justify-between items-center w-full">
 
-                <Drawer.Trigger contextId={'sd1'} as={A} class={'bg-gray-4 hover:bg-gray-8 h-10 w-24 rounded flex justify-center space-x-1 items-center text-gray-11 hover:text-blue-8'} href={'/users/profile'}>
+                <Drawer.Trigger href={`/profile`} contextId={'sd1'} as={A} class={'bg-gray-4 hover:bg-gray-8 h-10 w-24 rounded flex justify-center space-x-1 items-center text-gray-11 hover:text-blue-8'} >
                     <UserCircle/>
                     <h3>Profile</h3>
                 </Drawer.Trigger>

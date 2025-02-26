@@ -1,36 +1,34 @@
-import {Component} from "solid-js";
+import {Component, For, Show} from "solid-js";
 import {ProfileDetailProps} from "~/lib/store";
 
 
-
-const UserDetails: Component<ProfileDetailProps> = props => {
+type PROPS = ProfileDetailProps
+const UserDetails: Component<PROPS> = (props) => {
 
     const name = () => props.name;
-    const username = () => props.username;
     const email = () => props.email;
-    const phone = () => props.phone ?? "(714) 555-5559";
+    const username = () => props.username;
 
     return (
+        <article>
+            <div class="mx-auto mt-6 max-w-2xl px-4 sm:px-6 lg:px-8">
+                <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
 
-        <dl class="container content-center grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-            <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Name</dt>
-                <dd class="mt-1 text-sm text-gray-900">{name()}</dd>
+                    <For each={Object.entries(props)?.reverse()}>
+                        {(item) => (
+                            <Show when={typeof item?.[1] === 'string'}>
+                                <div class="sm:col-span-1 p-3">
+                                    <dt class="pl-1 text-base text-gray-900 capitalize">{item?.[1]}</dt>
+                                    <div class={' border-t border-gray-5 w-full flex justify-end p-0.5'}>
+                                        <dd class="uppercase text-xs font-medium text-tomato-11">{item?.[0]}</dd>
+                                    </div>
+                                </div>
+                            </Show>
+                        )}
+                    </For>
+                </dl>
             </div>
-            <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Username</dt>
-                <dd class="mt-1 text-sm text-gray-900">{username()}</dd>
-            </div>
-            <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Email</dt>
-                <dd class="mt-1 text-sm text-gray-900">{email()}</dd>
-            </div>
-            <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Phone</dt>
-                <dd class="mt-1 text-sm text-gray-900">{phone()}</dd>
-            </div>
-        </dl>
-
+        </article>
     );
 };
 
