@@ -1,5 +1,5 @@
-import {AccessorWithLatest, produce, createAsync} from "@solidjs/router";
-import {createEffect, lazy,} from "solid-js";
+import {AccessorWithLatest, createAsync} from "@solidjs/router";
+import {createEffect, lazy, onMount} from "solid-js";
 import {getVendors} from "~/lib/vendors";
 import FooterMenu from "~/components/layouts/partials/footer-menu";
 import Dialog from "@corvu/dialog";
@@ -11,6 +11,8 @@ import FormLayout from "~/components/layouts/form-layout";
 import CreateVendorForm from "~/components/vendors/forms/create-vendor-form";
 import {FeatureCollection} from "geojson";
 import {useLayoutContext} from "~/context/layout-provider";
+import {Feature} from "~/lib/store";
+import {updateCollection} from "~/lib/features";
 
 const CategoryLayout = lazy(() => import( "~/components/layouts/category-layout"));
 const VendorsList = lazy(() => import( "~/components/vendors/list"));
@@ -25,48 +27,44 @@ export const route = {
 export default function Vendors() {
     const {getStoreCollection, setStoreCollection} = useLayoutContext();
 
-    const collection: AccessorWithLatest<FeatureCollection | undefined> = createAsync(async () => getVendors());
-
-    createEffect(() => {
-        console.log("vendors", collection())
-
-        setStoreCollection("features",
-            (ftrs) => ftrs.id === collection().id,
-            produce((fe) => {
-                fe.geometry = collection()?.geometry
-                fe.properties = collection()?.properties
-                fe.type = collection()?.type
-                fe.id = collection().id
-            })
-        )
-    })
-    console.log(getStoreCollection)
+    const features: AccessorWithLatest<Feature> = createAsync(async () => getVendors());
 
 
-    return (
-        <>
-            <CategoryLayout {...collection()}>
-                <VendorsList vendors={collection()?.properties?.vendors}/>
-            </CategoryLayout>
-            <BaseDialog contextId={'albd1'}>
-                <Dialog.Content contextId={'albd1'}>
-                    <FormLayout title="Add Vendor">
-                        {/*
+
+
+
+onMount(async () => {
+
+    let col = updateCollection(getStoreCollection, setStoreCollection, features())
+    console.log("col", col)
+
+})
+
+
+return (
+    <>
+        <CategoryLayout {...features()}>
+            <VendorsList vendors={features()?.properties?.vendors}/>
+        </CategoryLayout>
+        <BaseDialog contextId={'albd1'}>
+            <Dialog.Content contextId={'albd1'}>
+                <FormLayout title="Add Vendor">
+                    {/*
             <FileUploader/>
             */}
-                        <CreateVendorForm/>
-                    </FormLayout>
-                </Dialog.Content>
-                <FooterMenu title={<BuildingOffice2Icon class={'size-full stroke-sky-11 p-0.5 fill-green-2'}/>}
-                            variant={'ghost'}
-                            size={'icon'}>
-                    <Button as={Drawer.Trigger} contextId={"albd1"} variant={"ghost"} size={'icon'}>
-                        <PlusIcon class={'size-full p-0.5 stroke-slate-11'}/>
-                    </Button>
-                </FooterMenu>
+                    <CreateVendorForm/>
+                </FormLayout>
+            </Dialog.Content>
+            <FooterMenu title={<BuildingOffice2Icon class={'size-full stroke-sky-11 p-0.5 fill-green-2'}/>}
+                        variant={'ghost'}
+                        size={'icon'}>
+                <Button as={Drawer.Trigger} contextId={"albd1"} variant={"ghost"} size={'icon'}>
+                    <PlusIcon class={'size-full p-0.5 stroke-slate-11'}/>
+                </Button>
+            </FooterMenu>
 
-            </BaseDialog>
-        </>
+        </BaseDialog>
+    </>
 
-    );
+);
 }

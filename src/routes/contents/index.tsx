@@ -1,6 +1,5 @@
 import {AccessorWithLatest, createAsync, RouteDefinition} from "@solidjs/router";
-import {ContentsData} from "~/lib/store";
-import {createEffect, createSignal, lazy} from "solid-js";
+import {createEffect, createSignal, lazy, onMount} from "solid-js";
 import {getContents} from "~/lib/contents";
 import FooterMenu from "~/components/layouts/partials/footer-menu";
 import {Button} from "~/components/ui/button";
@@ -10,7 +9,10 @@ import BaseDialog from "~/components/ui/dialogs/base-dialog";
 import {PhotoIcon, PlusIcon} from "~/components/svg";
 import Drawer from "@corvu/drawer";
 import {useLayoutContext} from "~/context/layout-provider";
-import {FeatureCollection, Feature} from "geojson";
+import {Feature} from "geojson";
+import {updateCollection} from "~/lib/features";
+
+
 const CategoryLayout = lazy(() => import( "~/components/layouts/category-layout"));
 const ContentsList = lazy(() => import( "~/components/contents/list"));
 
@@ -23,32 +25,17 @@ export default function Contents() {
 
     const {getStoreCollection, setStoreCollection} = useLayoutContext();
 
-    const contentsData: AccessorWithLatest<Feature | undefined> = createAsync(async () => getContents());
-
-    const [getAllContents, setAllContents] = createSignal<Feature | undefined>(contentsData())
-    createEffect(() => {
-
-        setAllContents(() => contentsData())
-        console.log("contents", contentsData())
-        console.log("getAllContents", getAllContents())
+    const feature: AccessorWithLatest<Feature> = createAsync(async () => getContents());
 
 
-        setStoreCollection("features", (ftrs => [
-            ...ftrs,
-            {
-                geometry: contentsData()?.geometry,
-                properties: contentsData()?.properties,
-                type: contentsData()?.type,
-                id: contentsData()?.id
-            }
-        ]))
-        console.log(getStoreCollection)
-
+    onMount( async() => {
+        let col = updateCollection(getStoreCollection, setStoreCollection, feature())
+        console.log("col", col)
     })
     return (
         <>
-            <CategoryLayout>
-
+            <CategoryLayout {...getStoreCollection}>
+                <ContentsList feature={feature()}/>
             </CategoryLayout>
             <BaseDialog contextId={'albd1'}>
                 <Dialog.Content contextId={'albd1'}>

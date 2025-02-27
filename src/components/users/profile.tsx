@@ -1,4 +1,4 @@
-import {Component, createEffect} from "solid-js";
+import {Component, createEffect, Show} from "solid-js";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "~/components/ui/tabs"
 import {Button} from "~/components/ui/button"
 import {Avatar, AvatarFallback, AvatarImage} from "~/components/ui/avatar";
@@ -8,6 +8,7 @@ import {Feature} from "~/lib/store";
 import VendorDetails from "~/components/profiles/vendor-details";
 import {Card} from "~/components/ui/card";
 import {useLayoutContext} from "~/context/layout-provider";
+import {createStore} from "solid-js/store";
 
 
 const UserProfile: Component<Feature> = props => {
@@ -17,17 +18,9 @@ const UserProfile: Component<Feature> = props => {
     const coverSrc = () => "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
     const vendor = () => props.properties?.profile?.vendor;
 
-    createEffect(() => {
-        console.log("usr", props.properties)
 
-        setStoreCollection("state", (state) => ({
-            feature: {
-                properties: [...props.properties, ...state.feature.properties]
 
-            }
-        }))
-        console.log(getStoreCollection)
-    })
+
 
 
     return (

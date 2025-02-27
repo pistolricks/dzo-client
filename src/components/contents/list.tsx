@@ -8,19 +8,21 @@ import {Button} from "~/components/ui/button";
 import {ChevronDown, XMark} from "~/components/svg";
 import GridWrapper from "~/components/layouts/partials/grid-wrapper";
 import {useLayoutContext} from "~/context/layout-provider";
+import {Feature} from "geojson";
 
 type PROPS = {
-    contents: ContentsData | undefined;
+    feature: Feature | undefined;
 }
 
 const ContentsList: Component<PROPS> = props => {
     const {getIsDesktop, getHeight} = useLayoutContext()
-    const contents = () => props.contents;
-    const [getContents, setContents] = createSignal(contents()?.data)
+    const feature = () => props.feature;
+    const [getContents, setContents] = createSignal(feature()?.properties?.profile?.contents)
 
     createEffect(() => {
-        setContents(() => contents()?.data)
-        console.log(contents())
+        console.log("feature", feature())
+        setContents(() => feature()?.properties?.profile?.contents)
+        console.log(feature())
         console.log(getContents())
     })
 
@@ -103,7 +105,7 @@ const ContentsList: Component<PROPS> = props => {
             </Show>
 
             <GridWrapper>
-                <For each={getContents()}>
+                <For each={getContents()?.data}>
                     {(content, i) => (
                         <Show when={getIsDesktop()} fallback={
                             <DrawerPrimitive.Trigger as={'li'} class={'relative'} contextId={'dd1'}

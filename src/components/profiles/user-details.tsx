@@ -1,13 +1,14 @@
 import {Component, For, Show} from "solid-js";
 import {ProfileDetailProps} from "~/lib/store";
+import {SessionUser} from "~/lib/session";
 
 
-type PROPS = ProfileDetailProps
+type PROPS = SessionUser
 const UserDetails: Component<PROPS> = (props) => {
 
     const name = () => props.name;
     const email = () => props.email;
-    const username = () => props.username;
+    const username = () => "test";
 
     return (
         <article>
