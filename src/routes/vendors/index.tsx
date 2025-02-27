@@ -47,8 +47,8 @@ return (
             <VendorsList vendors={features()?.properties?.vendors}/>
         </CategoryLayout>
         <BaseDialog contextId={'albd1'}>
-            <Dialog.Content contextId={'albd1'}>
-                <FormLayout title="Add Vendor">
+            <Dialog.Content class={'relative min-h-[70dvh]'} contextId={'albd1'}>
+                <FormLayout hideLogo title="Add Vendor">
                     {/*
             <FileUploader/>
             */}

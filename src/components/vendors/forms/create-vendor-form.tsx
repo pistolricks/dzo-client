@@ -4,7 +4,7 @@ import {addVendor} from "~/lib/vendors";
 import {TextField, TextFieldErrorMessage, TextFieldInput} from "~/components/ui/text-field";
 import {Button} from "../../ui/button";
 import {showToast} from "~/components/ui/toast";
-import {ChevronLeft, UploadCloud, XMark} from "~/components/svg";
+import {XMark} from "~/components/svg";
 import Dialog from "@corvu/dialog";
 import {BaseTagInput} from "~/components/ui/tags-input";
 
@@ -57,19 +57,20 @@ const CreateVendorForm: Component<PROPS> = props => {
                 </TextField>
 
                 <TextField>
-                    <BaseTagInput name={'genres'} placeholder={'categories'}/>
+                    <BaseTagInput label={''} placeholder={'categories'} name={'genres'}/>
                     <Show when={results()?.error?.genres}>
                         <TextFieldErrorMessage>
                             {results()?.error?.genres}
                         </TextFieldErrorMessage>
                     </Show>
                 </TextField>
-                <div class={'items-center flex flex-row-reverse space-x-2 space-x-reverse'}>
+                <div class={'absolute bottom-0 inset-x-0 px-4 py-4 items-center flex flex-row-reverse space-x-2 space-x-reverse'}>
                     <Dialog.Close contextId={'albd1'} class={''}>
                         <Button as={"button"} variant={'default'} type={"submit"}>Add Vendor</Button>
                     </Dialog.Close>
                     <Dialog.Close contextId={'albd1'} class={''}>
-                        <Button as={"button"} variant={'default'} size={"icon"} type={"button"}><XMark class={'p-1.5 stroke-gray-11'}/></Button>
+                        <Button as={"button"} variant={'default'} size={"icon"} type={"button"}><XMark
+                            class={'p-1.5 stroke-gray-11'}/></Button>
                     </Dialog.Close>
                 </div>
             </form>
