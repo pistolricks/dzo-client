@@ -23,6 +23,7 @@
     "@types/geojson": "^7946.0.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "lucide-solid": "^0.476.0",
     "ol": "^10.4.0",
     "ol-popup": "^5.1.1",
     "postcss": "^8.5.2",

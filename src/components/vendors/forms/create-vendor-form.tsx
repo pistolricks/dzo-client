@@ -7,12 +7,15 @@ import {showToast} from "~/components/ui/toast";
 import {XMark} from "~/components/svg";
 import Dialog from "@corvu/dialog";
 import {BaseTagInput} from "~/components/ui/tags-input";
+import SegmentSelectGroup from "~/components/ui/segment-group";
+import {useLayoutContext} from "~/context/layout-provider";
+import {BaseStep} from "~/components/ui/steps";
 
 type PROPS = {}
 
 const CreateVendorForm: Component<PROPS> = props => {
     const submission = useSubmission(addVendor);
-
+    const {apps} = useLayoutContext();
     const results = createMemo(() => {
         return submission.result
     })
@@ -55,16 +58,22 @@ const CreateVendorForm: Component<PROPS> = props => {
                         </TextFieldErrorMessage>
                     </Show>
                 </TextField>
-
                 <TextField>
-                    <BaseTagInput label={''} placeholder={'categories'} name={'genres'}/>
+                    <div class={'h-24 overflow-y-auto'}>
+                        <SegmentSelectGroup options={apps.map((app) => app.title)}/>
+                    </div>
                     <Show when={results()?.error?.genres}>
                         <TextFieldErrorMessage>
                             {results()?.error?.genres}
                         </TextFieldErrorMessage>
                     </Show>
                 </TextField>
-                <div class={'absolute bottom-0 inset-x-0 px-4 py-4 items-center flex flex-row-reverse space-x-2 space-x-reverse'}>
+                <TextField>
+                    <BaseTagInput label={''} placeholder={'categories'} name={'genres'}/>
+                </TextField>
+                <BaseStep/>
+                <div
+                    class={'absolute bottom-0 inset-x-0 px-4 py-4 items-center flex flex-row-reverse space-x-2 space-x-reverse'}>
                     <Dialog.Close contextId={'albd1'} class={''}>
                         <Button as={"button"} variant={'default'} type={"submit"}>Add Vendor</Button>
                     </Dialog.Close>
