@@ -9,7 +9,8 @@ import FileUploader from "~/components/ui/file-uploader";
 import BaseDialog from "~/components/ui/dialogs/base-dialog";
 import {PhotoIcon, PlusIcon} from "~/components/svg";
 import Drawer from "@corvu/drawer";
-
+import {useLayoutContext} from "~/context/layout-provider";
+import {FeatureCollection, Feature} from "geojson";
 const CategoryLayout = lazy(() => import( "~/components/layouts/category-layout"));
 const ContentsList = lazy(() => import( "~/components/contents/list"));
 
@@ -20,19 +21,34 @@ export const route = {
 } satisfies RouteDefinition
 export default function Contents() {
 
-    const contentsData: AccessorWithLatest<ContentsData | undefined> = createAsync(async () => getContents());
+    const {getStoreCollection, setStoreCollection} = useLayoutContext();
 
-    const [getAllContents, setAllContents] = createSignal<ContentsData | undefined>(contentsData())
+    const contentsData: AccessorWithLatest<Feature | undefined> = createAsync(async () => getContents());
+
+    const [getAllContents, setAllContents] = createSignal<Feature | undefined>(contentsData())
     createEffect(() => {
 
         setAllContents(() => contentsData())
         console.log("contents", contentsData())
         console.log("getAllContents", getAllContents())
+
+
+        setStoreCollection("features", (ftrs => [
+            ...ftrs,
+            {
+                geometry: contentsData()?.geometry,
+                properties: contentsData()?.properties,
+                type: contentsData()?.type,
+                id: contentsData()?.id
+            }
+        ]))
+        console.log(getStoreCollection)
+
     })
     return (
         <>
-            <CategoryLayout {...getAllContents()}>
-                <ContentsList contents={getAllContents()}/>
+            <CategoryLayout>
+
             </CategoryLayout>
             <BaseDialog contextId={'albd1'}>
                 <Dialog.Content contextId={'albd1'}>

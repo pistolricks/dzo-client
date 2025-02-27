@@ -6,8 +6,8 @@ import DrawerPrimitive from "@corvu/drawer";
 import Dialog from "@corvu/dialog";
 import {Button} from "~/components/ui/button";
 import {ChevronDown, XMark} from "~/components/svg";
-import {useLayoutContext} from "~/context/layout-provider";
 import GridWrapper from "~/components/layouts/partials/grid-wrapper";
+import {useLayoutContext} from "~/context/layout-provider";
 
 type PROPS = {
     contents: ContentsData | undefined;
@@ -16,10 +16,10 @@ type PROPS = {
 const ContentsList: Component<PROPS> = props => {
     const {getIsDesktop, getHeight} = useLayoutContext()
     const contents = () => props.contents;
-    const [getContents, setContents] = createSignal(contents()?.contents)
+    const [getContents, setContents] = createSignal(contents()?.data)
 
     createEffect(() => {
-        setContents(() => contents()?.contents)
+        setContents(() => contents()?.data)
         console.log(contents())
         console.log(getContents())
     })
@@ -87,6 +87,7 @@ const ContentsList: Component<PROPS> = props => {
     }
 
     return (
+
         <ResponsiveDialog isDesktop={getIsDesktop()}>
             <Show when={getIsDesktop()} fallback={<MobileDialogContent/>}>
                 <Dialog.Content contextId={'dd1'} class="sm:max-w-[425px]">

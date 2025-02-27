@@ -4,7 +4,6 @@ import {Button} from "~/components/ui/button"
 import {Avatar, AvatarFallback, AvatarImage} from "~/components/ui/avatar";
 import {handleInitials} from "~/lib/utils";
 import UserDetails from "~/components/profiles/user-details";
-import {USER} from "~/lib/db";
 import {Feature} from "~/lib/store";
 import VendorDetails from "~/components/profiles/vendor-details";
 import {Card} from "~/components/ui/card";
@@ -21,11 +20,12 @@ const UserProfile: Component<Feature> = props => {
     createEffect(() => {
         console.log("usr", props.properties)
 
-        setStoreCollection({
+        setStoreCollection("state", (state) => ({
             feature: {
-                properties: props.properties
+                properties: [...props.properties, ...state.feature.properties]
+
             }
-        })
+        }))
         console.log(getStoreCollection)
     })
 
@@ -92,10 +92,10 @@ const UserProfile: Component<Feature> = props => {
                              class={'mx-auto  pb-6 h-full min-h-[57dvh] md:h-[57dvh] md:overflow-y-auto'}>
                     <Show
                         fallback={
-                       <Card>
-                          <VendorAdvert/>
-                       </Card>
-                    }
+                            <Card>
+                                <VendorAdvert/>
+                            </Card>
+                        }
                         when={vendor()} keyed>
                         {(v) => <VendorDetails {...v()}/>}
                     </Show>
@@ -120,7 +120,6 @@ const UserProfile: Component<Feature> = props => {
 export default UserProfile;
 
 
-
 type PROPS = {}
 
 const VendorAdvert: Component<PROPS> = props => {
@@ -129,9 +128,12 @@ const VendorAdvert: Component<PROPS> = props => {
         <div class="bg-white">
             <div class="px-6 py-12 sm:px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-balance text-xl font-semibold tracking-tight text-gray-900 sm:text-4xl">Create a service account in just a few minutes.</h2>
+                    <h2 class="text-balance text-xl font-semibold tracking-tight text-gray-900 sm:text-4xl">Create a
+                        service account in just a few minutes.</h2>
                     <p class="mx-auto mt-6 max-w-xl text-balance text-lg/8 text-gray-600">
-                        Say goodbye to expensive ads. Signing up and listing your services is 100% free. Any Service, Anytime: Whether you’re a plumber, tutor, hairdresser, fitness coach, or any other service provider, our platform welcomes you!
+                        Say goodbye to expensive ads. Signing up and listing your services is 100% free. Any Service,
+                        Anytime: Whether you’re a plumber, tutor, hairdresser, fitness coach, or any other service
+                        provider, our platform welcomes you!
 
 
                     </p>

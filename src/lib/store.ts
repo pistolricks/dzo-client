@@ -55,7 +55,7 @@ export type VendorsData = {
         total_records: number
 
     },
-    vendors: VENDOR[]
+    data: VENDOR[]
 }
 
 export type CONTENT = {
@@ -84,7 +84,7 @@ export type ContentsData = {
         total_records: number
 
     },
-    contents: CONTENT[]
+    data: CONTENT[]
 }
 
 
