@@ -1,32 +1,29 @@
-import {Component, For, Show} from "solid-js";
-import {Feature, VENDOR} from "~/lib/store";
-import {GeoJSON, GeoJsonObject, Geometry, GeometryCollection, GeometryObject, Point} from "geojson";
+import { css } from 'styled-system/css'
+
+import { Component, For, Show } from 'solid-js'
+import { Feature, VENDOR } from '~/lib/store'
+import { GeoJSON, GeoJsonObject, Geometry, GeometryCollection, GeometryObject, Point } from 'geojson'
 
 type PROPS = {
-    details: Feature<Point, any, string> | undefined;
+    details: Feature<Point, any, string> | undefined
 }
 
-
-function VendorDetails (props: { details: Feature<Point, number, any> }){
-    const vendor = () => props.details;
+function VendorDetails(props: { details: Feature<Point, number, any> }) {
+    const vendor = () => props.details
     return (
-        <ul class={'text-gray-11 space-y-4 text-center'}>
+        <ul class={css({ mt: '4', mb: '4', textAlign: 'center' })}>
             <Show when={vendor()}>
-                    <div class={'flex flex-col space-y-2 border border-cyan-normal p-1'}>
-                        <p class={'border border-amber-normal bg-amber-action text-amber-dim p-1'}>{vendor().id}</p>
-                        <p class={'border border-orange-normal bg-orange-action text-orange-dim p-1'}>{vendor().geometry.coordinates}</p>
-                        <p class={'border border-red-normal bg-red-action text-red-dim p-1'}>
-                            {vendor().properties.profile.vendor.title}
-                        </p>
-                        <For each={vendor()?.properties.profile.vendor.genres}>
-                            {(genre) => (
-                                <p class={'capitalize'}>{genre}</p>
-                            )}
-                        </For>
-                    </div>
+                <div class={css({ display: 'flex', flexDir: 'column', mt: '2', mb: '2', borderWidth: '1px', p: '1' })}>
+                    <p class={css({ borderWidth: '1px', p: '1' })}>{vendor().id}</p>
+                    <p class={css({ borderWidth: '1px', p: '1' })}>{vendor().geometry.coordinates}</p>
+                    <p class={css({ borderWidth: '1px', p: '1' })}>{vendor().properties.profile.vendor.title}</p>
+                    <For each={vendor()?.properties.profile.vendor.genres}>
+                        {(genre) => <p class={css({ textTransform: 'capitalize' })}>{genre}</p>}
+                    </For>
+                </div>
             </Show>
         </ul>
-    );
-};
+    )
+}
 
-export default VendorDetails;
+export default VendorDetails

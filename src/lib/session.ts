@@ -43,7 +43,7 @@ export async function updateSessionUser(user: USER, authentication_token: AUTHEN
     }
 }
 
-export async function getSessionUser(): Promise<USER | undefined> {
+export async function getSessionUser(): Promise<SessionUser> {
     "use server";
     const session = await getSession();
 
@@ -56,7 +56,18 @@ export async function getSessionUser(): Promise<USER | undefined> {
         folder: session.data.folder,
     }
 
-    if (user.email === "") return undefined;
+    const un = {
+        id: undefined,
+        name: undefined,
+        email: undefined,
+        activated: undefined,
+        created_at: undefined,
+        token: undefined,
+        expiry: undefined,
+        folder: undefined,
+    }
+
+    if (user.email === "") return un;
 
     return user;
 }

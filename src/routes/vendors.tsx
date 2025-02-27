@@ -1,12 +1,9 @@
-import {Component, ParentProps} from "solid-js";
+import { css } from 'styled-system/css'
 
-const VendorsLayout: Component<ParentProps> = props => {
+import { Component, ParentProps } from 'solid-js'
 
-    return (
-        <div class={'h-full w-full relative'}>
-            {props.children}
-        </div>
-    );
-};
+const VendorsLayout: Component<ParentProps> = (props) => {
+    return <div class={css({ h: 'full', w: 'full', pos: 'relative' })}>{props.children}</div>
+}
 
-export default VendorsLayout;
+export default VendorsLayout

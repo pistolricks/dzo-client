@@ -4,7 +4,7 @@ import {getSessionUser, SessionUser} from "~/lib/session";
 
 export const getUser = query(async () => {
     "use server";
-    let userData = (await getSessionUser()) as SessionUser | undefined;
+    let userData = (await getSessionUser()) as SessionUser;
     console.log("getUser", userData)
     return userData;
 }, "user")
