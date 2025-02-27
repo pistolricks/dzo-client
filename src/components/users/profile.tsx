@@ -19,10 +19,6 @@ const UserProfile: Component<Feature> = props => {
     const vendor = () => props.properties?.profile?.vendor;
 
 
-
-
-
-
     return (
         <article class={'bg-white w-full h-full overflow-y-auto md:overflow-hidden'}>
             <div>

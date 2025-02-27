@@ -5,10 +5,11 @@ import {ResponsiveDialog} from "~/components/ui/dialogs/responsive-dialog";
 import DrawerPrimitive from "@corvu/drawer";
 import Dialog from "@corvu/dialog";
 import {Button} from "~/components/ui/button";
-import {ChevronDown, XMark} from "~/components/svg";
+import {ChevronDown, PhotoIcon, XMark} from "~/components/svg";
 import GridWrapper from "~/components/layouts/partials/grid-wrapper";
 import {useLayoutContext} from "~/context/layout-provider";
 import {Feature} from "geojson";
+import ImageContent from "~/components/ui/image";
 
 type PROPS = {
     feature: Feature | undefined;
@@ -71,10 +72,16 @@ const ContentsList: Component<PROPS> = props => {
             <>
                 <div
                     class="group overflow-hidden rounded-lg focus-within:ring-2 focus-within:ring-blue-5 focus-within:ring-offset-2 focus-within:ring-offset-gray-1">
-                    <img
+
+                    <ImageContent
                         src={`http://localhost:4000/${content().src}`}
-                        alt=""
-                        class="pointer-events-none aspect-[1/1] w-full object-cover group-hover:opacity-75 rounded-sm"/>
+                        alt={content()?.name}
+                        imgClass={" pointer-events-none w-full h-full object-cover group-hover:opacity-75 rounded-sm"}
+                        rootClass={'aspect-[1/1]  w-full'}
+                        fallbackClass={' animate pulse h-full w-full'}
+                    >
+                        <PhotoIcon class={'w-full h-full text-gray-2'}/>
+                    </ImageContent>
                     <button type="button" class="absolute inset-0 focus:outline-none">
                         <span class="sr-only">{content().original}</span>
                     </button>
@@ -94,8 +101,15 @@ const ContentsList: Component<PROPS> = props => {
             <Show when={getIsDesktop()} fallback={<MobileDialogContent/>}>
                 <Dialog.Content contextId={'dd1'} class="sm:max-w-[425px]">
 
-                    <img src={`http://localhost:4000/${getSelected()?.src}`} alt=""
-                         class="pointer-events-none h-full max-h-[78dvh] w-full object-contain group-hover:opacity-75 rounded-sm"/>
+                    <ImageContent
+                        src={`http://localhost:4000/${getSelected()?.src}`}
+                        alt={getSelected()?.name}
+                        imgClass={'pointer-events-none h-full w-full object-contain group-hover:opacity-75 rounded-sm'}
+                        rootClass={'h-full max-h-[78dvh] w-full'}
+                        fallbackClass={'animate pulse h-full w-full'}
+                    >
+                        <PhotoIcon class={'w-full h-full text-gray-2'}/>
+                    </ImageContent>
 
                     <Dialog.Description class={'flex justify-end items-center'} contextId={'dd1'}>
                         <Dialog.Close contextId={'dd1'} as={Button<"button">} size={'icon'}>

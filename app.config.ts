@@ -1,6 +1,7 @@
 import {defineConfig} from "@solidjs/start/config";
 import tailwindcss from '@tailwindcss/vite';
 import solidSvg from 'vite-plugin-solid-svg'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
     server: {
@@ -12,8 +13,10 @@ export default defineConfig({
     vite: {
         // vite options
         plugins: [
+
             tailwindcss(),
-            solidSvg()
+            solidSvg(),
+            tsconfigPaths({ root: './' })
         ],
         server: {
             port: 3000,

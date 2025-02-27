@@ -12,11 +12,14 @@
     "strict": true,
     "types": [
       "vinxi/types/client",
-      "vite-plugin-solid-svg/types-component-solid"
+      "vite-plugin-solid-svg/types-component-solid",
+      "vite/client"
     ],
     "isolatedModules": true,
+    "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["src", "styled-system"]
 }
