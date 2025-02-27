@@ -58,7 +58,7 @@ return (
             <FooterMenu title={<BuildingOffice2Icon class={'size-full stroke-sky-11 p-0.5 fill-green-2'}/>}
                         variant={'ghost'}
                         size={'icon'}>
-                <Button as={Drawer.Trigger} contextId={"albd1"} variant={"ghost"} size={'icon'}>
+                <Button as={Drawer.Trigger} type={"button"} contextId={"albd1"} variant={"ghost"} size={'icon'}>
                     <PlusIcon class={'size-full p-0.5 stroke-slate-11'}/>
                 </Button>
             </FooterMenu>
