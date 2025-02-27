@@ -6,6 +6,7 @@ import {Button} from "../../ui/button";
 import {showToast} from "~/components/ui/toast";
 import {ChevronLeft, UploadCloud, XMark} from "~/components/svg";
 import Dialog from "@corvu/dialog";
+import {BaseTagInput} from "~/components/ui/tags-input";
 
 type PROPS = {}
 
@@ -54,8 +55,9 @@ const CreateVendorForm: Component<PROPS> = props => {
                         </TextFieldErrorMessage>
                     </Show>
                 </TextField>
+
                 <TextField>
-                    <TextFieldInput type="text" autocomplete="none" name="genres" placeholder="genres"/>
+                    <BaseTagInput name={'genres'} placeholder={'categories'}/>
                     <Show when={results()?.error?.genres}>
                         <TextFieldErrorMessage>
                             {results()?.error?.genres}

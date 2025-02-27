@@ -4,6 +4,7 @@ import {cn} from "~/lib/utils";
 import {XMark} from "~/components/svg";
 
 type PROPS = {
+    name: string;
     label?: string;
     placeholder?: string;
 
@@ -11,12 +12,14 @@ type PROPS = {
 
 export const BaseTagInput: Component<PROPS> = props => {
 
+    const name = () => props.name;
     const label = () => props.label;
     const placeholder = () => props.placeholder;
 
     return (
         <TagsInput.Root
-            class={'w-full'}
+            name={name()}
+            class={'flex flex-col gap-1'}
             addOnPaste delimiter=","
             blurBehavior="add"
             validate={(details) => {
@@ -26,7 +29,7 @@ export const BaseTagInput: Component<PROPS> = props => {
             <TagsInput.Context>
                 {(api) => (
                     <>
-                        <TagsInput.Label class={"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"}>
+                        <TagsInput.Label class={""}>
                             {label()}
                         </TagsInput.Label>
                         <TagsInput.Control class={'w-full'}>
@@ -41,6 +44,7 @@ export const BaseTagInput: Component<PROPS> = props => {
                             </Index>
                         </TagsInput.Control>
                         <TagsInput.Input
+                            name={name()}
                             class={cn(
                                 "flex h-10 w-full rounded-md border border-input bg-gray-1 px-3 py-2 text-sm outline-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium text-normal placeholder:text-dim focus-visible:outline-hidden focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-invalid:border-error-foreground data-invalid:text-error-foreground",
                             )}
