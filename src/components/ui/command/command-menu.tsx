@@ -1,6 +1,7 @@
 import {Command as CommandPrimitive} from 'cmdk-solid'
-import {Component, createSignal, onCleanup, onMount, ParentProps, Show} from "solid-js";
+import {Component, createSignal, JSXElement, onCleanup, onMount, ParentProps, Show} from "solid-js";
 import {
+    Command,
     CommandDialog,
     CommandEmpty,
     CommandGroup,
@@ -11,7 +12,7 @@ import {
 } from './command'
 
 type PROPS = {}
-const CommandMenu: Component<ParentProps & { contextId: string }> = props => {
+const CommandMenu: Component<{children: JSXElement, contextId: string }> = props => {
     const [open, setOpen] = createSignal(false)
     const [loading, setLoading] = createSignal(false)
 
@@ -31,30 +32,54 @@ const CommandMenu: Component<ParentProps & { contextId: string }> = props => {
     })
     return (
 
-        <>
+
             <CommandDialog contextId={contextId()} open={open()} onOpenChange={setOpen}>
                 <CommandInput/>
-
-                <CommandList>
-                    <Show when={loading()}>
-                        <CommandPrimitive.Loading>Hang on…</CommandPrimitive.Loading>
-                    </Show>
-
-                    <CommandEmpty>No results found.</CommandEmpty>
-
-                    <CommandGroup heading="Fruits">
-                        <CommandItem>Apple</CommandItem>
-                        <CommandItem>Orange</CommandItem>
-                        <CommandSeparator/>
-                        <CommandItem>Pear</CommandItem>
-                        <CommandItem>Blueberry</CommandItem>
-                    </CommandGroup>
-
-
-                </CommandList>
+                {children()}
             </CommandDialog>
-        </>
+
+
     )
 }
 
 export default CommandMenu;
+
+
+const CommandMenuList: Component<{
+    loading: () => boolean
+    children?: JSXElement
+}> = props => {
+
+    const loading = () => props.loading;
+    const children = () => props.children;
+    return (
+        <CommandList>
+            <Show when={loading()}>
+                <CommandPrimitive.Loading>Hang on…</CommandPrimitive.Loading>
+            </Show>
+            <CommandEmpty>No results found.</CommandEmpty>
+            {children()}
+        </CommandList>
+    );
+};
+
+const CommandMenuGroup: Component<{title: string, children: JSXElement}> = props => {
+    const title = () => props.title;
+    const children = () => props.children;
+    return (
+        <CommandGroup heading={title()}>
+            {children()}
+        </CommandGroup>
+    );
+};
+
+const CommandMenuItem: Component<{children: JSXElement}> = props => {
+    const children = () => props.children;
+    return (
+        <CommandItem>
+            {children()}
+        </CommandItem>
+    );
+};
+
+export {CommandMenuList, CommandMenuGroup, CommandMenuItem}

@@ -56,19 +56,22 @@ const AppLayout: Component<PROPS> = (props) => {
     })
 
     return (
+
         <SideDrawer contextId={'sd1'}>
             <Show when={getPath()}>
                 {/* <WsClient initialSocketUrl={'ws://localhost:4000'}/> */}
                 <Nav user={user()} path={getPath()}/>
             </Show>
-            <main
-                style={{
-                    height: getHeight() + 'px',
-                }}
-            >
-                {children()}
-            </main>
+
+                <main
+                    style={{
+                        height: getHeight() + 'px',
+                    }}
+                >
+                    {children()}
+                </main>
         </SideDrawer>
+
     )
 }
 
