@@ -10,13 +10,12 @@ type PROPS = {
 const VendorsList: Component<PROPS> = props => {
     const vendors = () => props.vendors?.data;
     return (
-        <ListWrapper>
+
             <For each={vendors()}>
                 {(vendor, i) => (
                     <VendorCard {...vendor}/>
                 )}
             </For>
-        </ListWrapper>
     );
 };
 

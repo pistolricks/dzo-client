@@ -18,13 +18,13 @@ const AddressSearchForm: Component<PROPS> = props => {
     const className = () => props.class ?? 'flex justify-center items-center';
 
     const results = createMemo(() => {
-        console.log("result", submission.result)
-        return submission.result
+        console.log("result", submission?.result)
+        return submission?.result
     })
 
 
     createEffect(() => {
-        if (submission.pending) {
+        if (submission?.pending) {
             setStoreCollection({
                 type: "FeatureCollection",
                 features: []

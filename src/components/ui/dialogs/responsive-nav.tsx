@@ -32,7 +32,7 @@ const ResponsiveNav: Component<PROPS> = props => {
             >
                 {children()}
                 <Popover.Portal>
-                    <Popover.Content class="z-50 ml-2 rounded-md bg-slate-2 px-3 py-2 shadow-md data-open:animate-in data-open:fade-in-50% data-open:slide-in-from-top-1 data-closed:animate-out data-closed:fade-out-50% data-closed:slide-out-to-top-1">
+                    <Popover.Content class="z-50 ml-2 bg-white rounded-md bg-slate-2 px-3 py-2 shadow-md data-open:animate-in data-open:fade-in-50% data-open:slide-in-from-top-1 data-closed:animate-out data-closed:fade-out-50% data-closed:slide-out-to-top-1">
                     <ul class="relative">
                                 <For each={menu}>
                                     {(item) => (

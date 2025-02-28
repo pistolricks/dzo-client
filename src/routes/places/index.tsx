@@ -10,7 +10,6 @@ import GeoMap from "~/components/addresses/partials/geo-map";
 import {useLayoutContext} from "~/context/layout-provider";
 import {ResponsiveDrawer} from "~/components/ui/dialogs/responsive-drawer";
 
-const CategoryLayout = lazy(() => import( "~/components/layouts/category-layout"));
 
 
 export const route = {
@@ -49,7 +48,7 @@ export default function Addresses() {
 
 
     return (
-        <ResponsiveDrawer contextId={'map1'}>
+        <ResponsiveDrawer side={'right'} contextId={'map1'}>
             <GeoMap featureCollection={getStoreCollection}/>
             <FooterMenu childClass={'w-full sm:max-w-sm'}
                         sectionClass={'flex justify-between items-center w-full space-x-4'}

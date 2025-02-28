@@ -1,11 +1,11 @@
 import {A} from "@solidjs/router";
 import {Component, createEffect, Show} from "solid-js";
-import {USER} from "~/lib/store";
 import Drawer from "@corvu/drawer";
 import {UserCircle} from "~/components/svg";
 import Breadcrumbs from "~/components/layouts/partials/breadcrumbs";
 import SideNavMenu from "~/components/layouts/partials/side-nav-menu";
 import {SessionUser} from "~/lib/session";
+import { SideDrawerContent } from "~/components/ui/dialogs/side-drawer";
 
 
 type PROPS = {
@@ -58,9 +58,9 @@ const Nav: Component<PROPS> = props => {
                     </div>
                 </div>
             </header>
-            <Drawer.Content contextId={'sd1'} class={"w-screen sm:max-w-lg"}>
+            <SideDrawerContent contextId={'sd1'}>
                 <SideNavMenu user={user()}/>
-            </Drawer.Content>
+            </SideDrawerContent>
         </>
     );
 }

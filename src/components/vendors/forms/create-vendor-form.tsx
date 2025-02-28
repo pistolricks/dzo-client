@@ -7,7 +7,6 @@ import {showToast} from "~/components/ui/toast";
 import {XMark} from "~/components/svg";
 import Dialog from "@corvu/dialog";
 import {BaseTagInput} from "~/components/ui/tags-input";
-import SegmentSelectGroup from "~/components/ui/segment-group";
 import {useLayoutContext} from "~/context/layout-provider";
 import {BaseStep} from "~/components/ui/steps";
 
@@ -60,7 +59,9 @@ const CreateVendorForm: Component<PROPS> = props => {
                 </TextField>
                 <TextField>
                     <div class={'h-24 overflow-y-auto'}>
-                        <SegmentSelectGroup options={apps.map((app) => app.title)}/>
+
+
+
                     </div>
                     <Show when={results()?.error?.genres}>
                         <TextFieldErrorMessage>

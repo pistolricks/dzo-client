@@ -10,6 +10,8 @@ import GridWrapper from "~/components/layouts/partials/grid-wrapper";
 import {useLayoutContext} from "~/context/layout-provider";
 import {Feature} from "geojson";
 import ImageContent from "~/components/ui/image";
+import {DialogContent} from "~/components/ui/dialogs/base-dialog";
+import {DrawerContent} from "~/components/ui/dialogs/base-drawer";
 
 type PROPS = {
     feature: Feature | undefined;
@@ -43,7 +45,7 @@ const ContentsList: Component<PROPS> = props => {
 
     const MobileDialogContent = () => {
         return (
-            <DrawerPrimitive.Content contextId={'dd1'}>
+            <DrawerContent side={'bottom'} contextId={'dd1'}>
                 <img
                     src={`http://localhost:4000/${getSelected()?.src}`}
                     alt=""
@@ -58,7 +60,7 @@ const ContentsList: Component<PROPS> = props => {
                         <ChevronDown/>
                     </DrawerPrimitive.Close>
                 </div>
-            </DrawerPrimitive.Content>
+            </DrawerContent>
         )
     }
 
@@ -99,7 +101,7 @@ const ContentsList: Component<PROPS> = props => {
 
         <ResponsiveDialog isDesktop={getIsDesktop()}>
             <Show when={getIsDesktop()} fallback={<MobileDialogContent/>}>
-                <Dialog.Content contextId={'dd1'} class="sm:max-w-[425px]">
+                <DialogContent contextId={'dd1'} class="sm:max-w-[80dvw]">
 
                     <ImageContent
                         src={`http://localhost:4000/${getSelected()?.src}`}
@@ -115,7 +117,7 @@ const ContentsList: Component<PROPS> = props => {
                         <Dialog.Close contextId={'dd1'} as={Button<"button">} size={'icon'}>
                             <XMark class={'stroke-sky-8 fill-sky-4'}/></Dialog.Close>
                     </Dialog.Description>
-                </Dialog.Content>
+                </DialogContent>
             </Show>
 
             <GridWrapper>

@@ -18,9 +18,10 @@ import {useAction} from "@solidjs/router";
 import {actionPositionHandler} from "~/lib/addresses";
 import {MapPin} from "~/components/svg";
 import AddressSearchForm from "~/components/addresses/forms/address-search-form";
-import {cn, throttle} from "~/lib/utils";
+import {throttle} from "~/lib/utils";
 import {FeatureCollection} from "geojson";
 import PlaceCard from "~/components/addresses/partials/place-card";
+import {DrawerContent} from "~/components/ui/dialogs/base-drawer";
 
 
 type PROPS = {
@@ -322,71 +323,71 @@ const GeoMap: Component<PROPS> = (props) => {
     createEffect(() => console.log('fArr', featuresArray()))
 
     return (
-        <div
-            style={{
-                height: getHeight() + 'px',
-                width: '100%'
-            }}
-            class={'relative'}>
+        <>
             <div
                 style={{
-                    height: '100%',
+                    height: getHeight() + 'px',
                     width: '100%'
                 }}
-                ref={setMapElement}/>
-            <span id="status"/>
-
-            <div class={'absolute right-5 top-5 z-30'}>
-                <Show when={getShowPosition()}>
-                    <button onClick={() => toggleGeolocation(false)}>
-                        <MapPin class={'stroke-green-11 size-10'}/>
-                    </button>
-                </Show>
-                <Show when={!getShowPosition()}>
-                    <button onClick={() => toggleGeolocation(true)}>
-                        <MapPin class={'stroke-red-11 size-10'}/>
-                    </button>
-                </Show>
-            </div>
-
-            <Drawer.Content
-                contextId={'map1'}
-                class={cn(
-                    "fixed right-0 bottom-0 z-50 w-screen h-screen sm:max-w-md  mt-0 flex flex-col rounded-t-[10px] border bg-background after:absolute after:inset-x-0 after:top-full after:h-1/2 after:bg-inherit data-[transitioning]:transition-transform data-[transitioning]:duration-300 md:select-none",
-                )}>
-                <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"/>
-                <AddressSearchForm contextId={'map1'} class={'absolute inset-x-0 top-0 py-3 px-2.5'}/>
+                class={`relative`}>
                 <div
                     style={{
-                        height: getHeight() + 'px',
-                    }}
-                    class={'relative mt-8'}
-                >
+                        height: '100%',
+                        width: '100%'
+                }}
+                    ref={setMapElement}
+                    />
 
-
-                    <ul
-                        class={'text-gray-11 space-y-2 text-center h-full overflow-y-auto px-2'}>
-                        <For each={features()?.map((feature) => feature.getProperties())?.reverse()}>
-                            {(properties, i) => (
-
-                                <PlaceCard
-                                    geometry={properties?.geometry}
-                                    properties={properties?.profile}
-                                    type={"Feature"}
-                                    id={properties.profile}
-                                    bbox={properties.geometry}
-                                />
-
-                            )}
-                        </For>
-                    </ul>
-
-
+                <div class={'absolute right-5 top-5 z-30'}>
+                    <Show when={getShowPosition()}>
+                        <button onClick={() => toggleGeolocation(false)}>
+                            <MapPin class={'stroke-green-11 size-10'}/>
+                        </button>
+                    </Show>
+                    <Show when={!getShowPosition()}>
+                        <button onClick={() => toggleGeolocation(true)}>
+                            <MapPin class={'stroke-red-11 size-10'}/>
+                        </button>
+                    </Show>
                 </div>
-            </Drawer.Content>
 
 
-        </div>
+            </div>
+            <DrawerContent side={'right'} contextId={'map1'}>
+                <div class={'h-screen w-full relative'}>
+                    <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"/>
+                    <AddressSearchForm contextId={'map1'} class={'absolute inset-x-0 top-0 py-3 px-2.5'}/>
+                    <div
+                        style={{
+                            height: getHeight() + 'px',
+                        }}
+                        class={'relative mt-8'}
+                    >
+
+
+                        <ul
+                            class={'text-gray-11 space-y-2 text-center h-full overflow-y-auto px-2'}>
+                            <For each={features()?.map((feature) => feature.getProperties())?.reverse()}>
+                                {(properties, i) => (
+
+                                    <PlaceCard
+                                        geometry={properties?.geometry}
+                                        properties={properties?.profile}
+                                        type={"Feature"}
+                                        id={properties.profile}
+                                        bbox={properties.geometry}
+                                    />
+
+                                )}
+                            </For>
+                        </ul>
+
+                    </div>
+                </div>
+            </DrawerContent>
+
+
+        </>
     );
 };
 

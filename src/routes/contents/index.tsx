@@ -5,7 +5,7 @@ import FooterMenu from "~/components/layouts/partials/footer-menu";
 import {Button} from "~/components/ui/button";
 import Dialog from "@corvu/dialog";
 import FileUploader from "~/components/ui/file-uploader";
-import BaseDialog from "~/components/ui/dialogs/base-dialog";
+import BaseDialog, {DialogContent} from "~/components/ui/dialogs/base-dialog";
 import {PhotoIcon, PlusIcon} from "~/components/svg";
 import Drawer from "@corvu/drawer";
 import {useLayoutContext} from "~/context/layout-provider";
@@ -28,19 +28,17 @@ export default function Contents() {
     const feature: AccessorWithLatest<Feature> = createAsync(async () => getContents());
 
 
-    onMount( async() => {
+    onMount(async () => {
         let col = updateCollection(getStoreCollection, setStoreCollection, feature())
         console.log("col", col)
     })
     return (
         <>
-            <CategoryLayout {...getStoreCollection}>
-                <ContentsList feature={feature()}/>
-            </CategoryLayout>
+            <ContentsList feature={feature()}/>
             <BaseDialog contextId={'albd1'}>
-                <Dialog.Content contextId={'albd1'}>
+                <DialogContent contextId={'albd1'}>
                     <FileUploader/>
-                </Dialog.Content>
+                </DialogContent>
                 <FooterMenu title={<PhotoIcon class={'size-full stroke-sky-11 p-0.5 fill-green-2'}/>} variant={'ghost'}
                             size={'icon'}>
                     <Button as={Drawer.Trigger} contextId={"albd1"} variant={"ghost"} size={'icon'}>
