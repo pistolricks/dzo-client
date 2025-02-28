@@ -1,5 +1,5 @@
 import {AccessorWithLatest, createAsync, useSubmission} from "@solidjs/router";
-import {createEffect, createMemo, createSignal, lazy} from "solid-js";
+import {createEffect, createMemo, createSignal} from "solid-js";
 import {actionPositionHandler, addressSearchHandler, getAddresses} from "~/lib/addresses";
 import FooterMenu from "~/components/layouts/partials/footer-menu";
 
@@ -8,8 +8,7 @@ import {LookupResult, OsmOutput} from "~/lib/store";
 import {MapIcon} from "~/components/svg";
 import GeoMap from "~/components/addresses/partials/geo-map";
 import {useLayoutContext} from "~/context/layout-provider";
-import {ResponsiveDrawer} from "~/components/ui/dialogs/responsive-drawer";
-
+import DrawerPrimitive from "@corvu/drawer";
 
 
 export const route = {
@@ -19,7 +18,7 @@ export const route = {
 }
 
 export default function Addresses() {
-    const {setMyLocation, setStoreCollection, getStoreCollection} = useLayoutContext();
+    const {setMyLocation, setStoreCollection, getStoreCollection, getIsDesktop} = useLayoutContext();
     const addressData: AccessorWithLatest<any | undefined> = createAsync(async () => getAddresses());
 
     const submission = useSubmission(addressSearchHandler);
@@ -27,6 +26,8 @@ export default function Addresses() {
 
     const [getPlace, setPlace] = createSignal<OsmOutput | undefined>()
     const [getDetails, setDetails] = createSignal<LookupResult | undefined>()
+
+    const [open, setOpen] = createSignal(false)
 
     const results = createMemo(() => {
         console.log("result2", submission.result)
@@ -48,7 +49,13 @@ export default function Addresses() {
 
 
     return (
-        <ResponsiveDrawer side={'right'} contextId={'map1'}>
+
+        <DrawerPrimitive contextId={'map1'} noOutsidePointerEvents={false} closeOnOutsidePointer={false}
+                         breakPoints={[0.4]} side={getIsDesktop() ? 'right' : 'bottom'} defaultSnapPoint={1}
+                         snapPoints={[0, 1]}
+                         dialogId="responsive-drawer-mobile" open={open()} onOpenChange={setOpen}>
+
+
             <GeoMap featureCollection={getStoreCollection}/>
             <FooterMenu childClass={'w-full sm:max-w-sm'}
                         sectionClass={'flex justify-between items-center w-full space-x-4'}
@@ -56,6 +63,7 @@ export default function Addresses() {
                         variant={'ghost'} size={'icon'}>
                 <AddressSearchForm contextId={'map1'} class={'w-full sm:max-w-sm'}/>
             </FooterMenu>
-        </ResponsiveDrawer>
+        </DrawerPrimitive>
+
     );
 }

@@ -1,9 +1,8 @@
 import {AccessorWithLatest, createAsync, RouteDefinition} from "@solidjs/router";
-import {createEffect, createSignal, lazy, onMount} from "solid-js";
+import {lazy, onMount} from "solid-js";
 import {getContents} from "~/lib/contents";
 import FooterMenu from "~/components/layouts/partials/footer-menu";
 import {Button} from "~/components/ui/button";
-import Dialog from "@corvu/dialog";
 import FileUploader from "~/components/ui/file-uploader";
 import BaseDialog, {DialogContent} from "~/components/ui/dialogs/base-dialog";
 import {PhotoIcon, PlusIcon} from "~/components/svg";
@@ -13,7 +12,6 @@ import {Feature} from "geojson";
 import {updateCollection} from "~/lib/features";
 
 
-const CategoryLayout = lazy(() => import( "~/components/layouts/category-layout"));
 const ContentsList = lazy(() => import( "~/components/contents/list"));
 
 export const route = {

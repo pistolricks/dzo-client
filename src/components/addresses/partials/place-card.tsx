@@ -2,8 +2,8 @@ import {Component, createEffect, createMemo, createSignal} from "solid-js";
 import {Properties} from "~/lib/store";
 import {CallIcon, EnvelopeIcon, GlobeIcon, MapPin, RatingIcon} from "~/components/svg";
 import {A} from "@solidjs/router";
+import {Geometry} from "geojson";
 
-import Geometry from "ol/geom/Geometry";
 
 export type PLACE_PROPS = {
     geometry: Geometry
@@ -18,7 +18,7 @@ const PlaceCard: Component<PLACE_PROPS> = props => {
     const type = () => props.type ?? null;
     const geometry = () => props.geometry;
     const id = () => props.id;
-    const properties = () => props.properties?.profile ?? props.properties;
+    const properties = () => props.properties?.places ?? props.properties;
     const extraTags = () => properties()?.extratags;
     const address = () => properties()?.address;
     const bbox = () => props.bbox;

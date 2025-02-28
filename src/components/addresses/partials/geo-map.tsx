@@ -112,7 +112,7 @@ const styles = {
 };
 
 const GeoMap: Component<PROPS> = (props) => {
-    const {getHeight, setViewbox} = useLayoutContext();
+    const {getHeight, setViewbox, getIsDesktop} = useLayoutContext();
     const {open, setOpen} = Drawer.useDialogContext('map1')
     const [getShowPosition, setShowPosition] = createSignal(false);
     const [getGeolocation, setGeolocation] = createSignal<Geolocation | undefined>();
@@ -132,9 +132,11 @@ const GeoMap: Component<PROPS> = (props) => {
     const features = createMemo(() => {
         try {
             const collection = featureCollection();
+            console.log("135" , collection)
             if (collection) {
                 let ftr = new GeoJSON().readFeatures(collection);
 
+                console.log("ftr", ftr)
                 return ftr;
 
             }
@@ -353,7 +355,7 @@ const GeoMap: Component<PROPS> = (props) => {
 
 
             </div>
-            <DrawerContent side={'right'} contextId={'map1'}>
+            <DrawerContent side={getIsDesktop() ? 'right' : 'bottom'} contextId={'map1'}>
                 <div class={'h-screen w-full relative'}>
                     <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"/>
                     <AddressSearchForm contextId={'map1'} class={'absolute inset-x-0 top-0 py-3 px-2.5'}/>
@@ -361,7 +363,7 @@ const GeoMap: Component<PROPS> = (props) => {
                         style={{
                             height: getHeight() + 'px',
                         }}
-                        class={'relative mt-8'}
+                        class={'relative mt-10'}
                     >
 
 
@@ -371,11 +373,11 @@ const GeoMap: Component<PROPS> = (props) => {
                                 {(properties, i) => (
 
                                     <PlaceCard
-                                        geometry={properties?.geometry}
-                                        properties={properties?.profile}
+                                        geometry={featureCollection()?.features?.[i()]?.geometry}
+                                        properties={properties?.places}
                                         type={"Feature"}
-                                        id={properties.profile}
-                                        bbox={properties.geometry}
+                                        id={properties?.id}
+                                        bbox={properties?.places?.boundingbox}
                                     />
 
                                 )}
