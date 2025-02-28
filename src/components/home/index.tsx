@@ -31,21 +31,10 @@ const HomeSection: Component<PROPS> = props => {
     }
 
     return (
-        <div class={'h-full w-full'}>
-            <For each={images()}>
-                {(image: string, index) => (
-                    <div class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                        index() === currentIndex() ? "opacity-100" : "opacity-0"
-                    }`}
-                    >
-                        <img src={image} alt={`Hero background ${index() + 1}`}
-                             class="w-full h-full object-cover"/>
-                    </div>
-                )}
-            </For>
-            <div class="absolute inset-0 bg-black/50 z-10"/>
-            <div
-                class="relative z-20 container mx-auto h-full flex flex-col items-center justify-center px-4 md:px-6 lg:px-8 space-y-6">
+        <>
+            <img src={'logo.jpg'} alt={`Hero background`} class="absolute inset-0 w-full h-full object-cover"/>
+        <div class={'h-full w-full flex justify-center items-center'}>
+            <div class="relative container mx-auto flex flex-col items-center justify-center px-4 md:px-6 lg:px-8 space-y-6">
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-pretty text-center">
                     {import.meta.env.VITE_WELCOME_TITLE}
                 </h1>
@@ -71,6 +60,7 @@ const HomeSection: Component<PROPS> = props => {
                 </div>
             </div>
         </div>
+            </>
     );
 };
 

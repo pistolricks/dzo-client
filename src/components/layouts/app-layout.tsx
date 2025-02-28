@@ -61,15 +61,15 @@ const AppLayout: Component<PROPS> = (props) => {
             <Show when={getPath()}>
                 {/* <WsClient initialSocketUrl={'ws://localhost:4000'}/> */}
                 <Nav user={user()} path={getPath()}/>
-            </Show>
-
                 <main
                     style={{
                         height: getHeight() + 'px',
+                        width: '100%'
                     }}
                 >
                     {children()}
                 </main>
+            </Show>
         </SideDrawer>
 
     )

@@ -25,7 +25,7 @@ const FormLayout: Component<PROPS> = props => {
                 </h2>
             </div>
 
-            <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-sm mb-4">
+            <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-sm mb-4 container">
                 {props.children}
             </div>
         </div>
