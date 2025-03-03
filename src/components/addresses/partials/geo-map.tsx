@@ -112,7 +112,7 @@ const styles = {
 };
 
 const GeoMap: Component<PROPS> = (props) => {
-    const {getHeight, setViewbox, getIsDesktop} = useLayoutContext();
+    const {getMyLocation, getHeight, setViewbox, getViewbox, getIsDesktop} = useLayoutContext();
     const {open, setOpen} = Drawer.useDialogContext('map1')
     const [getShowPosition, setShowPosition] = createSignal(false);
     const [getGeolocation, setGeolocation] = createSignal<Geolocation | undefined>();
@@ -132,7 +132,7 @@ const GeoMap: Component<PROPS> = (props) => {
     const features = createMemo(() => {
         try {
             const collection = featureCollection();
-            console.log("135" , collection)
+            console.log("135", collection)
             if (collection) {
                 let ftr = new GeoJSON().readFeatures(collection);
 
@@ -242,7 +242,7 @@ const GeoMap: Component<PROPS> = (props) => {
 
         createEffect(() => {
             console.log('features', features())
-
+            console.log('getViewbox', getViewbox())
             setOpen(featureCollection()?.features?.length > 0)
 
             console.log(getMap())
@@ -336,9 +336,9 @@ const GeoMap: Component<PROPS> = (props) => {
                     style={{
                         height: '100%',
                         width: '100%'
-                }}
+                    }}
                     ref={setMapElement}
-                    />
+                />
 
                 <div class={'absolute right-5 top-5 z-30'}>
                     <Show when={getShowPosition()}>
@@ -372,14 +372,15 @@ const GeoMap: Component<PROPS> = (props) => {
                             <For each={features()?.map((feature) => feature.getProperties())?.reverse()}>
                                 {(properties, i) => (
 
-                                    <PlaceCard
-                                        geometry={featureCollection()?.features?.[i()]?.geometry}
-                                        properties={properties?.places}
-                                        type={"Feature"}
-                                        id={properties?.id}
-                                        bbox={properties?.places?.boundingbox}
-                                    />
-
+                                    <Show when={featureCollection()?.features?.[i()]?.id}>
+                                        <PlaceCard
+                                            geometry={featureCollection()?.features?.[i()]?.geometry}
+                                            properties={properties?.places}
+                                            type={"Feature"}
+                                            id={properties?.id}
+                                            bbox={properties?.places?.boundingbox}
+                                        />
+                                    </Show>
                                 )}
                             </For>
                         </ul>

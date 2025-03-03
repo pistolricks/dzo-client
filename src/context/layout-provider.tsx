@@ -3,11 +3,13 @@ import {Feature} from "~/lib/store";
 
 import {createStore, SetStoreFunction, Store} from "solid-js/store";
 import {FeatureCollection} from "geojson";
+import ProfileIcon from '~/svgs/menu/profile.svg'
 import VendorsIcon from '~/svgs/menu/vendors.svg'
 import PlacesIcon from '~/svgs/menu/places.svg'
 import ContentsIcon from '~/svgs/menu/contents.svg'
 import CategoriesIcon from '~/svgs/menu/categories.svg'
 import {SessionUser} from "~/lib/session";
+
 
 export type MenuItem = {
     title: string;
@@ -71,6 +73,7 @@ export function LayoutProvider(props: { children: JSX.Element }) {
 
 
     const menu: MenuItem[] = [
+        {title: "profile", href: "/profile", icon: ProfileIcon},
         {title: "vendors", href: "/vendors", icon: VendorsIcon},
         {title: "places", href: "/places", icon: PlacesIcon},
         {title: "contents", href: "/contents", icon: ContentsIcon},

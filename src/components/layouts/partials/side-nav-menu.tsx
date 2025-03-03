@@ -45,11 +45,7 @@ const SideNavMenu: Component<PROPS> = props => {
             </div>
             <div class="p-3 border-b border-slate-200 flex justify-between items-center w-full">
 
-                <Drawer.Trigger href={`/profile`} contextId={'sd1'} as={A} class={'bg-gray-4 hover:bg-gray-8 h-10 w-24 rounded flex justify-center space-x-1 items-center text-gray-11 hover:text-blue-8'} >
-                    <UserCircle/>
-                    <h3>Profile</h3>
-                </Drawer.Trigger>
-
+            <div></div>
                 <LogoutUserForm/>
             </div>
             <div aria-label="side navigation" class="flex-1 overflow-auto divide-y divide-slate-100">

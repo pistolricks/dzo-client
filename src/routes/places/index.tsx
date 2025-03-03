@@ -18,7 +18,7 @@ export const route = {
 }
 
 export default function Addresses() {
-    const {setMyLocation, setStoreCollection, getStoreCollection, getIsDesktop} = useLayoutContext();
+    const {setMyLocation, getMyLocation, setStoreCollection, getStoreCollection, getIsDesktop} = useLayoutContext();
     const addressData: AccessorWithLatest<any | undefined> = createAsync(async () => getAddresses());
 
     const submission = useSubmission(addressSearchHandler);

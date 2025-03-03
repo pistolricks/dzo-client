@@ -20,7 +20,7 @@ const VendorDetails: Component<PROPS> = (props) => {
                         {(item) => (
                             <Show when={typeof item?.[1] === 'string'}>
                                 <div class="sm:col-span-1 p-3">
-                                    <dt class="pl-1 text-base text-gray-900">{item?.[1]}</dt>
+                                    <dt class="pl-1 text-base text-gray-900  h-6">{item?.[1]}</dt>
                                     <div class={' border-t border-gray-5 w-full flex justify-end p-0.5'}>
                                         <dd class="uppercase text-xs font-medium text-tomato-11">{item?.[0]?.replaceAll("_", " ")}</dd>
                                     </div>
@@ -45,8 +45,8 @@ const VendorAdvert: VoidComponent = () => {
                 <div class="mx-auto max-w-2xl text-center">
                     <h2 class="text-balance text-xl font-semibold tracking-tight text-gray-900 sm:text-4xl">Create a
                         service account in just a few minutes.</h2>
-                    <p class="mx-auto mt-6 max-w-xl text-balance text-lg/8 text-gray-600">
-                        Say goodbye to expensive ads. Signing up and listing your services is 100% free. Any Service,
+                    <p class="mx-auto mt-2 max-w-xl text-balance text-lg/8 text-gray-600">
+                        Signing up and listing your services is 100% free. Any Service,
                         Anytime: Whether you’re a plumber, tutor, hairdresser, fitness coach, or any other service
                         provider, our platform welcomes you!
 

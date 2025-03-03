@@ -1,11 +1,13 @@
 import {useSession} from "vinxi/http";
 import {USER} from "~/lib/db";
 import {AUTHENTICATION_TOKEN} from "~/lib/index";
+import {handleUserName} from "~/lib/utils";
 
 export type SessionUser = {
     id?: number
     name?: string
     email?: string
+    display_name?: string
     activated?: boolean;
     created_at?: string;
     token?: string
@@ -31,6 +33,7 @@ export async function updateSessionUser(user: USER, authentication_token: AUTHEN
             d.id = user?.id;
             d.name = user?.name;
             d.email = user?.email;
+            d.display_name = handleUserName(user?.name)
             d.activated = user?.activated;
             d.created_at = user?.created_at;
             d.token = authentication_token?.token;
@@ -51,6 +54,7 @@ export async function getSessionUser(): Promise<USER | undefined> {
         id: session.data.id,
         name: session.data.name,
         email: session.data.email,
+        display_name: session.data.display_name,
         activated: session.data.activated,
         created_at: session.data.created_at,
         folder: session.data.folder,
@@ -92,6 +96,7 @@ export async function clearSessionUser() {
             d.id = undefined;
             d.name = undefined;
             d.email = undefined;
+            d.display_name = undefined;
             d.activated = undefined;
             d.created_at = undefined;
             d.token = undefined;

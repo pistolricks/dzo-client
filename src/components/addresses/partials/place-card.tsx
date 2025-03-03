@@ -6,10 +6,10 @@ import {Geometry} from "geojson";
 
 
 export type PLACE_PROPS = {
-    geometry: Geometry
+    geometry?: Geometry
     properties: Properties
     type: string
-    id: string | number
+    id?: string | number
     bbox?: any
 }
 
@@ -66,7 +66,7 @@ const PlaceCard: Component<PLACE_PROPS> = props => {
                     <RatingIcon class={'size-4 stroke-amber-10 fill-amber-4'}/>
                 </div>
                 <div
-                    class="text-xs uppercase font-bold text-gray-600 tracking-wide">{properties()?.profile?.address?.name}</div>
+                    class="text-xs uppercase font-bold text-gray-600 tracking-wide">{properties()?.address?.name}</div>
             </div>
             <div class="p-4 text-gray-700 flex justify-start items-center w-full">
                 <div class={'items-center text-left'}>
@@ -74,7 +74,7 @@ const PlaceCard: Component<PLACE_PROPS> = props => {
                         {displayName()?.[0]}
                     </p>
                     <p class="text-xs w-full mt-2"><span
-                        class={'font-semibold capitalize'}>{properties()?.profile?.type}</span> {" | "} {displayName()?.[1]} {displayName()?.[2]}
+                        class={'font-semibold capitalize'}>{properties()?.type}</span> {" | "} {displayName()?.[1]} {displayName()?.[2]}
                     </p>
                     <p class="text-xs w-full mt-2">{displayName()?.[2]}, {displayName()?.[3]}</p>
                 </div>

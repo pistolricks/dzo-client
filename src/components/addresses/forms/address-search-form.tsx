@@ -13,8 +13,9 @@ type PROPS = { class?: string, contextId: string };
 const AddressSearchForm: Component<PROPS> = props => {
     const {getViewbox, getQuery, setQuery, setStoreCollection} = useLayoutContext();
     const submission = useSubmission(addressSearchHandler);
-    const {open, setOpen} = Drawer.useDialogContext('map1')
-    const contextId = () => props.contextId;
+    const contextId = () => props.contextId ?? 'map1';
+    const {open, setOpen} = Drawer.useDialogContext(contextId())
+
     const className = () => props.class ?? 'flex justify-center items-center';
 
     const results = createMemo(() => {
@@ -57,7 +58,8 @@ const AddressSearchForm: Component<PROPS> = props => {
         <>
             <form class={className()} action={addressSearchHandler} method="post">
                 <TextField class={'w-full relative'}>
-                    <TextFieldInput onInput={handleSearch} value={getQuery()} class={"w-full"} type="text"
+                    <TextFieldInput onInput={handleSearch}
+                                    value={getQuery()} class={"w-full pr-24"} type="text"
                                     autocomplete="none" id="search"
                                     name="search" placeholder="Search"/>
 
