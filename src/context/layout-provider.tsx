@@ -9,6 +9,7 @@ import PlacesIcon from '~/svgs/menu/places.svg'
 import ContentsIcon from '~/svgs/menu/contents.svg'
 import CategoriesIcon from '~/svgs/menu/categories.svg'
 import {SessionUser} from "~/lib/session";
+import {Extent} from "ol/extent";
 
 
 export type MenuItem = {
@@ -25,8 +26,8 @@ type LayoutType = {
     setCurrentUser: SetStoreFunction<SessionUser>
     getStoreCollection: Store<FeatureCollection>
     setStoreCollection: SetStoreFunction<FeatureCollection>
-    getViewbox: Accessor<number[] | undefined>
-    setViewbox: Setter<number[] | undefined>
+    getViewbox: Accessor<Extent | undefined>
+    setViewbox: Setter<Extent | undefined>
     getMyLocation: Accessor<Feature | undefined>
     setMyLocation: Setter<Feature | undefined>
     getPosition: Accessor<POSITION>
@@ -58,7 +59,7 @@ export function LayoutProvider(props: { children: JSX.Element }) {
 
     const [getPosition, setPosition] = createSignal<POSITION>(undefined)
     const [getMyLocation, setMyLocation] = createSignal<Feature | undefined>(undefined)
-    const [getViewbox, setViewbox] = createSignal<number[] | undefined>(undefined)
+    const [getViewbox, setViewbox] = createSignal<Extent | undefined>(undefined)
     const [getHeight, setHeight] = createSignal(0)
     const [getQuery, setQuery] = createSignal("")
 

@@ -39,7 +39,7 @@ export default function Addresses() {
     createEffect(() => {
         console.log("getDetails", getDetails())
         console.log("getPlace", getPlace())
-        console.log("results_index", results())
+        console.log("getStoreCollection", getStoreCollection)
         console.log("addresses", addressData())
 
         console.log("currentPosition", currentPosition.result?.results)

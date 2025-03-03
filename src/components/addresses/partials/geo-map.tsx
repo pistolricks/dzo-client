@@ -22,9 +22,13 @@ import {throttle} from "~/lib/utils";
 import {FeatureCollection} from "geojson";
 import PlaceCard from "~/components/addresses/partials/place-card";
 import {DrawerContent} from "~/components/ui/dialogs/base-drawer";
-
+import {shiftKeyOnly} from 'ol/events/condition.js';
+import ExtentInteraction from 'ol/interaction/Extent.js';
+import {Extent} from "ol/extent";
+import {Polygon} from "ol/geom";
 
 type PROPS = {
+    contextId?: string;
     featureCollection: FeatureCollection;
 };
 
@@ -113,7 +117,8 @@ const styles = {
 
 const GeoMap: Component<PROPS> = (props) => {
     const {getMyLocation, getHeight, setViewbox, getViewbox, getIsDesktop} = useLayoutContext();
-    const {open, setOpen} = Drawer.useDialogContext('map1')
+    const contextId = () => props.contextId ?? 'map1'
+    const {open, setOpen} = Drawer.useDialogContext(contextId())
     const [getShowPosition, setShowPosition] = createSignal(false);
     const [getGeolocation, setGeolocation] = createSignal<Geolocation | undefined>();
 
@@ -214,8 +219,10 @@ const GeoMap: Component<PROPS> = (props) => {
             if (coordinates) {
                 positionFeature.setGeometry(new Point(coordinates));
                 view.animate({center: coordinates, duration: 1000, zoom: 12});
-                const extent = view.calculateExtent();
-                setViewbox(extent);
+                const extent: Extent = view.calculateExtent();
+                setViewbox(() => extent);
+
+
 
                 let lat = coordinates[1];
                 let lon = coordinates[0]
@@ -227,25 +234,25 @@ const GeoMap: Component<PROPS> = (props) => {
 
                 submit(formData).then(r => console.log(r))
             }
+
+
         });
-
-
-        const vectorLayer = new VectorLayer({
-            source: new VectorSource({
-                features: [accuracyFeature, positionFeature],
-            }),
-        });
-
-
-        getMap()?.addLayer(vectorLayer);
 
 
         createEffect(() => {
+            const positionLayer = new VectorLayer({
+                source: new VectorSource({
+                    features: [accuracyFeature, positionFeature],
+                }),
+            });
+
+            getMap()?.addLayer(positionLayer);
+
+
             console.log('features', features())
             console.log('getViewbox', getViewbox())
-            setOpen(featureCollection()?.features?.length > 0)
+            setOpen(features()?.length > 0)
 
-            console.log(getMap())
             const styleFunction = function (feature: any) {
                 return styles[feature?.getGeometry()?.getType() as keyof typeof styles];
             };
@@ -295,6 +302,9 @@ const GeoMap: Component<PROPS> = (props) => {
                     status.innerHTML = '&nbsp;' + selected.length + ' selected features';
                 }
             })
+
+            const extent = new ExtentInteraction({condition: shiftKeyOnly});
+            getMap()?.addInteraction(extent);
         })
 
         // Cleanup on component unmount
@@ -355,10 +365,10 @@ const GeoMap: Component<PROPS> = (props) => {
 
 
             </div>
-            <DrawerContent side={getIsDesktop() ? 'right' : 'bottom'} contextId={'map1'}>
+            <DrawerContent side={getIsDesktop() ? 'right' : 'bottom'} contextId={contextId()}>
                 <div class={'h-screen w-full relative'}>
                     <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"/>
-                    <AddressSearchForm contextId={'map1'} class={'absolute inset-x-0 top-0 py-3 px-2.5'}/>
+                    <AddressSearchForm contextId={contextId()} class={'absolute inset-x-0 top-0 py-3 px-2.5'}/>
                     <div
                         style={{
                             height: getHeight() + 'px',
@@ -375,10 +385,10 @@ const GeoMap: Component<PROPS> = (props) => {
                                     <Show when={featureCollection()?.features?.[i()]?.id}>
                                         <PlaceCard
                                             geometry={featureCollection()?.features?.[i()]?.geometry}
-                                            properties={properties?.places}
+                                            properties={properties?.place}
                                             type={"Feature"}
                                             id={properties?.id}
-                                            bbox={properties?.places?.boundingbox}
+                                            bbox={properties?.place?.boundingbox}
                                         />
                                     </Show>
                                 )}

@@ -1,0 +1,1967 @@
+[
+  {
+    "key": "railway",
+    "label": "abandoned",
+    "id": "abandoned"
+  },
+  {
+    "key": "aeroway",
+    "label": "aerodrome",
+    "id": "aerodrome"
+  },
+  {
+    "key": "shop",
+    "label": "alcohol",
+    "id": "alcohol"
+  },
+  {
+    "key": "landuse",
+    "label": "allotments",
+    "id": "allotments"
+  },
+  {
+    "key": "tourism",
+    "label": "alpine hut",
+    "id": "alpine_hut"
+  },
+  {
+    "key": "emergency",
+    "label": "ambulance station",
+    "id": "ambulance_station"
+  },
+  {
+    "key": "amenity",
+    "label": "animal boarding",
+    "id": "animal_boarding"
+  },
+  {
+    "key": "amenity",
+    "label": "animal shelter",
+    "id": "animal_shelter"
+  },
+  {
+    "key": "building",
+    "label": "apartments",
+    "id": "apartments"
+  },
+  {
+    "key": "tourism",
+    "label": "aquarium",
+    "id": "aquarium"
+  },
+  {
+    "key": "historic",
+    "label": "archaeological site",
+    "id": "archaeological_site"
+  },
+  {
+    "key": "shop",
+    "label": "art",
+    "id": "art"
+  },
+  {
+    "key": "amenity",
+    "label": "arts centre",
+    "id": "arts_centre"
+  },
+  {
+    "key": "tourism",
+    "label": "artwork",
+    "id": "artwork"
+  },
+  {
+    "key": "amenity",
+    "label": "atm",
+    "id": "atm"
+  },
+  {
+    "key": "tourism",
+    "label": "attraction",
+    "id": "attraction"
+  },
+  {
+    "key": "shop",
+    "label": "bakery",
+    "id": "bakery"
+  },
+  {
+    "key": "amenity",
+    "label": "bank",
+    "id": "bank"
+  },
+  {
+    "key": "amenity",
+    "label": "bar",
+    "id": "bar"
+  },
+  {
+    "key": "landuse",
+    "label": "basin",
+    "id": "basin"
+  },
+  {
+    "key": "historic",
+    "label": "battlefield",
+    "id": "battlefield"
+  },
+  {
+    "key": "natural",
+    "label": "bay",
+    "id": "bay"
+  },
+  {
+    "key": "amenity",
+    "label": "bbq",
+    "id": "bbq"
+  },
+  {
+    "key": "natural",
+    "label": "beach",
+    "id": "beach"
+  },
+  {
+    "key": "leisure",
+    "label": "beach resort",
+    "id": "beach_resort"
+  },
+  {
+    "key": "shop",
+    "label": "beauty",
+    "id": "beauty"
+  },
+  {
+    "key": "amenity",
+    "label": "bench",
+    "id": "bench"
+  },
+  {
+    "key": "shop",
+    "label": "beverages",
+    "id": "beverages"
+  },
+  {
+    "key": "shop",
+    "label": "bicycle",
+    "id": "bicycle"
+  },
+  {
+    "key": "amenity",
+    "label": "bicycle parking",
+    "id": "bicycle_parking"
+  },
+  {
+    "key": "amenity",
+    "label": "bicycle rental",
+    "id": "bicycle_rental"
+  },
+  {
+    "key": "amenity",
+    "label": "biergarten",
+    "id": "biergarten"
+  },
+  {
+    "key": "advertising",
+    "label": "billboard",
+    "id": "billboard"
+  },
+  {
+    "key": "building",
+    "label": "block",
+    "id": "block"
+  },
+  {
+    "key": "waterway",
+    "label": "boatyard",
+    "id": "boatyard"
+  },
+  {
+    "key": "shop",
+    "label": "books",
+    "id": "books"
+  },
+  {
+    "key": "historic",
+    "label": "boundary stone",
+    "id": "boundary_stone"
+  },
+  {
+    "key": "craft",
+    "label": "brewery",
+    "id": "brewery"
+  },
+  {
+    "key": "highway",
+    "label": "bridleway",
+    "id": "bridleway"
+  },
+  {
+    "key": "amenity",
+    "label": "brothel",
+    "id": "brothel"
+  },
+  {
+    "key": "landuse",
+    "label": "brownfield",
+    "id": "brownfield"
+  },
+  {
+    "key": "historic",
+    "label": "building",
+    "id": "building"
+  },
+  {
+    "key": "building",
+    "label": "bunker",
+    "id": "bunker"
+  },
+  {
+    "key": "amenity",
+    "label": "bureau de change",
+    "id": "bureau_de_change"
+  },
+  {
+    "key": "highway",
+    "label": "bus guideway",
+    "id": "bus_guideway"
+  },
+  {
+    "key": "amenity",
+    "label": "bus station",
+    "id": "bus_station"
+  },
+  {
+    "key": "highway",
+    "label": "bus stop",
+    "id": "bus_stop"
+  },
+  {
+    "key": "shop",
+    "label": "butcher",
+    "id": "butcher"
+  },
+  {
+    "key": "highway",
+    "label": "byway",
+    "id": "byway"
+  },
+  {
+    "key": "amenity",
+    "label": "cafe",
+    "id": "cafe"
+  },
+  {
+    "key": "tourism",
+    "label": "camp site",
+    "id": "camp_site"
+  },
+  {
+    "key": "waterway",
+    "label": "canal",
+    "id": "canal"
+  },
+  {
+    "key": "natural",
+    "label": "cape",
+    "id": "cape"
+  },
+  {
+    "key": "shop",
+    "label": "car",
+    "id": "car"
+  },
+  {
+    "key": "shop",
+    "label": "car parts",
+    "id": "car_parts"
+  },
+  {
+    "key": "amenity",
+    "label": "car rental",
+    "id": "car_rental"
+  },
+  {
+    "key": "shop",
+    "label": "car repair",
+    "id": "car_repair"
+  },
+  {
+    "key": "amenity",
+    "label": "car sharing",
+    "id": "car_sharing"
+  },
+  {
+    "key": "amenity",
+    "label": "car wash",
+    "id": "car_wash"
+  },
+  {
+    "key": "tourism",
+    "label": "caravan site",
+    "id": "caravan_site"
+  },
+  {
+    "key": "craft",
+    "label": "carpenter",
+    "id": "carpenter"
+  },
+  {
+    "key": "shop",
+    "label": "carpet",
+    "id": "carpet"
+  },
+  {
+    "key": "amenity",
+    "label": "casino",
+    "id": "casino"
+  },
+  {
+    "key": "historic",
+    "label": "castle",
+    "id": "castle"
+  },
+  {
+    "key": "building",
+    "label": "cathedral",
+    "id": "cathedral"
+  },
+  {
+    "key": "natural",
+    "label": "cave entrance",
+    "id": "cave_entrance"
+  },
+  {
+    "key": "landuse",
+    "label": "cemetery",
+    "id": "cemetery"
+  },
+  {
+    "key": "tourism",
+    "label": "chalet",
+    "id": "chalet"
+  },
+  {
+    "key": "building",
+    "label": "chapel",
+    "id": "chapel"
+  },
+  {
+    "key": "amenity",
+    "label": "charging station",
+    "id": "charging_station"
+  },
+  {
+    "key": "shop",
+    "label": "charity",
+    "id": "charity"
+  },
+  {
+    "key": "shop",
+    "label": "chemist",
+    "id": "chemist"
+  },
+  {
+    "key": "building",
+    "label": "church",
+    "id": "church"
+  },
+  {
+    "key": "amenity",
+    "label": "cinema",
+    "id": "cinema"
+  },
+  {
+    "key": "place",
+    "label": "city",
+    "id": "city"
+  },
+  {
+    "key": "building",
+    "label": "city hall",
+    "id": "city_hall"
+  },
+  {
+    "key": "building",
+    "label": "civic",
+    "id": "civic"
+  },
+  {
+    "key": "natural",
+    "label": "cliff",
+    "id": "cliff"
+  },
+  {
+    "key": "amenity",
+    "label": "clinic",
+    "id": "clinic"
+  },
+  {
+    "key": "shop",
+    "label": "clothes",
+    "id": "clothes"
+  },
+  {
+    "key": "natural",
+    "label": "coastline",
+    "id": "coastline"
+  },
+  {
+    "key": "amenity",
+    "label": "college",
+    "id": "college"
+  },
+  {
+    "key": "advertising",
+    "label": "column",
+    "id": "column"
+  },
+  {
+    "key": "building",
+    "label": "commercial",
+    "id": "commercial"
+  },
+  {
+    "key": "leisure",
+    "label": "common",
+    "id": "common"
+  },
+  {
+    "key": "amenity",
+    "label": "community centre",
+    "id": "community_centre"
+  },
+  {
+    "key": "shop",
+    "label": "computer",
+    "id": "computer"
+  },
+  {
+    "key": "shop",
+    "label": "confectionery",
+    "id": "confectionery"
+  },
+  {
+    "key": "amenity",
+    "label": "conference centre",
+    "id": "conference_centre"
+  },
+  {
+    "key": "landuse",
+    "label": "conservation",
+    "id": "conservation"
+  },
+  {
+    "key": "highway",
+    "label": "construction",
+    "id": "construction"
+  },
+  {
+    "key": "shop",
+    "label": "convenience",
+    "id": "convenience"
+  },
+  {
+    "key": "shop",
+    "label": "copyshop",
+    "id": "copyshop"
+  },
+  {
+    "key": "shop",
+    "label": "cosmetics",
+    "id": "cosmetics"
+  },
+  {
+    "key": "place",
+    "label": "country",
+    "id": "country"
+  },
+  {
+    "key": "place",
+    "label": "county",
+    "id": "county"
+  },
+  {
+    "key": "amenity",
+    "label": "courthouse",
+    "id": "courthouse"
+  },
+  {
+    "key": "office",
+    "label": "coworking",
+    "id": "coworking"
+  },
+  {
+    "key": "amenity",
+    "label": "coworking space",
+    "id": "coworking_space"
+  },
+  {
+    "key": "amenity",
+    "label": "crematorium",
+    "id": "crematorium"
+  },
+  {
+    "key": "highway",
+    "label": "cycleway",
+    "id": "cycleway"
+  },
+  {
+    "key": "waterway",
+    "label": "dam",
+    "id": "dam"
+  },
+  {
+    "key": "emergency",
+    "label": "defibrillator",
+    "id": "defibrillator"
+  },
+  {
+    "key": "shop",
+    "label": "deli",
+    "id": "deli"
+  },
+  {
+    "key": "amenity",
+    "label": "dentist",
+    "id": "dentist"
+  },
+  {
+    "key": "shop",
+    "label": "department store",
+    "id": "department_store"
+  },
+  {
+    "key": "waterway",
+    "label": "derelict canal",
+    "id": "derelict_canal"
+  },
+  {
+    "key": "natural",
+    "label": "desert",
+    "id": "desert"
+  },
+  {
+    "key": "highway",
+    "label": "distance marker",
+    "id": "distance_marker"
+  },
+  {
+    "key": "craft",
+    "label": "distillery",
+    "id": "distillery"
+  },
+  {
+    "key": "railway",
+    "label": "disused",
+    "id": "disused"
+  },
+  {
+    "key": "waterway",
+    "label": "ditch",
+    "id": "ditch"
+  },
+  {
+    "key": "waterway",
+    "label": "dock",
+    "id": "dock"
+  },
+  {
+    "key": "amenity",
+    "label": "doctors",
+    "id": "doctors"
+  },
+  {
+    "key": "shop",
+    "label": "doityourself",
+    "id": "doityourself"
+  },
+  {
+    "key": "amenity",
+    "label": "dojo",
+    "id": "dojo"
+  },
+  {
+    "key": "building",
+    "label": "dormitory",
+    "id": "dormitory"
+  },
+  {
+    "key": "waterway",
+    "label": "drain",
+    "id": "drain"
+  },
+  {
+    "key": "amenity",
+    "label": "drinking water",
+    "id": "drinking_water"
+  },
+  {
+    "key": "amenity",
+    "label": "driving school",
+    "id": "driving_school"
+  },
+  {
+    "key": "shop",
+    "label": "dry cleaning",
+    "id": "dry_cleaning"
+  },
+  {
+    "key": "craft",
+    "label": "electrician",
+    "id": "electrician"
+  },
+  {
+    "key": "shop",
+    "label": "electronics",
+    "id": "electronics"
+  },
+  {
+    "key": "amenity",
+    "label": "embassy",
+    "id": "embassy"
+  },
+  {
+    "key": "highway",
+    "label": "emergency access point",
+    "id": "emergency_access_point"
+  },
+  {
+    "key": "building",
+    "label": "entrance",
+    "id": "entrance"
+  },
+  {
+    "key": "shop",
+    "label": "erotic",
+    "id": "erotic"
+  },
+  {
+    "key": "shop",
+    "label": "estate agent",
+    "id": "estate_agent"
+  },
+  {
+    "key": "building",
+    "label": "faculty",
+    "id": "faculty"
+  },
+  {
+    "key": "building",
+    "label": "farm",
+    "id": "farm"
+  },
+  {
+    "key": "building",
+    "label": "farm auxiliary",
+    "id": "farm_auxiliary"
+  },
+  {
+    "key": "landuse",
+    "label": "farmland",
+    "id": "farmland"
+  },
+  {
+    "key": "landuse",
+    "label": "farmyard",
+    "id": "farmyard"
+  },
+  {
+    "key": "shop",
+    "label": "fashion",
+    "id": "fashion"
+  },
+  {
+    "key": "amenity",
+    "label": "fast food",
+    "id": "fast_food"
+  },
+  {
+    "key": "natural",
+    "label": "fell",
+    "id": "fell"
+  },
+  {
+    "key": "amenity",
+    "label": "ferry terminal",
+    "id": "ferry_terminal"
+  },
+  {
+    "key": "emergency",
+    "label": "fire hydrant",
+    "id": "fire_hydrant"
+  },
+  {
+    "key": "amenity",
+    "label": "fire station",
+    "id": "fire_station"
+  },
+  {
+    "key": "leisure",
+    "label": "fishing",
+    "id": "fishing"
+  },
+  {
+    "key": "building",
+    "label": "flats",
+    "id": "flats"
+  },
+  {
+    "key": "shop",
+    "label": "florist",
+    "id": "florist"
+  },
+  {
+    "key": "shop",
+    "label": "food",
+    "id": "food"
+  },
+  {
+    "key": "highway",
+    "label": "footway",
+    "id": "footway"
+  },
+  {
+    "key": "highway",
+    "label": "ford",
+    "id": "ford"
+  },
+  {
+    "key": "landuse",
+    "label": "forest",
+    "id": "forest"
+  },
+  {
+    "key": "amenity",
+    "label": "fountain",
+    "id": "fountain"
+  },
+  {
+    "key": "amenity",
+    "label": "fuel",
+    "id": "fuel"
+  },
+  {
+    "key": "shop",
+    "label": "funeral directors",
+    "id": "funeral_directors"
+  },
+  {
+    "key": "railway",
+    "label": "funicular",
+    "id": "funicular"
+  },
+  {
+    "key": "shop",
+    "label": "furniture",
+    "id": "furniture"
+  },
+  {
+    "key": "building",
+    "label": "garage",
+    "id": "garage"
+  },
+  {
+    "key": "leisure",
+    "label": "garden",
+    "id": "garden"
+  },
+  {
+    "key": "shop",
+    "label": "garden centre",
+    "id": "garden_centre"
+  },
+  {
+    "key": "highway",
+    "label": "gate",
+    "id": "gate"
+  },
+  {
+    "key": "shop",
+    "label": "general",
+    "id": "general"
+  },
+  {
+    "key": "shop",
+    "label": "gift",
+    "id": "gift"
+  },
+  {
+    "key": "natural",
+    "label": "glacier",
+    "id": "glacier"
+  },
+  {
+    "key": "leisure",
+    "label": "golf course",
+    "id": "golf_course"
+  },
+  {
+    "key": "landuse",
+    "label": "grass",
+    "id": "grass"
+  },
+  {
+    "key": "amenity",
+    "label": "grave yard",
+    "id": "grave_yard"
+  },
+  {
+    "key": "landuse",
+    "label": "greenfield",
+    "id": "greenfield"
+  },
+  {
+    "key": "shop",
+    "label": "greengrocer",
+    "id": "greengrocer"
+  },
+  {
+    "key": "building",
+    "label": "greenhouse",
+    "id": "greenhouse"
+  },
+  {
+    "key": "amenity",
+    "label": "grit bin",
+    "id": "grit_bin"
+  },
+  {
+    "key": "tourism",
+    "label": "guest house",
+    "id": "guest_house"
+  },
+  {
+    "key": "amenity",
+    "label": "gym",
+    "id": "gym"
+  },
+  {
+    "key": "leisure",
+    "label": "hackerspace",
+    "id": "hackerspace"
+  },
+  {
+    "key": "shop",
+    "label": "hairdresser",
+    "id": "hairdresser"
+  },
+  {
+    "key": "building",
+    "label": "hall",
+    "id": "hall"
+  },
+  {
+    "key": "railway",
+    "label": "halt",
+    "id": "halt"
+  },
+  {
+    "key": "place",
+    "label": "hamlet",
+    "id": "hamlet"
+  },
+  {
+    "key": "shop",
+    "label": "hardware",
+    "id": "hardware"
+  },
+  {
+    "key": "natural",
+    "label": "heath",
+    "id": "heath"
+  },
+  {
+    "key": "shop",
+    "label": "hifi",
+    "id": "hifi"
+  },
+  {
+    "key": "leisure",
+    "label": "horse riding",
+    "id": "horse_riding"
+  },
+  {
+    "key": "amenity",
+    "label": "hospital",
+    "id": "hospital"
+  },
+  {
+    "key": "tourism",
+    "label": "hostel",
+    "id": "hostel"
+  },
+  {
+    "key": "building",
+    "label": "hotel",
+    "id": "hotel"
+  },
+  {
+    "key": "building",
+    "label": "house",
+    "id": "house"
+  },
+  {
+    "key": "place",
+    "label": "houses",
+    "id": "houses"
+  },
+  {
+    "key": "amenity",
+    "label": "hunting stand",
+    "id": "hunting_stand"
+  },
+  {
+    "key": "amenity",
+    "label": "ice cream",
+    "id": "ice_cream"
+  },
+  {
+    "key": "leisure",
+    "label": "ice rink",
+    "id": "ice_rink"
+  },
+  {
+    "key": "building",
+    "label": "industrial",
+    "id": "industrial"
+  },
+  {
+    "key": "tourism",
+    "label": "information",
+    "id": "information"
+  },
+  {
+    "key": "office",
+    "label": "insurance",
+    "id": "insurance"
+  },
+  {
+    "key": "place",
+    "label": "island",
+    "id": "island"
+  },
+  {
+    "key": "place",
+    "label": "islet",
+    "id": "islet"
+  },
+  {
+    "key": "shop",
+    "label": "jewelry",
+    "id": "jewelry"
+  },
+  {
+    "key": "amenity",
+    "label": "karaoke box",
+    "id": "karaoke_box"
+  },
+  {
+    "key": "craft",
+    "label": "key cutter",
+    "id": "key_cutter"
+  },
+  {
+    "key": "amenity",
+    "label": "kindergarten",
+    "id": "kindergarten"
+  },
+  {
+    "key": "shop",
+    "label": "kiosk",
+    "id": "kiosk"
+  },
+  {
+    "key": "amenity",
+    "label": "kneipp water cure",
+    "id": "kneipp_water_cure"
+  },
+  {
+    "key": "natural",
+    "label": "land",
+    "id": "land"
+  },
+  {
+    "key": "landuse",
+    "label": "landfill",
+    "id": "landfill"
+  },
+  {
+    "key": "shop",
+    "label": "laundry",
+    "id": "laundry"
+  },
+  {
+    "key": "railway",
+    "label": "level crossing",
+    "id": "level_crossing"
+  },
+  {
+    "key": "amenity",
+    "label": "library",
+    "id": "library"
+  },
+  {
+    "key": "railway",
+    "label": "light rail",
+    "id": "light_rail"
+  },
+  {
+    "key": "man made",
+    "label": "lighthouse",
+    "id": "lighthouse"
+  },
+  {
+    "key": "highway",
+    "label": "living street",
+    "id": "living_street"
+  },
+  {
+    "key": "place",
+    "label": "locality",
+    "id": "locality"
+  },
+  {
+    "key": "shop",
+    "label": "mall",
+    "id": "mall"
+  },
+  {
+    "key": "historic",
+    "label": "manor",
+    "id": "manor"
+  },
+  {
+    "key": "leisure",
+    "label": "marina",
+    "id": "marina"
+  },
+  {
+    "key": "amenity",
+    "label": "marketplace",
+    "id": "marketplace"
+  },
+  {
+    "key": "natural",
+    "label": "marsh",
+    "id": "marsh"
+  },
+  {
+    "key": "shop",
+    "label": "massage",
+    "id": "massage"
+  },
+  {
+    "key": "man made",
+    "label": "maypole",
+    "id": "maypole"
+  },
+  {
+    "key": "landuse",
+    "label": "meadow",
+    "id": "meadow"
+  },
+  {
+    "key": "historic",
+    "label": "memorial",
+    "id": "memorial"
+  },
+  {
+    "key": "landuse",
+    "label": "military",
+    "id": "military"
+  },
+  {
+    "key": "historic",
+    "label": "mine",
+    "id": "mine"
+  },
+  {
+    "key": "leisure",
+    "label": "miniature golf",
+    "id": "miniature_golf"
+  },
+  {
+    "key": "highway",
+    "label": "minor",
+    "id": "minor"
+  },
+  {
+    "key": "shop",
+    "label": "mobile phone",
+    "id": "mobile_phone"
+  },
+  {
+    "key": "railway",
+    "label": "monorail",
+    "id": "monorail"
+  },
+  {
+    "key": "historic",
+    "label": "monument",
+    "id": "monument"
+  },
+  {
+    "key": "natural",
+    "label": "moor",
+    "id": "moor"
+  },
+  {
+    "key": "building",
+    "label": "mosque",
+    "id": "mosque"
+  },
+  {
+    "key": "tourism",
+    "label": "motel",
+    "id": "motel"
+  },
+  {
+    "key": "shop",
+    "label": "motorcycle",
+    "id": "motorcycle"
+  },
+  {
+    "key": "amenity",
+    "label": "motorcycle parking",
+    "id": "motorcycle_parking"
+  },
+  {
+    "key": "highway",
+    "label": "motorway",
+    "id": "motorway"
+  },
+  {
+    "key": "highway",
+    "label": "motorway junction",
+    "id": "motorway_junction"
+  },
+  {
+    "key": "highway",
+    "label": "motorway link",
+    "id": "motorway_link"
+  },
+  {
+    "key": "natural",
+    "label": "mud",
+    "id": "mud"
+  },
+  {
+    "key": "place",
+    "label": "municipality",
+    "id": "municipality"
+  },
+  {
+    "key": "artwork type",
+    "label": "mural",
+    "id": "mural"
+  },
+  {
+    "key": "tourism",
+    "label": "museum",
+    "id": "museum"
+  },
+  {
+    "key": "shop",
+    "label": "music",
+    "id": "music"
+  },
+  {
+    "key": "railway",
+    "label": "narrow gauge",
+    "id": "narrow_gauge"
+  },
+  {
+    "key": "boundary",
+    "label": "national park",
+    "id": "national_park"
+  },
+  {
+    "key": "leisure",
+    "label": "nature reserve",
+    "id": "nature_reserve"
+  },
+  {
+    "key": "shop",
+    "label": "newsagent",
+    "id": "newsagent"
+  },
+  {
+    "key": "amenity",
+    "label": "nightclub",
+    "id": "nightclub"
+  },
+  {
+    "key": "amenity",
+    "label": "nursing home",
+    "id": "nursing_home"
+  },
+  {
+    "key": "building",
+    "label": "office",
+    "id": "office"
+  },
+  {
+    "key": "shop",
+    "label": "optician",
+    "id": "optician"
+  },
+  {
+    "key": "shop",
+    "label": "organic",
+    "id": "organic"
+  },
+  {
+    "key": "shop",
+    "label": "outdoor",
+    "id": "outdoor"
+  },
+  {
+    "key": "leisure",
+    "label": "park",
+    "id": "park"
+  },
+  {
+    "key": "amenity",
+    "label": "parking",
+    "id": "parking"
+  },
+  {
+    "key": "highway",
+    "label": "path",
+    "id": "path"
+  },
+  {
+    "key": "natural",
+    "label": "peak",
+    "id": "peak"
+  },
+  {
+    "key": "highway",
+    "label": "pedestrian",
+    "id": "pedestrian"
+  },
+  {
+    "key": "shop",
+    "label": "pet",
+    "id": "pet"
+  },
+  {
+    "key": "amenity",
+    "label": "pharmacy",
+    "id": "pharmacy"
+  },
+  {
+    "key": "emergency",
+    "label": "phone",
+    "id": "phone"
+  },
+  {
+    "key": "shop",
+    "label": "photo",
+    "id": "photo"
+  },
+  {
+    "key": "craft",
+    "label": "photographer",
+    "id": "photographer"
+  },
+  {
+    "key": "tourism",
+    "label": "picnic site",
+    "id": "picnic_site"
+  },
+  {
+    "key": "landuse",
+    "label": "piste",
+    "id": "piste"
+  },
+  {
+    "key": "leisure",
+    "label": "pitch",
+    "id": "pitch"
+  },
+  {
+    "key": "amenity",
+    "label": "place of worship",
+    "id": "place_of_worship"
+  },
+  {
+    "key": "amenity",
+    "label": "planetarium",
+    "id": "planetarium"
+  },
+  {
+    "key": "power",
+    "label": "plant",
+    "id": "plant"
+  },
+  {
+    "key": "memorial",
+    "label": "plaque",
+    "id": "plaque"
+  },
+  {
+    "key": "highway",
+    "label": "platform",
+    "id": "platform"
+  },
+  {
+    "key": "leisure",
+    "label": "playground",
+    "id": "playground"
+  },
+  {
+    "key": "amenity",
+    "label": "police",
+    "id": "police"
+  },
+  {
+    "key": "amenity",
+    "label": "post box",
+    "id": "post_box"
+  },
+  {
+    "key": "amenity",
+    "label": "post office",
+    "id": "post_office"
+  },
+  {
+    "key": "railway",
+    "label": "preserved",
+    "id": "preserved"
+  },
+  {
+    "key": "highway",
+    "label": "primary",
+    "id": "primary"
+  },
+  {
+    "key": "highway",
+    "label": "primary link",
+    "id": "primary_link"
+  },
+  {
+    "key": "amenity",
+    "label": "prison",
+    "id": "prison"
+  },
+  {
+    "key": "amenity",
+    "label": "pub",
+    "id": "pub"
+  },
+  {
+    "key": "building",
+    "label": "public",
+    "id": "public"
+  },
+  {
+    "key": "amenity",
+    "label": "public bookcase",
+    "id": "public_bookcase"
+  },
+  {
+    "key": "amenity",
+    "label": "public building",
+    "id": "public_building"
+  },
+  {
+    "key": "landuse",
+    "label": "quarry",
+    "id": "quarry"
+  },
+  {
+    "key": "highway",
+    "label": "raceway",
+    "id": "raceway"
+  },
+  {
+    "key": "landuse",
+    "label": "railway",
+    "id": "railway"
+  },
+  {
+    "key": "waterway",
+    "label": "rapids",
+    "id": "rapids"
+  },
+  {
+    "key": "landuse",
+    "label": "recreation ground",
+    "id": "recreation_ground"
+  },
+  {
+    "key": "amenity",
+    "label": "recycling",
+    "id": "recycling"
+  },
+  {
+    "key": "natural",
+    "label": "reef",
+    "id": "reef"
+  },
+  {
+    "key": "place",
+    "label": "region",
+    "id": "region"
+  },
+  {
+    "key": "landuse",
+    "label": "reservoir",
+    "id": "reservoir"
+  },
+  {
+    "key": "building",
+    "label": "residential",
+    "id": "residential"
+  },
+  {
+    "key": "highway",
+    "label": "rest area",
+    "id": "rest_area"
+  },
+  {
+    "key": "amenity",
+    "label": "restaurant",
+    "id": "restaurant"
+  },
+  {
+    "key": "building",
+    "label": "retail",
+    "id": "retail"
+  },
+  {
+    "key": "amenity",
+    "label": "retirement home",
+    "id": "retirement_home"
+  },
+  {
+    "key": "natural",
+    "label": "ridge",
+    "id": "ridge"
+  },
+  {
+    "key": "waterway",
+    "label": "river",
+    "id": "river"
+  },
+  {
+    "key": "waterway",
+    "label": "riverbank",
+    "id": "riverbank"
+  },
+  {
+    "key": "highway",
+    "label": "road",
+    "id": "road"
+  },
+  {
+    "key": "natural",
+    "label": "rock",
+    "id": "rock"
+  },
+  {
+    "key": "junction",
+    "label": "roundabout",
+    "id": "roundabout"
+  },
+  {
+    "key": "historic",
+    "label": "ruins",
+    "id": "ruins"
+  },
+  {
+    "key": "shop",
+    "label": "salon",
+    "id": "salon"
+  },
+  {
+    "key": "amenity",
+    "label": "sauna",
+    "id": "sauna"
+  },
+  {
+    "key": "amenity",
+    "label": "school",
+    "id": "school"
+  },
+  {
+    "key": "natural",
+    "label": "scree",
+    "id": "scree"
+  },
+  {
+    "key": "natural",
+    "label": "scrub",
+    "id": "scrub"
+  },
+  {
+    "key": "artwork type",
+    "label": "sculpture",
+    "id": "sculpture"
+  },
+  {
+    "key": "place",
+    "label": "sea",
+    "id": "sea"
+  },
+  {
+    "key": "shop",
+    "label": "seafood",
+    "id": "seafood"
+  },
+  {
+    "key": "highway",
+    "label": "secondary",
+    "id": "secondary"
+  },
+  {
+    "key": "highway",
+    "label": "secondary link",
+    "id": "secondary_link"
+  },
+  {
+    "key": "highway",
+    "label": "service",
+    "id": "service"
+  },
+  {
+    "key": "highway",
+    "label": "services",
+    "id": "services"
+  },
+  {
+    "key": "amenity",
+    "label": "shelter",
+    "id": "shelter"
+  },
+  {
+    "key": "natural",
+    "label": "shoal",
+    "id": "shoal"
+  },
+  {
+    "key": "craft",
+    "label": "shoemaker",
+    "id": "shoemaker"
+  },
+  {
+    "key": "shop",
+    "label": "shoes",
+    "id": "shoes"
+  },
+  {
+    "key": "building",
+    "label": "shop",
+    "id": "shop"
+  },
+  {
+    "key": "shop",
+    "label": "shopping centre",
+    "id": "shopping_centre"
+  },
+  {
+    "key": "leisure",
+    "label": "slipway",
+    "id": "slipway"
+  },
+  {
+    "key": "highway",
+    "label": "speed camera",
+    "id": "speed_camera"
+  },
+  {
+    "key": "shop",
+    "label": "sports",
+    "id": "sports"
+  },
+  {
+    "key": "leisure",
+    "label": "sports centre",
+    "id": "sports_centre"
+  },
+  {
+    "key": "natural",
+    "label": "spring",
+    "id": "spring"
+  },
+  {
+    "key": "building",
+    "label": "stadium",
+    "id": "stadium"
+  },
+  {
+    "key": "place",
+    "label": "state",
+    "id": "state"
+  },
+  {
+    "key": "railway",
+    "label": "station",
+    "id": "station"
+  },
+  {
+    "key": "shop",
+    "label": "stationery",
+    "id": "stationery"
+  },
+  {
+    "key": "artwork type",
+    "label": "statue",
+    "id": "statue"
+  },
+  {
+    "key": "highway",
+    "label": "steps",
+    "id": "steps"
+  },
+  {
+    "key": "highway",
+    "label": "stile",
+    "id": "stile"
+  },
+  {
+    "key": "memorial",
+    "label": "stolperstein",
+    "id": "stolperstein"
+  },
+  {
+    "key": "building",
+    "label": "store",
+    "id": "store"
+  },
+  {
+    "key": "waterway",
+    "label": "stream",
+    "id": "stream"
+  },
+  {
+    "key": "amenity",
+    "label": "studio",
+    "id": "studio"
+  },
+  {
+    "key": "power",
+    "label": "substation",
+    "id": "substation"
+  },
+  {
+    "key": "place",
+    "label": "suburb",
+    "id": "suburb"
+  },
+  {
+    "key": "railway",
+    "label": "subway",
+    "id": "subway"
+  },
+  {
+    "key": "railway",
+    "label": "subway entrance",
+    "id": "subway_entrance"
+  },
+  {
+    "key": "shop",
+    "label": "supermarket",
+    "id": "supermarket"
+  },
+  {
+    "key": "leisure",
+    "label": "swimming pool",
+    "id": "swimming_pool"
+  },
+  {
+    "key": "amenity",
+    "label": "swingerclub",
+    "id": "swingerclub"
+  },
+  {
+    "key": "railway",
+    "label": "switch",
+    "id": "switch"
+  },
+  {
+    "key": "building",
+    "label": "synagogue",
+    "id": "synagogue"
+  },
+  {
+    "key": "craft",
+    "label": "tailor",
+    "id": "tailor"
+  },
+  {
+    "key": "shop",
+    "label": "tattoo",
+    "id": "tattoo"
+  },
+  {
+    "key": "amenity",
+    "label": "taxi",
+    "id": "taxi"
+  },
+  {
+    "key": "amenity",
+    "label": "telephone",
+    "id": "telephone"
+  },
+  {
+    "key": "building",
+    "label": "terrace",
+    "id": "terrace"
+  },
+  {
+    "key": "highway",
+    "label": "tertiary",
+    "id": "tertiary"
+  },
+  {
+    "key": "amenity",
+    "label": "theatre",
+    "id": "theatre"
+  },
+  {
+    "key": "tourism",
+    "label": "theme park",
+    "id": "theme_park"
+  },
+  {
+    "key": "shop",
+    "label": "tobacco",
+    "id": "tobacco"
+  },
+  {
+    "key": "amenity",
+    "label": "toilets",
+    "id": "toilets"
+  },
+  {
+    "key": "building",
+    "label": "tower",
+    "id": "tower"
+  },
+  {
+    "key": "place",
+    "label": "town",
+    "id": "town"
+  },
+  {
+    "key": "amenity",
+    "label": "townhall",
+    "id": "townhall"
+  },
+  {
+    "key": "shop",
+    "label": "toys",
+    "id": "toys"
+  },
+  {
+    "key": "highway",
+    "label": "track",
+    "id": "track"
+  },
+  {
+    "key": "highway",
+    "label": "traffic signals",
+    "id": "traffic_signals"
+  },
+  {
+    "key": "highway",
+    "label": "trail",
+    "id": "trail"
+  },
+  {
+    "key": "building",
+    "label": "train station",
+    "id": "train_station"
+  },
+  {
+    "key": "railway",
+    "label": "tram",
+    "id": "tram"
+  },
+  {
+    "key": "railway",
+    "label": "tram stop",
+    "id": "tram_stop"
+  },
+  {
+    "key": "shop",
+    "label": "travel agency",
+    "id": "travel_agency"
+  },
+  {
+    "key": "natural",
+    "label": "tree",
+    "id": "tree"
+  },
+  {
+    "key": "highway",
+    "label": "trunk",
+    "id": "trunk"
+  },
+  {
+    "key": "highway",
+    "label": "trunk link",
+    "id": "trunk_link"
+  },
+  {
+    "key": "highway",
+    "label": "unclassified",
+    "id": "unclassified"
+  },
+  {
+    "key": "amenity",
+    "label": "university",
+    "id": "university"
+  },
+  {
+    "key": "highway",
+    "label": "unsurfaced",
+    "id": "unsurfaced"
+  },
+  {
+    "key": "natural",
+    "label": "valley",
+    "id": "valley"
+  },
+  {
+    "key": "amenity",
+    "label": "vending machine",
+    "id": "vending_machine"
+  },
+  {
+    "key": "amenity",
+    "label": "veterinary",
+    "id": "veterinary"
+  },
+  {
+    "key": "shop",
+    "label": "video",
+    "id": "video"
+  },
+  {
+    "key": "tourism",
+    "label": "viewpoint",
+    "id": "viewpoint"
+  },
+  {
+    "key": "place",
+    "label": "village",
+    "id": "village"
+  },
+  {
+    "key": "landuse",
+    "label": "village green",
+    "id": "village_green"
+  },
+  {
+    "key": "landuse",
+    "label": "vineyard",
+    "id": "vineyard"
+  },
+  {
+    "key": "natural",
+    "label": "volcano",
+    "id": "volcano"
+  },
+  {
+    "key": "waterway",
+    "label": "wadi",
+    "id": "wadi"
+  },
+  {
+    "key": "memorial",
+    "label": "war memorial",
+    "id": "war_memorial"
+  },
+  {
+    "key": "amenity",
+    "label": "waste basket",
+    "id": "waste_basket"
+  },
+  {
+    "key": "natural",
+    "label": "water",
+    "id": "water"
+  },
+  {
+    "key": "leisure",
+    "label": "water park",
+    "id": "water_park"
+  },
+  {
+    "key": "waterway",
+    "label": "water point",
+    "id": "water_point"
+  },
+  {
+    "key": "man made",
+    "label": "water well",
+    "id": "water_well"
+  },
+  {
+    "key": "waterway",
+    "label": "waterfall",
+    "id": "waterfall"
+  },
+  {
+    "key": "historic",
+    "label": "wayside cross",
+    "id": "wayside_cross"
+  },
+  {
+    "key": "historic",
+    "label": "wayside shrine",
+    "id": "wayside_shrine"
+  },
+  {
+    "key": "waterway",
+    "label": "weir",
+    "id": "weir"
+  },
+  {
+    "key": "natural",
+    "label": "wetland",
+    "id": "wetland"
+  },
+  {
+    "key": "man made",
+    "label": "windmill",
+    "id": "windmill"
+  },
+  {
+    "key": "shop",
+    "label": "wine",
+    "id": "wine"
+  },
+  {
+    "key": "craft",
+    "label": "winery",
+    "id": "winery"
+  },
+  {
+    "key": "natural",
+    "label": "wood",
+    "id": "wood"
+  },
+  {
+    "key": "historic",
+    "label": "wreck",
+    "id": "wreck"
+  },
+  {
+    "key": "atm",
+    "label": "yes",
+    "id": "yes"
+  },
+  {
+    "key": "aerialway",
+    "label": "zip line",
+    "id": "zip_line"
+  },
+  {
+    "key": "tourism",
+    "label": "zoo",
+    "id": "zoo"
+  }
+]

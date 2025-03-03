@@ -16,14 +16,19 @@ import {
     ComboboxItemLabel,
     ComboboxTrigger
 } from "~/components/ui/combobox"
-import {DrawerClose} from "~/components/ui/drawer";
+
+import poi from './poi.json';
 
 type PROPS = CountryData & { contextId?: string };
 
 const CreateAddressForm: Component<PROPS> = props => {
     const submission = useSubmission(addAddress);
 
+
+
+
     const results = createMemo(() => {
+        console.log(submission.result)
         return submission.result
     })
 
@@ -58,6 +63,11 @@ const CreateAddressForm: Component<PROPS> = props => {
         Name: ""
     })
 
+    const [getPoi, setPoi] = createSignal<{id: string, name: string}>({
+        id: "",
+        name: ""
+    })
+
     const postalSubRegex = createMemo(() => {
         console.log("sub", postCodeRegex()?.SubdivisionRegex[getItem()?.ID]?.Regex)
         return postCodeRegex()?.SubdivisionRegex[getItem()?.ID]?.Regex ?? postCodeRegex()?.Regex;
@@ -65,7 +75,7 @@ const CreateAddressForm: Component<PROPS> = props => {
 
 
     createEffect(() => {
-
+        console.log("getPoi", getPoi())
         console.log("getItem", getItem())
         console.log(postCodeRegex())
         console.log("countryData", props)
@@ -85,6 +95,32 @@ const CreateAddressForm: Component<PROPS> = props => {
         <>
 
             <form class={'space-y-4'} action={addAddress} method="post">
+                <div class="col-span-3">
+                    <input class={'hidden'} name="poi" id="poi"
+                           value={getPoi()?.id}/>
+                    <Combobox
+                        class={"text-gray-11"}
+                        options={poi}
+                        optionValue="id"
+                        optionTextValue="name"
+                        optionLabel="name"
+                        optionDisabled="disabled"
+                        onChange={(a: any) => setPoi(a)}
+                        placeholder={"poi"}
+                        itemComponent={(props: any) => (
+                            <ComboboxItem item={props.item}>
+                                <ComboboxItemLabel class={'capitalize'} >{props.item.rawValue?.name}</ComboboxItemLabel>
+                                <ComboboxItemIndicator/>
+                            </ComboboxItem>
+                        )}
+                    >
+                        <ComboboxControl aria-label={getPoi()?.name}>
+                            <ComboboxInput/>
+                            <ComboboxTrigger/>
+                        </ComboboxControl>
+                        <ComboboxContent/>
+                    </Combobox>
+                </div>
                 <TextField>
                     <TextFieldInput type="text" autocomplete="none" name="street_address" placeholder="Search"/>
                     <Show when={results()?.error?.street_address}>
@@ -105,7 +141,7 @@ const CreateAddressForm: Component<PROPS> = props => {
 
                     <div class="col-span-3">
                         <input class={'hidden'} name="administrative_area" id="administrative_area"
-                               value={getItem().ID}/>
+                               value={getItem()?.ID}/>
 
                         <Combobox
                             class={"text-gray-11"}
@@ -123,7 +159,7 @@ const CreateAddressForm: Component<PROPS> = props => {
                                 </ComboboxItem>
                             )}
                         >
-                            <ComboboxControl aria-labe={fields().administrative_area}>
+                            <ComboboxControl aria-label={fields().administrative_area}>
                                 <ComboboxInput/>
                                 <ComboboxTrigger/>
                             </ComboboxControl>

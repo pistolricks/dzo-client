@@ -1,4 +1,4 @@
-import {Component, createEffect, createMemo, createSignal} from "solid-js";
+import {Component, createEffect, createMemo, createSignal, Show} from "solid-js";
 import {Properties} from "~/lib/store";
 import {CallIcon, EnvelopeIcon, GlobeIcon, MapPin, RatingIcon} from "~/components/svg";
 import {A} from "@solidjs/router";
@@ -18,13 +18,12 @@ const PlaceCard: Component<PLACE_PROPS> = props => {
     const type = () => props.type ?? null;
     const geometry = () => props.geometry;
     const id = () => props.id;
-    const properties = () => props.properties?.places ?? props.properties;
+    const properties = () => props.properties?.place ?? props.properties;
     const extraTags = () => properties()?.extratags;
     const address = () => properties()?.address;
     const bbox = () => props.bbox;
 
     const displayName = () => properties()?.display?.split(',');
-
 
 
     createEffect(() => {
@@ -42,17 +41,23 @@ const PlaceCard: Component<PLACE_PROPS> = props => {
                  style="background-image: url(https://content.api.news/v3/images/bin/11990db1d540d5c13ea8ca3e01f2083c)">
 
                 <div class="flex items-center justify-end space-x-2">
-                    <A href={`tel:${extraTags()?.phone}`} target="_blank"
-                       class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
-                        <CallIcon class={'size-7 p-1'}/>
-                    </A>
-                    <A href={""} class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
-                        <EnvelopeIcon class={'size-7 p-1'}/>
-                    </A>
-                    <A href={`${extraTags()?.website}`} target="_blank"
-                       class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
-                        <GlobeIcon class={'size-7 p-1'}/>
-                    </A>
+                    <Show when={extraTags()?.phone}>
+                        <A href={`tel:${extraTags()?.phone}`} target="_blank"
+                           class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
+                            <CallIcon class={'size-7 p-1'}/>
+                        </A>
+                    </Show>
+                    <Show when={extraTags()?.email}>
+                        <A href={""} class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
+                            <EnvelopeIcon class={'size-7 p-1'}/>
+                        </A>
+                    </Show>
+                    <Show when={extraTags()?.website}>
+                        <A href={`${extraTags()?.website}`} target="_blank"
+                           class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
+                            <GlobeIcon class={'size-7 p-1'}/>
+                        </A>
+                    </Show>
                     <button
                         type={'button'}
                         class="uppercase text-sm text-gray-11 bg-gray-action py-1 px-1 rounded-full shadow-lg">
