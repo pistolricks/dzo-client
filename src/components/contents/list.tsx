@@ -13,6 +13,8 @@ import ImageContent from "~/components/ui/image";
 import {DialogContent} from "~/components/ui/dialogs/base-dialog";
 import {DrawerContent} from "~/components/ui/dialogs/base-drawer";
 import GridImage from "~/components/contents/partials/grid-image";
+import MobileDrawerContent from "~/components/contents/partials/mobile-drawer-content";
+import DesktopDialogContent from "~/components/contents/partials/desktop-dialog-content";
 
 type PROPS = {
     feature: Feature | undefined;
@@ -44,48 +46,13 @@ const ContentsList: Component<PROPS> = props => {
     };
 
 
-    const MobileDialogContent = () => {
-        return (
-            <DrawerContent side={'bottom'} contextId={'dd1'}>
-                <img
-                    src={`http://localhost:4000/${getSelected()?.src}`}
-                    alt=""
-                    class="pointer-events-none h-full max-h-[80.5dvh] w-full object-contain group-hover:opacity-75 rounded-sm"/>
-                <DrawerPrimitive.Description class={'p-4 text-pretty'} contextId={'dd1'}>
-                    {getSelected()?.original}
-                </DrawerPrimitive.Description>
 
-                <div class={'flex justify-end items-center p-1'}>
-                    <DrawerPrimitive.Close contextId={'dd1'} as={Button<"button">} size={'icon'}
-                                           variant="outline">
-                        <ChevronDown/>
-                    </DrawerPrimitive.Close>
-                </div>
-            </DrawerContent>
-        )
-    }
 
     return (
 
         <ResponsiveDialog isDesktop={getIsDesktop()}>
-            <Show when={getIsDesktop()} fallback={<MobileDialogContent/>}>
-                <DialogContent contextId={'dd1'} class="sm:max-w-[80dvw]">
-
-                    <ImageContent
-                        src={`http://localhost:4000/${getSelected()?.src}`}
-                        alt={getSelected()?.name}
-                        imgClass={'pointer-events-none h-full w-full object-contain group-hover:opacity-75 rounded-sm'}
-                        rootClass={'h-full max-h-[78dvh] w-full'}
-                        fallbackClass={'animate pulse h-full w-full'}
-                    >
-                        <PhotoIcon class={'w-full h-full'}/>
-                    </ImageContent>
-
-                    <Dialog.Description class={'flex justify-end items-center'} contextId={'dd1'}>
-                        <Dialog.Close contextId={'dd1'} as={Button<"button">} size={'icon'}>
-                            <XMark class={'stroke-sky-8 fill-sky-4'}/></Dialog.Close>
-                    </Dialog.Description>
-                </DialogContent>
+            <Show when={getIsDesktop()} fallback={<MobileDrawerContent content={getSelected()} contextId={'dd1'}/>}>
+                <DesktopDialogContent content={getSelected()} contextId={'dd1'}/>
             </Show>
 
             <GridWrapper>
