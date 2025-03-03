@@ -1,15 +1,28 @@
 import {Component, Show} from "solid-js";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "~/components/ui/tabs"
 import UserDetails from "~/components/profiles/user-details";
-import {Feature} from "~/lib/store";
+import {CountryData, Feature} from "~/lib/store";
 import VendorDetails, {VendorAdvert} from "~/components/profiles/vendor-details";
 import {Card} from "~/components/ui/card";
 import {useLayoutContext} from "~/context/layout-provider";
 import AddressDetails, {LocationAdvert} from "~/components/profiles/address-details";
+import CreateAddressForm from "~/components/addresses/forms/create-address-form";
+import FormLayout from "~/components/layouts/form-layout";
+import {AccessorWithLatest, createAsync} from "@solidjs/router";
+import {getAddressFormFormats} from "~/lib/addresses";
+
+export const route = {
+    preload() {
+        getAddressFormFormats();
+    }
+}
+
 
 
 const UserProfile: Component<Feature> = props => {
     const {storedCurrentUser} = useLayoutContext();
+    const formFormats: AccessorWithLatest<CountryData | undefined> = createAsync(async () => getAddressFormFormats());
+
     const name = () => storedCurrentUser?.name;
 
     const vendor = () => props.properties?.profile?.vendor;
@@ -65,9 +78,11 @@ const UserProfile: Component<Feature> = props => {
 
                     <Show
                         fallback={
-                            <Card>
-                                <LocationAdvert/>
-                            </Card>
+                            <FormLayout title="Add Address" hideLogo>
+                                <Show when={formFormats()}>
+                                    <CreateAddressForm {...formFormats()}/>
+                                </Show>
+                            </FormLayout>
                         }
                         when={userAddress?.street_address?.length > 0} keyed>
                         {(v) => <AddressDetails {...userAddress}/>}

@@ -30,13 +30,14 @@ export const addAddress = action(async (data: FormData) => {
 
     console.log("Bearer:", token.token)
 
+    let street_address =  String(data.get("street_address"));
+    let locality =  String(data.get("locality"));
+    let administrative_area =  String(data.get("administrative_area"));
+    let post_code =  String(data.get("post_code"));
+    let country =  "US";
 
     const addressInput = {
-        street_address: [String(data.get("street_address"))],
-        locality: String(data.get("locality")),
-        administrative_area: String(data.get("administrative_area")),
-        post_code: String(data.get("post_code")),
-        country: "US",
+       search: street_address + ', ' + locality + ', ' + administrative_area + ', ' + post_code + ', ' + country
     }
 
     console.log("Address:", addressInput)
