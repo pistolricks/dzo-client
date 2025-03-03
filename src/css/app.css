@@ -3,6 +3,7 @@
 @import './colors.css';
 @import "tailwindcss-radix-colors/dist/gray.css";
 @import "tailwindcss-radix-colors/dist/red.css";
+@import "tailwindcss-radix-colors/dist/tomato.css";
 @import "tailwindcss-radix-colors/dist/green.css";
 @plugin "tailwindcss-animate";
 
@@ -178,5 +179,3 @@
   --tw-exit-scale: --value(percentage, ratio);
 }
 
-
-@plugin '@tailwindcss/forms';

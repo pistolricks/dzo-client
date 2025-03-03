@@ -1,14 +1,13 @@
-import {Component, createEffect, Show} from "solid-js";
+import {Component, Show} from "solid-js";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "~/components/ui/tabs"
 import {Button} from "~/components/ui/button"
 import {Avatar, AvatarFallback, AvatarImage} from "~/components/ui/avatar";
 import {handleInitials} from "~/lib/utils";
 import UserDetails from "~/components/profiles/user-details";
 import {Feature} from "~/lib/store";
-import VendorDetails from "~/components/profiles/vendor-details";
+import VendorDetails, { VendorAdvert } from "~/components/profiles/vendor-details";
 import {Card} from "~/components/ui/card";
 import {useLayoutContext} from "~/context/layout-provider";
-import {createStore} from "solid-js/store";
 
 
 const UserProfile: Component<Feature> = props => {
@@ -17,10 +16,6 @@ const UserProfile: Component<Feature> = props => {
     const imageSrc = () => "";
     const coverSrc = () => "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
     const vendor = () => props.properties?.profile?.vendor;
-
-
-
-
 
 
     return (
@@ -113,31 +108,4 @@ const UserProfile: Component<Feature> = props => {
 export default UserProfile;
 
 
-type PROPS = {}
 
-const VendorAdvert: Component<PROPS> = props => {
-
-    return (
-        <div class="bg-white">
-            <div class="px-6 py-12 sm:px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-balance text-xl font-semibold tracking-tight text-gray-900 sm:text-4xl">Create a
-                        service account in just a few minutes.</h2>
-                    <p class="mx-auto mt-6 max-w-xl text-balance text-lg/8 text-gray-600">
-                        Say goodbye to expensive ads. Signing up and listing your services is 100% free. Any Service,
-                        Anytime: Whether you’re a plumber, tutor, hairdresser, fitness coach, or any other service
-                        provider, our platform welcomes you!
-
-
-                    </p>
-                    <div class="mt-4 flex items-center justify-center gap-x-6">
-                        <Button type={"button"} variant={'information'}>Get Started</Button>
-                        <Button type={"button"} variant={'link'}>Learn more <span aria-hidden="true">→</span></Button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export {VendorAdvert};

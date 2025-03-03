@@ -36,7 +36,7 @@ const RegisterUserForm: Component<PROPS> = props => {
         <>
             <form class={'space-y-4'} action={registerUserHandler} method="post">
                 <TextField>
-                    <TextFieldInput type="text" required name="firstName" placeholder="First Name"/>
+                    <TextFieldInput class={'capitalize'} type="text" required name="firstName" placeholder="First Name"/>
                     <Show when={results()?.error?.firstName}>
                         <TextFieldErrorMessage>
                             {results()?.error?.firstName}
@@ -44,7 +44,7 @@ const RegisterUserForm: Component<PROPS> = props => {
                     </Show>
                 </TextField>
                 <TextField>
-                    <TextFieldInput type="text" required name="lastName" placeholder="Last Name"/>
+                    <TextFieldInput class={'capitalize'} type="text" required name="lastName" placeholder="Last Name"/>
                     <Show when={results()?.error?.lastName}>
                         <TextFieldErrorMessage>
                             {results()?.error?.lastName}
@@ -52,7 +52,7 @@ const RegisterUserForm: Component<PROPS> = props => {
                     </Show>
                 </TextField>
                 <TextField>
-                    <TextFieldInput type="email" required name="email" placeholder="email"/>
+                    <TextFieldInput class={'lowercase'} type="email" required name="email" placeholder="email"/>
                     <Show when={results()?.error?.email}>
                         <TextFieldErrorMessage>
                             {results()?.error?.email}

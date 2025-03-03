@@ -1,6 +1,7 @@
 import {action, query, redirect} from "@solidjs/router";
 import {activateUser, getUserDetails, getUserToken, login, logout, register, resendActivateEmail,} from "~/lib/server";
 import {getSessionUser, SessionUser} from "~/lib/session";
+import {capitalizeFirstLetter} from "~/lib/utils";
 
 export const getUser = query(async () => {
     "use server";
@@ -26,9 +27,19 @@ export const getUserDetailsHandler = action(async (data: FormData) => {
 
 export const registerUserHandler = action(async (data: FormData) => {
     "use server";
+
+    let fName = String(data.get("firstName"));
+    let lName = String(data.get("lastName"));
+
+    let firstName = fName.toLowerCase();
+    let lastName = lName.toLowerCase();
+
+    let name = capitalizeFirstLetter(firstName) + " " + capitalizeFirstLetter(lastName)
+    let email = String(data.get("email"));
+
     const userInput = {
-        name: String(data.get("firstName")) + " " + String(data.get("lastName")),
-        email: String(data.get("email")),
+        name: name,
+        email: email.toLowerCase(),
         password: String(data.get("password")),
     }
     let res = await register(userInput)

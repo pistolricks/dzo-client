@@ -17,6 +17,6 @@ export const getOwnerModels = query(async () => {
     })
     const res: any = await response.json();
 
-    console.log(res);
-    return res;
+    console.log(res.error);
+    return res.error ? null : res;
 }, "owner")

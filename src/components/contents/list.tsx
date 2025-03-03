@@ -12,6 +12,7 @@ import {Feature} from "geojson";
 import ImageContent from "~/components/ui/image";
 import {DialogContent} from "~/components/ui/dialogs/base-dialog";
 import {DrawerContent} from "~/components/ui/dialogs/base-drawer";
+import GridImage from "~/components/contents/partials/grid-image";
 
 type PROPS = {
     feature: Feature | undefined;
@@ -26,7 +27,7 @@ const ContentsList: Component<PROPS> = props => {
         console.log("feature", feature())
         setContents(() => feature()?.properties?.profile?.contents)
         console.log(feature())
-        console.log(getContents())
+        console.log("getContents", getContents())
     })
 
     const [getSelectedId, setSelectedId] = createSignal<string>()
@@ -61,39 +62,6 @@ const ContentsList: Component<PROPS> = props => {
                     </DrawerPrimitive.Close>
                 </div>
             </DrawerContent>
-        )
-    }
-
-    const GridImage = (props: {
-        content: CONTENT
-    }) => {
-
-        const content = () => props.content;
-
-        return (
-            <>
-                <div
-                    class="group overflow-hidden rounded-lg focus-within:ring-2 focus-within:ring-blue-5 focus-within:ring-offset-2 focus-within:ring-offset-gray-1">
-
-                    <ImageContent
-                        src={`http://localhost:4000/${content().src}`}
-                        alt={content()?.name}
-                        imgClass={"min-h-[155px] pointer-events-none w-full h-full object-cover group-hover:opacity-75 rounded-sm"}
-                        rootClass={'aspect-[1/1] min-h-[155px] w-full'}
-                        fallbackClass={'min-h-[155px] animate pulse h-full w-full'}
-                    >
-                        <PhotoIcon class={'w-full h-full text-gray-2'}/>
-                    </ImageContent>
-                    <button type="button" class="absolute inset-0 focus:outline-none">
-                        <span class="sr-only">{content().original}</span>
-                    </button>
-                </div>
-                <p class="pointer-events-none mt-3 block truncate text-sm font-medium text-gray-11">{content().original}</p>
-                <div class={'flex justify-between items-center text-accent'}>
-                    <span class={'text-xs py-1'}>{content().type}</span>
-                    <ByteWithLocale value={content().size}/>
-                </div>
-            </>
         )
     }
 

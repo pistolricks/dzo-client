@@ -19,9 +19,9 @@ const UserDetails: Component<PROPS> = (props) => {
                         {(item) => (
                             <Show when={typeof item?.[1] === 'string'}>
                                 <div class="sm:col-span-1 p-3">
-                                    <dt class="pl-1 text-base text-gray-900 uppercase">{item?.[1]}</dt>
+                                    <dt class="pl-1 text-base text-gray-900">{item?.[1]}</dt>
                                     <div class={' border-t border-gray-5 w-full flex justify-end p-0.5'}>
-                                        <dd class="uppercase text-xs font-medium text-tomato-11">{item?.[0]}</dd>
+                                        <dd class="uppercase text-xs font-medium text-tomato-11">{item?.[0]?.replaceAll("_", " ")}</dd>
                                     </div>
                                 </div>
                             </Show>

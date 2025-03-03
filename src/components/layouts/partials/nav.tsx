@@ -24,12 +24,12 @@ const Nav: Component<PROPS> = props => {
     return (
         <>
 
-            <header class={"w-full bg-gray-ui sticky top-0 z-50"}>
+            <header class={"w-full bg-gray-ui opacity-70 sticky top-0 z-50"}>
                 <nav class="container items-center flex justify-between  h-16" aria-label="Global">
                     <div class="flex justify-between items-center w-full text-gray-normal">
                         <ul class="flex justify-start items-center">
                             <li class={`${active("/")}`}>
-                                <A href="/"><img class={'size-12 rounded'} src={'/logo.jpg'} alt={'logo'}/></A>
+                                <A href="/">{import.meta.env.VITE_APP_NAME}</A>
                             </li>
                         </ul>
                         <ul class="flex justify-end items-center">

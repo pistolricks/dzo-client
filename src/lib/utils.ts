@@ -82,3 +82,14 @@ export function arrayRemove<T>(array: T[], b: T, key: keyof T) {
     return items;
 
 }
+
+
+export function capitalizeFirstLetter(str?: string) {
+    if(!str) return;
+    return str[0].toUpperCase() + str.slice(1);
+}
+
+export function lowerCaseString(str?: string) {
+    if(!str) return;
+    return str.toLowerCase();
+}
