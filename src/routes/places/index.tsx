@@ -56,7 +56,7 @@ export default function Addresses() {
                          dialogId="responsive-drawer-mobile" open={open()} onOpenChange={setOpen}>
 
 
-            <GeoMap featureCollection={getStoreCollection}/>
+            <GeoMap coordinates={getMyLocation()?.geometry?.coordinates} featureCollection={getStoreCollection}/>
             <FooterMenu childClass={'w-full sm:max-w-sm'}
                         sectionClass={'flex justify-between items-center w-full space-x-4'}
                         title={<MapIcon class={'size-full stroke-mint-11 p-0.5 fill-green-2'}/>}

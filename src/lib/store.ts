@@ -155,7 +155,7 @@ export declare type Properties = {
     [name: string]: any;
 } | null;
 
-export interface Feature<G = Geometry | GeometryCollection, T = string | number, P = Properties> extends GeoJsonObject {
+export interface Feature<G, T = string | number, P = Properties> extends GeoJsonObject {
     type: "Feature";
     geometry: G;
     properties: P;

@@ -28,6 +28,7 @@ import {Extent} from "ol/extent";
 import {Polygon} from "ol/geom";
 
 type PROPS = {
+    coordinates?: [number, number];
     contextId?: string;
     featureCollection: FeatureCollection;
 };
@@ -117,6 +118,7 @@ const styles = {
 
 const GeoMap: Component<PROPS> = (props) => {
     const {getMyLocation, getHeight, setViewbox, getViewbox, getIsDesktop} = useLayoutContext();
+    const coordinates = () => props.coordinates;
     const contextId = () => props.contextId ?? 'map1'
     const {open, setOpen} = Drawer.useDialogContext(contextId())
     const [getShowPosition, setShowPosition] = createSignal(false);
