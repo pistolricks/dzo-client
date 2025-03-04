@@ -400,9 +400,9 @@ const GeoMap: Component<PROPS> = (props) => {
                                     <Show when={featureCollection()?.features?.[i()]?.id}>
                                         <PlaceCard
                                             geometry={featureCollection()?.features?.[i()]?.geometry}
-                                            properties={featureCollection()?.features?.[i()]?.properties?.place}
+                                            properties={featureCollection()?.features?.[i()]?.properties}
                                             type={"Feature"}
-                                            id={featureCollection()?.features?.[i()]?.properties?.id}
+                                            id={featureCollection()?.features?.[i()]?.id}
                                             bbox={featureCollection()?.features?.[i()]?.properties?.place?.boundingbox}
                                         />
                                     </Show>
