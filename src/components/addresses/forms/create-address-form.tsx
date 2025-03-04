@@ -21,7 +21,7 @@ import poi from './poi.json';
 import {useLayoutContext} from "~/context/layout-provider";
 import {getSessionLocation} from "~/lib/session";
 
-type PROPS = CountryData & { contextId?: string };
+type PROPS = CountryData & { contextId?: string, hidePoi?: boolean };
 
 const CreateAddressForm: Component<PROPS> = props => {
     const submission = useSubmission(addAddress);
@@ -35,6 +35,8 @@ const CreateAddressForm: Component<PROPS> = props => {
         return submission.result
     })
 
+
+    const hidePoi = () => props.hidePoi ?? false;
     const contextId = () => props.contextId ?? 'rmd1'
     const localityNameType = () => props.LocalityNameType ?? 2;
     const administrativeAreaNameType = () => props.AdministrativeAreaNameType ?? 18;
@@ -71,6 +73,8 @@ const CreateAddressForm: Component<PROPS> = props => {
         id: "",
         label: ""
     })
+
+
 
     const postalSubRegex = createMemo(() => {
         console.log("sub", postCodeRegex()?.SubdivisionRegex[getItem()?.ID]?.Regex)
@@ -111,6 +115,8 @@ const CreateAddressForm: Component<PROPS> = props => {
                            value={getPoi()?.key}/>
                     <input class={'sr-only'} name="poi_id" id="poi_id"
                            value={getPoi()?.id}/>
+
+                    <Show when={!hidePoi()}>
                     <Combobox
                         class={"text-gray-11"}
                         options={poi}
@@ -133,6 +139,7 @@ const CreateAddressForm: Component<PROPS> = props => {
                         </ComboboxControl>
                         <ComboboxContent/>
                     </Combobox>
+                    </Show>
                 </div>
                 <TextField>
                     <TextFieldInput type="text" autocomplete="none" name="street_address" placeholder="Street Address"/>

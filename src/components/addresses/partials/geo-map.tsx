@@ -19,13 +19,13 @@ import {actionPositionHandler} from "~/lib/addresses";
 import {MapPin} from "~/components/svg";
 import AddressSearchForm from "~/components/addresses/forms/address-search-form";
 import {throttle} from "~/lib/utils";
-import {FeatureCollection} from "geojson";
+
 import PlaceCard from "~/components/addresses/partials/place-card";
 import {DrawerContent} from "~/components/ui/dialogs/base-drawer";
 import {shiftKeyOnly} from 'ol/events/condition.js';
 import ExtentInteraction from 'ol/interaction/Extent.js';
 import {Extent} from "ol/extent";
-import {Polygon} from "ol/geom";
+import {FeatureCollection} from "~/lib/store";
 
 type PROPS = {
     coordinates?: [number, number];

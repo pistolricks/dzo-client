@@ -21,7 +21,7 @@ export const getAddresses = query(async () => {
     const res: any = await response.json();
 
     console.log(res);
-    return res;
+    return res?.collection;
 }, "addresses")
 
 
@@ -91,7 +91,7 @@ export const addressSearchHandler = action(async (data: FormData) => {
     console.log("status", status)
     console.log("res", res.address)
 
-    return res;
+    return res?.collection;
 })
 
 

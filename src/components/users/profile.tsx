@@ -1,15 +1,17 @@
-import {Component, Show} from "solid-js";
+import {Component, createMemo, createSignal, Show} from "solid-js";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "~/components/ui/tabs"
 import UserDetails from "~/components/profiles/user-details";
-import {CountryData, Feature} from "~/lib/store";
+import {CountryData, Feature, FeatureCollection} from "~/lib/store";
 import VendorDetails, {VendorAdvert} from "~/components/profiles/vendor-details";
 import {Card} from "~/components/ui/card";
 import {useLayoutContext} from "~/context/layout-provider";
-import AddressDetails, {LocationAdvert} from "~/components/profiles/address-details";
+
 import CreateAddressForm from "~/components/addresses/forms/create-address-form";
 import FormLayout from "~/components/layouts/form-layout";
-import {AccessorWithLatest, createAsync} from "@solidjs/router";
-import {getAddressFormFormats} from "~/lib/addresses";
+import {AccessorWithLatest, createAsync, useSubmission} from "@solidjs/router";
+import {addAddress, getAddressFormFormats} from "~/lib/addresses";
+import FeatureDetails from "../profiles/feature-details";
+
 
 export const route = {
     preload() {
@@ -22,8 +24,11 @@ export const route = {
 const UserProfile: Component<Feature> = props => {
     const {storedCurrentUser} = useLayoutContext();
     const formFormats: AccessorWithLatest<CountryData | undefined> = createAsync(async () => getAddressFormFormats());
+    const submission = useSubmission(addAddress);
 
+    const [getFeatureCollection, setFeatureCollection] = createSignal<FeatureCollection>()
     const name = () => storedCurrentUser?.name;
+
 
     const vendor = () => props.properties?.profile?.vendor;
 
@@ -40,6 +45,11 @@ const UserProfile: Component<Feature> = props => {
 
     }
 
+
+    const featureCollection = createMemo(() => {
+       setFeatureCollection(submission?.result?.results)
+        return getFeatureCollection();
+    })
 
     return (
         <article class={'bg-white w-full h-full overflow-hidden'}>
@@ -80,12 +90,12 @@ const UserProfile: Component<Feature> = props => {
                         fallback={
                             <FormLayout title="Add Address" hideLogo>
                                 <Show when={formFormats()}>
-                                    <CreateAddressForm {...formFormats()}/>
+                                    <CreateAddressForm hidePoi {...formFormats()}/>
                                 </Show>
                             </FormLayout>
                         }
-                        when={userAddress?.street_address?.length > 0} keyed>
-                        {(v) => <AddressDetails {...userAddress}/>}
+                        when={featureCollection()?.features}>
+                        <FeatureDetails geometry={featureCollection()?.features?.[0]?.geometry} properties={featureCollection()?.features?.[0]?.properties?.place} type={'Feature'} />
                     </Show>
 
                 </TabsContent>

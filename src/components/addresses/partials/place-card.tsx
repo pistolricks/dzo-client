@@ -1,19 +1,22 @@
 import {Component, createEffect, createMemo, createSignal, Show} from "solid-js";
-import {Properties} from "~/lib/store";
+import {Feature, Properties} from "~/lib/store";
 import {CallIcon, EnvelopeIcon, GlobeIcon, MapPin, RatingIcon} from "~/components/svg";
 import {A} from "@solidjs/router";
-import {Geometry} from "geojson";
+import {Geometry, Point} from "geojson";
 
 
 export type PLACE_PROPS = {
-    geometry?: Geometry
+    geometry: {
+        coordinates: [number, number]
+        type: string
+    }
     properties: Properties
     type: string
     id?: string | number
     bbox?: any
 }
 
-const PlaceCard: Component<PLACE_PROPS> = props => {
+const PlaceCard: Component<Feature> = props => {
 
     const type = () => props.type ?? null;
     const geometry = () => props.geometry;

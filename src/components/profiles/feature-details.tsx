@@ -1,8 +1,6 @@
-import {Component, For, Show, VoidComponent} from "solid-js";
-import {ProfileDetailProps} from "~/lib/store";
-import {SessionUser} from "~/lib/session";
+import {Component, createEffect, For, Show, VoidComponent} from "solid-js";
+import {Feature} from "~/lib/store";
 import {Avatar, AvatarFallback, AvatarImage} from "~/components/ui/avatar";
-import {handleInitials} from "~/lib/utils";
 import {Button} from "~/components/ui/button";
 
 
@@ -15,11 +13,15 @@ type PROPS = {
     phone: string
 }
 
-const UserDetails: Component<PROPS> = (props) => {
+const FeatureDetails: Component<Feature> = props => {
 
     const imageSrc = () => "";
     const coverSrc = () => "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
 
+
+    createEffect(() => {
+        console.log("feature", props)
+    })
 
     return (
         <article>
@@ -36,7 +38,7 @@ const UserDetails: Component<PROPS> = (props) => {
 
                             <Avatar class={'bg-gray-3 size-24 ring-2 ring-white lg:size-32'}>
                                 <AvatarImage src={imageSrc()}/>
-                                <AvatarFallback>{props.locality}</AvatarFallback>
+                                <AvatarFallback class={'uppercase'}>{props.properties?.type}</AvatarFallback>
                             </Avatar>
 
 
@@ -53,11 +55,11 @@ const UserDetails: Component<PROPS> = (props) => {
             <div class="mx-auto mt-6 max-w-2xl px-4 sm:px-6 lg:px-8">
                 <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
 
-                    <For each={Object.entries(props)}>
-                        {(item) => (
+                    <For each={Object.entries(props?.properties?.address)?.reverse()}>
+                        {(item: [string, unknown]) => (
                             <Show when={typeof item?.[1] === 'string'}>
                                 <div class="sm:col-span-1 p-3">
-                                    <dt class="pl-1 text-base text-gray-900 h-6">{item?.[1]}</dt>
+                                    <dt class="pl-1 text-base text-gray-900 h-6">{item?.[1] as string}</dt>
                                     <div class={' border-t border-gray-5 w-full flex justify-end p-0.5'}>
                                         <dd class="uppercase text-xs font-medium text-tomato-11">{item?.[0]?.replaceAll("_", " ")}</dd>
                                     </div>
@@ -71,7 +73,7 @@ const UserDetails: Component<PROPS> = (props) => {
     );
 };
 
-export default UserDetails;
+export default FeatureDetails;
 
 const LocationAdvert: VoidComponent = () => {
 
@@ -80,7 +82,7 @@ const LocationAdvert: VoidComponent = () => {
             <div class="px-6 py-12 sm:px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl text-center">
                     <h2 class="text-balance text-xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-                    Add your location information
+                        Add your location information
                     </h2>
                     <p class="mx-auto mt-6 max-w-xl text-balance text-lg/8 text-gray-600">
                         Add your location information to get trip details.

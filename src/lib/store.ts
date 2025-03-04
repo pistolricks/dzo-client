@@ -146,20 +146,25 @@ export type OsmOutput = {
 }
 
 
-export interface FeatureCollection<G = Geometry | GeometryCollection, P = Properties> extends GeoJsonObject {
+export type Point = {
+    coordinates: [number, number]
+    type: string
+}
+
+export interface FeatureCollection extends GeoJsonObject {
     type: "FeatureCollection";
-    features: Array<Feature<G, P>>;
+    features: Array<Feature>;
 }
 
 export declare type Properties = {
     [name: string]: any;
 } | null;
 
-export interface Feature<G, T = string | number, P = Properties> extends GeoJsonObject {
+export interface Feature extends GeoJsonObject {
     type: "Feature";
-    geometry: G;
-    properties: P;
-    id?: T;
+    geometry?: Point;
+    properties?: Properties;
+    id?: string;
 }
 
 
