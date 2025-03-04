@@ -123,7 +123,7 @@ export const MenuItem: Component<MenuItem & { contextId: string, children?: JSXE
     const children = () => props.children;
     return (
         <Drawer.Trigger contextId={contextId()} as={A} href={href()}
-                        class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-blue-500 hover:bg-blue-50 focus:bg-blue-50 aria-[current=page]:text-blue-500 aria-[current=page]:bg-blue-50 ">
+                        class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-blue-500 hover:bg-blue-50 focus:border-blue-50 aria-[current=page]:text-blue-500 aria-[current=page]:bg-blue-50 ">
             <div class="flex items-center self-center w-6">
 
                 {children() || <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

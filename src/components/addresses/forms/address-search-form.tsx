@@ -3,12 +3,12 @@ import {useSubmission} from "@solidjs/router";
 import {TextField, TextFieldErrorMessage, TextFieldInput} from "~/components/ui/text-field";
 import {Button} from "../../ui/button";
 import {showToast} from "~/components/ui/toast";
-import {BackspaceIcon, MagnifyingGlassCircle, SpinnerIcon, XMark} from "~/components/svg";
+import {BackspaceIcon, MagnifyingGlassCircle, MapPin, SpinnerIcon, XMark} from "~/components/svg";
 import {addressSearchHandler} from "~/lib/addresses";
 import {useLayoutContext} from "~/context/layout-provider";
 import Drawer from "@corvu/drawer";
 
-type PROPS = { class?: string, contextId: string };
+type PROPS = { class?: string, contextId: string, onClick: () => void };
 
 const AddressSearchForm: Component<PROPS> = props => {
     const {getViewbox, getQuery, setQuery, setStoreCollection} = useLayoutContext();
@@ -58,8 +58,15 @@ const AddressSearchForm: Component<PROPS> = props => {
         <>
             <form class={className()} action={addressSearchHandler} method="post">
                 <TextField class={'w-full relative'}>
+                    <Button
+                        onClick={props.onClick}
+                        class={'absolute left-[1px] hover:text-red-5 inset-y-0 z-40 w-12 py-5 rounded-l rounded-r-none h-6 flex items-center'}
+                        variant={'link'}
+                        size="icon">
+                        <MapPin class={'stroke-green-11 size-8'}/>
+                    </Button>
                     <TextFieldInput onInput={handleSearch}
-                                    value={getQuery()} class={"w-full pr-24"} type="text"
+                                    value={getQuery()} class={"w-full pl-16 pr-24"} type="text"
                                     autocomplete="none" id="search"
                                     name="search" placeholder="Search"/>
 

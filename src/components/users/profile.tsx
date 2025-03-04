@@ -89,9 +89,7 @@ const UserProfile: Component<Feature> = props => {
                     <Show
                         fallback={
                             <FormLayout title="Add Address" hideLogo>
-                                <Show when={formFormats()}>
-                                    <CreateAddressForm hidePoi {...formFormats()}/>
-                                </Show>
+
                             </FormLayout>
                         }
                         when={featureCollection()?.features}>

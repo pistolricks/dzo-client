@@ -27,11 +27,14 @@ import ExtentInteraction from 'ol/interaction/Extent.js';
 import {Extent} from "ol/extent";
 import {FeatureCollection} from "~/lib/store";
 import {Feature as GeoFeature} from "~/lib/store";
+import CreateAddressForm from "~/components/addresses/forms/create-address-form";
 
 type PROPS = {
     coordinates?: [number, number];
     contextId?: string;
     featureCollection: FeatureCollection;
+    toggleGeo: boolean;
+    handleToggle: (e?: any) => void;
 };
 
 // Moved styles definition outside the component to avoid recreation on every render.
@@ -125,6 +128,14 @@ const GeoMap: Component<PROPS> = (props) => {
     const [getShowPosition, setShowPosition] = createSignal(false);
     const [getGeolocation, setGeolocation] = createSignal<Geolocation | undefined>();
 
+    const toggleGeo = () => props.toggleGeo;
+
+    const [getToggle, setToggle] = createSignal(toggleGeo())
+
+    const toggle = createMemo(() => {
+        setToggle(toggleGeo())
+        return getToggle()
+    })
 
     const [getClear, setClear] = createSignal(false)
 
@@ -360,7 +371,16 @@ const GeoMap: Component<PROPS> = (props) => {
     })
 
 
+
+
+
     createEffect(() => {
+
+
+
+        toggleGeolocation(toggle())
+
+
         setOpen(features()?.length > 0)
         console.log('features', features())
         console.log('fArr', featuresArray())
@@ -385,18 +405,7 @@ const GeoMap: Component<PROPS> = (props) => {
                     ref={setMapElement}
                 />
 
-                <div class={'absolute right-5 top-5 z-30'}>
-                    <Show when={getShowPosition()}>
-                        <button onClick={() => toggleGeolocation(false)}>
-                            <MapPin class={'stroke-green-11 size-10'}/>
-                        </button>
-                    </Show>
-                    <Show when={!getShowPosition()}>
-                        <button onClick={() => toggleGeolocation(true)}>
-                            <MapPin class={'stroke-red-11 size-10'}/>
-                        </button>
-                    </Show>
-                </div>
+
 
 
             </div>
