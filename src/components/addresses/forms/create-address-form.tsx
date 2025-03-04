@@ -18,6 +18,8 @@ import {
 } from "~/components/ui/combobox"
 
 import poi from './poi.json';
+import {useLayoutContext} from "~/context/layout-provider";
+import {getSessionLocation} from "~/lib/session";
 
 type PROPS = CountryData & { contextId?: string };
 
@@ -25,6 +27,7 @@ const CreateAddressForm: Component<PROPS> = props => {
     const submission = useSubmission(addAddress);
 
 
+    const {getViewbox, setMyLocation, getMyLocation} = useLayoutContext();
 
 
     const results = createMemo(() => {
@@ -63,9 +66,10 @@ const CreateAddressForm: Component<PROPS> = props => {
         Name: ""
     })
 
-    const [getPoi, setPoi] = createSignal<{id: string, name: string}>({
+    const [getPoi, setPoi] = createSignal<{key: string, id: string, label: string}>({
+        key: "",
         id: "",
-        name: ""
+        label: ""
     })
 
     const postalSubRegex = createMemo(() => {
@@ -74,7 +78,12 @@ const CreateAddressForm: Component<PROPS> = props => {
     })
 
 
-    createEffect(() => {
+    createEffect(async() => {
+
+
+        setMyLocation(await getSessionLocation())
+        console.log("getMyLocation", getMyLocation())
+        console.log("getViewbox", getViewbox())
         console.log("getPoi", getPoi())
         console.log("getItem", getItem())
         console.log(postCodeRegex())
@@ -96,25 +105,29 @@ const CreateAddressForm: Component<PROPS> = props => {
 
             <form class={'space-y-4'} action={addAddress} method="post">
                 <div class="col-span-3">
-                    <input class={'hidden'} name="poi" id="poi"
+                    <input class={'sr-only'} id={'viewbox'} name={'viewbox'} type={'text'}
+                           value={String(getMyLocation()?.properties?.place?.boundingbox)}/>
+                    <input class={'sr-only'} name="poi_key" id="poi_key"
+                           value={getPoi()?.key}/>
+                    <input class={'sr-only'} name="poi_id" id="poi_id"
                            value={getPoi()?.id}/>
                     <Combobox
                         class={"text-gray-11"}
                         options={poi}
                         optionValue="id"
-                        optionTextValue="name"
-                        optionLabel="name"
+                        optionTextValue="label"
+                        optionLabel="label"
                         optionDisabled="disabled"
                         onChange={(a: any) => setPoi(a)}
-                        placeholder={"poi"}
+                        placeholder={"POI"}
                         itemComponent={(props: any) => (
                             <ComboboxItem item={props.item}>
-                                <ComboboxItemLabel class={'capitalize'} >{props.item.rawValue?.name}</ComboboxItemLabel>
+                                <ComboboxItemLabel class={'capitalize'} >{props.item.rawValue?.label}</ComboboxItemLabel>
                                 <ComboboxItemIndicator/>
                             </ComboboxItem>
                         )}
                     >
-                        <ComboboxControl aria-label={getPoi()?.name}>
+                        <ComboboxControl aria-label={getPoi()?.label}>
                             <ComboboxInput/>
                             <ComboboxTrigger/>
                         </ComboboxControl>
@@ -122,7 +135,7 @@ const CreateAddressForm: Component<PROPS> = props => {
                     </Combobox>
                 </div>
                 <TextField>
-                    <TextFieldInput type="text" autocomplete="none" name="street_address" placeholder="Search"/>
+                    <TextFieldInput type="text" autocomplete="none" name="street_address" placeholder="Street Address"/>
                     <Show when={results()?.error?.street_address}>
                         <TextFieldErrorMessage>
                             {results()?.error?.street_address}
@@ -141,7 +154,7 @@ const CreateAddressForm: Component<PROPS> = props => {
 
                     <div class="col-span-3">
                         <input class={'hidden'} name="administrative_area" id="administrative_area"
-                               value={getItem()?.ID}/>
+                               value={getItem()?.Name}/>
 
                         <Combobox
                             class={"text-gray-11"}

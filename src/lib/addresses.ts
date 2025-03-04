@@ -2,6 +2,8 @@ import {action, query, redirect} from "@solidjs/router";
 import {baseApi, getUserToken} from "~/lib/server";
 import {toLonLat} from "ol/proj";
 import {useLayoutContext} from "~/context/layout-provider";
+import {getSessionUser, SessionUser, updateSessionCurrentLocation} from "~/lib/session";
+import {getUser} from "~/lib/users";
 
 
 export const getAddresses = query(async () => {
@@ -31,7 +33,9 @@ export const addAddress = action(async (data: FormData) => {
     console.log("Bearer:", token.token)
 
     const addressInput = {
-        poi: String(data.get("poi")),
+        viewbox: data.get("viewbox"),
+        poi_key: String(data.get("poi_key") ?? ''),
+        poi_id: String(data.get("poi_id") ?? ''),
         street_address: String(data.get("street_address")),
         locality: String(data.get("locality")),
         administrative_area: String(data.get("administrative_area")),
@@ -119,15 +123,22 @@ export const actionPositionHandler = action(async (data: FormData) => {
     console.log("res", res)
 
     let mapInput = {
-        title: res.results?.properties?.profile?.display,
-        filename: `${res.results?.properties?.profile?.osm_type}-${res.results?.id}`,
+        title: res.results?.properties?.place?.display,
+        filename: `${res.results?.properties?.place?.osm_type}-${res.results?.id}`,
         lat: res.query.lat,
         lng: res.query.lon,
     }
 
     console.log("mapInput", mapInput)
 
-     await createPositionMapHandler(mapInput)
+    let user = (await getSessionUser()) as SessionUser
+
+    console.log('loc', res?.results)
+
+    let session = await updateSessionCurrentLocation(user, res?.results, token)
+    console.log("session", session)
+
+     // await createPositionMapHandler(mapInput)
 
 
     return res;
@@ -166,7 +177,6 @@ export const createPositionMapHandler = async (mapInput: {
     const status: number = response.status;
     console.log("status", status)
     console.log("res", res)
-
 
     return res;
 }

@@ -2,6 +2,7 @@ import {useSession} from "vinxi/http";
 import {USER} from "~/lib/db";
 import {AUTHENTICATION_TOKEN} from "~/lib/index";
 import {handleUserName} from "~/lib/utils";
+import {Feature} from "geojson";
 
 export type SessionUser = {
     id?: number
@@ -12,10 +13,9 @@ export type SessionUser = {
     created_at?: string;
     token?: string
     expiry?: string
-    folder?: string
+    folder?: string,
+    current_location?: Feature | undefined
 }
-
-
 
 
 export function getSession() {
@@ -25,7 +25,7 @@ export function getSession() {
     });
 }
 
-export async function updateSessionUser(user: USER, authentication_token: AUTHENTICATION_TOKEN, folder: string ) {
+export async function updateSessionUser(user: USER, authentication_token: AUTHENTICATION_TOKEN, folder: string) {
     "use server";
     try {
         const session = await getSession();
@@ -46,6 +46,29 @@ export async function updateSessionUser(user: USER, authentication_token: AUTHEN
     }
 }
 
+export async function updateSessionCurrentLocation(user: SessionUser, currentLocation: Feature, authentication_token: AUTHENTICATION_TOKEN) {
+    "use server";
+    try {
+        const session = await getSession();
+        await session.update((d: SessionUser) => {
+            d.id = user?.id;
+            d.name = user?.name;
+            d.email = user?.email;
+            d.display_name = user?.display_name;
+            d.activated = user?.activated;
+            d.created_at = user?.created_at;
+            d.token = authentication_token?.token;
+            d.expiry = authentication_token?.expiry;
+            d.folder = user?.folder;
+            d.current_location = currentLocation
+        });
+
+    } catch (err) {
+        return err as Error;
+    }
+}
+
+
 export async function getSessionUser(): Promise<USER | undefined> {
     "use server";
     const session = await getSession();
@@ -58,6 +81,7 @@ export async function getSessionUser(): Promise<USER | undefined> {
         activated: session.data.activated,
         created_at: session.data.created_at,
         folder: session.data.folder,
+        current_location: session.data?.current_location
     }
 
     if (user.email === "") return undefined;
@@ -88,6 +112,16 @@ export async function getSessionFolder(): Promise<string | undefined> {
     return folderName;
 }
 
+export async function getSessionLocation(): Promise<Feature | undefined> {
+    "use server";
+    const session = await getSession();
+
+    const currentLocation = session.data?.current_location;
+
+    if (!currentLocation) return undefined;
+    return currentLocation;
+}
+
 export async function clearSessionUser() {
     "use server";
     try {
@@ -102,6 +136,7 @@ export async function clearSessionUser() {
             d.token = undefined;
             d.expiry = undefined;
             d.folder = undefined;
+            d.current_location = undefined;
         });
 
     } catch (err) {
