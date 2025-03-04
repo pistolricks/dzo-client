@@ -26,6 +26,7 @@ import {shiftKeyOnly} from 'ol/events/condition.js';
 import ExtentInteraction from 'ol/interaction/Extent.js';
 import {Extent} from "ol/extent";
 import {FeatureCollection} from "~/lib/store";
+import {Feature as GeoFeature} from "~/lib/store";
 
 type PROPS = {
     coordinates?: [number, number];
@@ -117,7 +118,7 @@ const styles = {
 };
 
 const GeoMap: Component<PROPS> = (props) => {
-    const {getMyLocation, getHeight, setViewbox, getViewbox, getIsDesktop} = useLayoutContext();
+    const {getHeight, setViewbox, getViewbox, getIsDesktop} = useLayoutContext();
     const coordinates = () => props.coordinates;
     const contextId = () => props.contextId ?? 'map1'
     const {open, setOpen} = Drawer.useDialogContext(contextId())
@@ -129,15 +130,18 @@ const GeoMap: Component<PROPS> = (props) => {
 
     const [mapElement, setMapElement] = createSignal<HTMLDivElement | undefined>();
 
+    const [getFeatureCollection, setFeatureCollection] = createSignal<FeatureCollection>({ type: "FeatureCollection",
+        features: []
+    })
 
-    const [getFeatureCollection, setFeatureCollection] = createSignal(props.featureCollection)
+    const [getFeatures, setFeatures] = createSignal<GeoFeature[]>([])
 
     const featureCollection = createMemo(() => {
-        open() ? setFeatureCollection(props.featureCollection) : setFeatureCollection({
-            type: "FeatureCollection",
-            features: []
-        })
-
+         open() ? setFeatureCollection(props.featureCollection) : setFeatureCollection({
+             type: "FeatureCollection",
+             features: []
+         })
+        setFeatureCollection(props.featureCollection)
         console.log("getFeatureCollection", getFeatureCollection())
         return getFeatureCollection()
     })
@@ -151,20 +155,29 @@ const GeoMap: Component<PROPS> = (props) => {
 
     // Memoized results for features
     const features = createMemo(() => {
+        try {
 
-        const collection = open() ? featureCollection() : {
-            type: "FeatureCollection",
-            features: []
-        };
 
-        if (collection?.features?.length > 0) {
-            return new GeoJSON().readFeatures(collection);
-        } else {
-            return []
+            let collection = featureCollection();
+
+
+
+                let ftr = new GeoJSON().readFeatures(collection);
+
+           let getf = ftr.map((f, i) => collection?.features?.[i])
+            setFeatures(getf)
+            console.log("getf", getf)
+
+
+                    return ftr;
+        } catch (error) {
+            console.error("Invalid feature collection:", error);
+            return [];
         }
 
-
+        return []
     });
+
 
     function handleDrawer() {
         setOpen(true)
@@ -224,16 +237,16 @@ const GeoMap: Component<PROPS> = (props) => {
 
         // Bind events for geolocation
         geolocation.on("change:accuracyGeometry", () => {
-            const accuracy = geolocation.getAccuracyGeometry();
-            if (accuracy) accuracyFeature.setGeometry(accuracy);
+            const accuracy = geolocation?.getAccuracyGeometry();
+            if (accuracy) accuracyFeature?.setGeometry(accuracy);
         });
 
         geolocation.on("change:position", () => {
-            const coordinates = geolocation.getPosition();
+            const coordinates = geolocation?.getPosition();
             if (coordinates) {
-                positionFeature.setGeometry(new Point(coordinates));
+                positionFeature?.setGeometry(new Point(coordinates));
                 view.animate({center: coordinates, duration: 1000, zoom: 12});
-                const extent: Extent = view.calculateExtent();
+                const extent: Extent = view?.calculateExtent();
                 setViewbox(() => extent);
 
 
@@ -241,8 +254,8 @@ const GeoMap: Component<PROPS> = (props) => {
                 let lon = coordinates[0]
 
                 const formData = new FormData();
-                formData.append("lat", String(lat));
-                formData.append("lon", String(lon));
+                formData?.append("lat", String(lat));
+                formData?.append("lon", String(lon));
 
 
                 submit(formData).then(r => console.log(r))
@@ -253,6 +266,7 @@ const GeoMap: Component<PROPS> = (props) => {
 
 
         createEffect(() => {
+            console.log("getFeatures", getFeatures())
             const positionLayer = new VectorLayer({
                 source: new VectorSource({
                     features: [accuracyFeature, positionFeature],
@@ -270,7 +284,7 @@ const GeoMap: Component<PROPS> = (props) => {
                 return styles[feature?.getGeometry()?.getType() as keyof typeof styles];
             };
             // Attach features to the map
-            if (features()?.length > 0) {
+
                 const vectorSource = new VectorSource({
                     features: features(),
                 });
@@ -281,7 +295,6 @@ const GeoMap: Component<PROPS> = (props) => {
                 });
 
                 getMap()?.addLayer(vectorLayer);
-            }
 
             const selected: Feature<import("ol/geom/Geometry").default>[] = features();
 
@@ -291,31 +304,35 @@ const GeoMap: Component<PROPS> = (props) => {
             getMap()?.on('singleclick', function (e) {
                 getMap()?.forEachFeatureAtPixel(e.pixel, function (f) {
                     if (f instanceof Feature) {
-                        const selIndex = features().indexOf(f);
+                        const selIndex = features()?.indexOf(f);
                         if (selIndex < 0) {
 
                             features().push(f);
                             // selected.push(f);
                             // f.setStyle(styles["Point"]);
                             throttle(handleDrawer(), 1000)
-                            console.log(f)
+                            console.log('f', f)
                         } else {
 
                             console.log('ff', features())
                             features().splice(selIndex, 1);
                             // features().splice(selIndex, 1)
-                            // f.setStyle(undefined);
+                           // f.setStyle(undefined);
                         }
                     }
                 });
                 if (status) {
 
                     status.innerHTML = '&nbsp;' + selected.length + ' selected features';
+
+
                 }
             })
 
-            const extent = new ExtentInteraction({condition: shiftKeyOnly});
-            getMap()?.addInteraction(extent);
+            console.log(selected)
+
+         //   const extent = new ExtentInteraction({condition: shiftKeyOnly});
+         //   getMap()?.addInteraction(extent);
         })
 
         // Cleanup on component unmount
@@ -345,8 +362,11 @@ const GeoMap: Component<PROPS> = (props) => {
 
     createEffect(() => {
         setOpen(features()?.length > 0)
+        console.log('features', features())
         console.log('fArr', featuresArray())
         console.log("getClear", getClear())
+        console.log('features', features())
+
     })
 
     return (
@@ -397,15 +417,14 @@ const GeoMap: Component<PROPS> = (props) => {
                             <For each={features()?.map((feature) => feature.getProperties())?.reverse()}>
                                 {(properties, i) => (
 
-                                    <Show when={featureCollection()?.features?.[i()]?.id}>
-                                        <PlaceCard
-                                            geometry={featureCollection()?.features?.[i()]?.geometry}
-                                            properties={featureCollection()?.features?.[i()]?.properties}
-                                            type={"Feature"}
-                                            id={featureCollection()?.features?.[i()]?.id}
-                                            bbox={featureCollection()?.features?.[i()]?.properties?.place?.boundingbox}
-                                        />
-                                    </Show>
+                                    <PlaceCard
+                                        geometry={properties?.geometry}
+                                        properties={properties?.place}
+                                        type={"Feature"}
+                                        id={properties?.id}
+                                        bbox={properties?.place?.boundingbox}
+                                    />
+
                                 )}
                             </For>
                         </ul>

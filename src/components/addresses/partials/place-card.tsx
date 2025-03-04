@@ -56,7 +56,7 @@ const PlaceCard: Component<Feature> = props => {
                 <div
                     class="text-xs uppercase font-bold text-gray-600 tracking-wide"><Show
                     fallback={<>{properties()?.type}</>}
-                    when={properties()?.address_type !== properties()?.type}> {properties()?.address_type} {properties()?.type}</Show><Show
+                    when={properties()?.address_type !== properties()?.type}> {properties()?.address_type} {properties()?.type?.replaceAll("_", " ")}</Show><Show
                     when={extraTags()?.building !== 'yes'}> {extraTags()?.building}</Show></div>
             </div>
             <div class="p-4 text-gray-700 flex justify-start items-center w-full">
