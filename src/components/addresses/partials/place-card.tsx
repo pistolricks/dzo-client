@@ -56,12 +56,13 @@ const PlaceCard: Component<Feature> = props => {
                 <div
                     class="text-xs uppercase font-bold text-gray-600 tracking-wide"><Show
                     fallback={<>{properties()?.type}</>}
-                    when={properties()?.address_type !== properties()?.type}> {properties()?.address_type}  {properties()?.type}</Show><Show when={extraTags()?.building !== 'yes'}> {extraTags()?.building}</Show> </div>
+                    when={properties()?.address_type !== properties()?.type}> {properties()?.address_type} {properties()?.type}</Show><Show
+                    when={extraTags()?.building !== 'yes'}> {extraTags()?.building}</Show></div>
             </div>
             <div class="p-4 text-gray-700 flex justify-start items-center w-full">
 
-                <AddressTypeShop address_type={properties()?.address_type} name={properties()?.name} address={properties()?.address}/>
-
+                <AddressTypeShop address_type={properties()?.address_type} name={properties()?.name}
+                                 address={properties()?.address}/>
 
 
             </div>
@@ -75,7 +76,8 @@ const PlaceCard: Component<Feature> = props => {
                         </A>
                     </Show>
                     <Show when={extraTags()?.email}>
-                        <A href={`mailto:${extraTags()?.email}`} class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
+                        <A href={`mailto:${extraTags()?.email}`}
+                           class={'flex items-center rounded-full bg-gray-action border border-gray-5 p-1'}>
                             <EnvelopeIcon class={'size-7 p-1'}/>
                         </A>
                     </Show>
@@ -108,6 +110,7 @@ const AddressTypeShop: Component<{
         state: string;
         suburb: string;
         county: string;
+        town: string;
         "ISO3166-2-lvl4": string;
 
     }
@@ -129,25 +132,25 @@ const AddressTypeShop: Component<{
 
 
             <Switch>
-            <Match when={address_type() === 'shop'}>
-                <p class="text-sm w-full mt-2 text-gray-11">
-                    {address()?.suburb}
-                </p>
-                <p class="text-sm w-full mt-3 text-gray-12 font-semibold">
-                    <span class={'capitalize'}>{address()?.house_number} {address()?.road}</span>
-                </p>
+                <Match when={address_type() === 'shop'}>
+                    <p class="text-sm w-full mt-2 text-gray-11">
+                        {address()?.suburb}
+                    </p>
+                    <p class="text-sm w-full mt-3 text-gray-12 font-semibold">
+                        <span class={'capitalize'}>{address()?.house_number} {address()?.road}</span>
+                    </p>
 
-                <p class="text-sm w-full mt-1 font-semibold text-gray-12">
-                    <Show
-                        fallback={
-                        <Show when={address()?.county}>{address()?.county}, </Show>
-                        }
-                        when={address()?.city}>
-                        {address()?.city},
-                    </Show>
+                    <p class="text-sm w-full mt-1 font-semibold text-gray-12">
+                        <Show
+                            fallback={
+                                <Show when={address()?.county}>{address()?.county}, </Show>
+                            }
+                            when={address()?.city}>
+                            {address()?.city},
+                        </Show>
                         {address()?.['ISO3166-2-lvl4']?.replace("US-", "")} {address()?.postcode}
-                </p>
-            </Match>
+                    </p>
+                </Match>
                 <Match when={address_type() === 'amenity'}>
                     <p class="text-sm w-full mt-2 text-gray-11">
                         {address()?.suburb}
@@ -183,6 +186,27 @@ const AddressTypeShop: Component<{
                             when={address()?.city}>
                             {address()?.city},
                         </Show>
+                        {address()?.['ISO3166-2-lvl4']?.replace("US-", "")} {address()?.postcode}
+                    </p>
+                </Match>
+                <Match when={address_type() === 'place'}>
+
+                    <p class="text-sm w-full mt-3 text-gray-12 font-semibold">
+                        <span class={'capitalize'}>{address()?.house_number} {address()?.road}</span>
+                    </p>
+                    <Show when={address()?.suburb}>
+                        <p class="text-sm w-full mt-2 text-gray-11">
+                            {address()?.suburb},
+                        </p>
+                    </Show>
+                    <p class="text-sm w-full mt-1 font-semibold text-gray-12">
+                        <Switch>
+                            <Match when={address()?.town}>{address()?.town}, </Match>
+                            <Match when={address()?.city}>{address()?.city}, </Match>
+                            <Match when={address()?.county}>{address()?.county}, </Match>
+
+                        </Switch>
+
                         {address()?.['ISO3166-2-lvl4']?.replace("US-", "")} {address()?.postcode}
                     </p>
                 </Match>

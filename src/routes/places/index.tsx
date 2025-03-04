@@ -32,6 +32,8 @@ export default function Addresses() {
     const results = createMemo(() => {
         console.log("result2", submission.result)
 
+
+
         setStoreCollection(submission.result)
 
         setOpen(getStoreCollection?.features?.length > 0)
