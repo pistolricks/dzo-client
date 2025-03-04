@@ -31,12 +31,16 @@ export default function Addresses() {
 
     const results = createMemo(() => {
         console.log("result2", submission.result)
+
         setStoreCollection(submission.result)
-        return submission.result;
+
+        setOpen(getStoreCollection?.features?.length > 0)
+        return getStoreCollection;
     })
 
 
     createEffect(() => {
+        console.log("open", open())
         console.log("getDetails", getDetails())
         console.log("getPlace", getPlace())
         console.log("getStoreCollection", getStoreCollection)
@@ -47,13 +51,20 @@ export default function Addresses() {
         setMyLocation(currentPosition.result?.results)
     })
 
+     function handleOpenChange(open: boolean){
+        setOpen(open)
+
+
+        console.log("openChange")
+        console.log("open_or", open)
+    }
 
     return (
 
         <DrawerPrimitive contextId={'map1'} noOutsidePointerEvents={false} closeOnOutsidePointer={false}
                          breakPoints={[0.4]} side={getIsDesktop() ? 'right' : 'bottom'} defaultSnapPoint={1}
                          snapPoints={[0, 1]}
-                         dialogId="responsive-drawer-mobile" open={open()} onOpenChange={setOpen}>
+                         dialogId="responsive-drawer-mobile" open={open()} onOpenChange={(e) => handleOpenChange(e)}>
 
 
             <GeoMap coordinates={getMyLocation()?.geometry?.coordinates} featureCollection={results()}/>

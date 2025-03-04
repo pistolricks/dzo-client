@@ -58,9 +58,9 @@ export const addAddress = action(async (data: FormData) => {
     console.log("status", status)
     console.log("res", res)
     console.log("address", res?.address)
-    console.log("coordinates", res?.coordinates)
+    console.log("collection", res?.collection)
 
-    return res;
+    return res?.collection;
 })
 
 export const addressSearchHandler = action(async (data: FormData) => {
@@ -206,28 +206,46 @@ export const getAddressFormFormats = query(async () => {
 
 export const addressFieldNames: string[] = [
     "none",
-    "Area",
-    "City",
-    "County",
-    "Department",
-    "District",
-    "DoSi",
-    "Eircode",
-    "Emirate",
-    "Island",
-    "Neighborhood",
-    "Oblast",
-    "PINCode",
-    "Parish",
-    "PostTown",
-    "PostalCode",
-    "Prefecture",
-    "Province",
-    "State",
-    "Suburb",
-    "Townland",
-    "VillageTownship",
-    "ZipCode",
+    "aeroway",
+    "amenity",
+    "area",
+    "borough",
+    "building",
+    "city",
+    "county",
+    "country",
+    "country_code",
+    "department",
+    "district",
+    "do_si",
+    "eircode",
+    "emirate",
+    "hamlet",
+    "house_number",
+    "island",
+    "leisure",
+    "man_made",
+    "national_park",
+    "neighborhood",
+    "oblast",
+    "pincode",
+    "parish",
+    "post_town",
+    "postcode",
+    "prefecture",
+    "protected_area",
+    "province",
+    "retail",
+    "residential",
+    "road",
+    "shop",
+    "state",
+    "suburb",
+    "town",
+    "townland",
+    "village",
+    "village_township",
+    "zip_code",
 ]
 
 export function getAddressField(n: number) {

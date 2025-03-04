@@ -2,7 +2,8 @@ import {useSession} from "vinxi/http";
 import {USER} from "~/lib/db";
 import {AUTHENTICATION_TOKEN} from "~/lib/index";
 import {handleUserName} from "~/lib/utils";
-import {Feature} from "geojson";
+import {Feature} from "~/lib/store";
+
 
 export type SessionUser = {
     id?: number

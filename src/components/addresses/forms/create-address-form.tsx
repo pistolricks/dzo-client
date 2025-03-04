@@ -20,11 +20,13 @@ import {
 import poi from './poi.json';
 import {useLayoutContext} from "~/context/layout-provider";
 import {getSessionLocation} from "~/lib/session";
+import Drawer from "@corvu/drawer";
 
 type PROPS = CountryData & { contextId?: string, hidePoi?: boolean };
 
 const CreateAddressForm: Component<PROPS> = props => {
     const submission = useSubmission(addAddress);
+
 
 
     const {getViewbox, setMyLocation, getMyLocation} = useLayoutContext();
@@ -43,8 +45,9 @@ const CreateAddressForm: Component<PROPS> = props => {
     const dependentLocalityNameType = () => props.DependentLocalityNameType ?? 19;
     const postCodeNameType = () => props.PostCodeNameType ?? 22;
     const postCodeRegex = () => props.PostCodeRegex;
-
     const administrativeAreas = () => props.AdministrativeAreas;
+
+    const {open, setOpen} = Drawer.useDialogContext(contextId())
 
     const fields: any = createMemo(() => ({
         locality: addressFieldNames[localityNameType()],
@@ -81,6 +84,10 @@ const CreateAddressForm: Component<PROPS> = props => {
         return postCodeRegex()?.SubdivisionRegex[getItem()?.ID]?.Regex ?? postCodeRegex()?.Regex;
     })
 
+
+    const handleToggle = () => {
+        setOpen(false)
+    }
 
     createEffect(async() => {
 
@@ -133,8 +140,8 @@ const CreateAddressForm: Component<PROPS> = props => {
                             </ComboboxItem>
                         )}
                     >
-                        <ComboboxControl aria-label={getPoi()?.label}>
-                            <ComboboxInput/>
+                        <ComboboxControl class={'bg-white'} aria-label={getPoi()?.label}>
+                            <ComboboxInput class={''}/>
                             <ComboboxTrigger/>
                         </ComboboxControl>
                         <ComboboxContent/>
@@ -157,9 +164,9 @@ const CreateAddressForm: Component<PROPS> = props => {
                         </TextFieldErrorMessage>
                     </Show>
                 </TextField>
-                <div class={'grid grid-cols-5 gap-3'}>
+                <div class={'grid grid-cols-6 gap-3'}>
 
-                    <div class="col-span-3">
+                    <div class="col-span-2">
                         <input class={'hidden'} name="administrative_area" id="administrative_area"
                                value={getItem()?.Name}/>
 
@@ -179,7 +186,7 @@ const CreateAddressForm: Component<PROPS> = props => {
                                 </ComboboxItem>
                             )}
                         >
-                            <ComboboxControl aria-label={fields().administrative_area}>
+                            <ComboboxControl class={'bg-white'} aria-label={fields().administrative_area}>
                                 <ComboboxInput/>
                                 <ComboboxTrigger/>
                             </ComboboxControl>
@@ -195,13 +202,14 @@ const CreateAddressForm: Component<PROPS> = props => {
                             </TextFieldErrorMessage>
                         </Show>
                     </TextField>
+                    <div class={'col-span-2 items-center flex flex-row-reverse space-x-2 space-x-reverse'}>
+                        <Button as={"button"} onClick={handleToggle} variant={'default'} type={"submit"} size="icon"><MagnifyingGlass/></Button>
+                        <Button<"button"> onClick={handleToggle} variant="outline" size="icon">
+                            <XMark/>
+                        </Button>
+                    </div>
                 </div>
-                <div class={'items-center flex flex-row-reverse space-x-2 space-x-reverse'}>
-                    <Button as={"button"} variant={'default'} type={"submit"} size="icon"><MagnifyingGlass/></Button>
-                    <Button<"button"> variant="outline" size="icon">
-                        <XMark/>
-                    </Button>
-                </div>
+
             </form>
         </>
     );

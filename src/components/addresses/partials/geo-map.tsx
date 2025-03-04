@@ -124,9 +124,23 @@ const GeoMap: Component<PROPS> = (props) => {
     const [getShowPosition, setShowPosition] = createSignal(false);
     const [getGeolocation, setGeolocation] = createSignal<Geolocation | undefined>();
 
+
+    const [getClear, setClear] = createSignal(false)
+
     const [mapElement, setMapElement] = createSignal<HTMLDivElement | undefined>();
 
-    const featureCollection = () => props.featureCollection;
+
+    const [getFeatureCollection, setFeatureCollection] = createSignal(props.featureCollection)
+
+    const featureCollection = createMemo(() => {
+        open() ? setFeatureCollection(props.featureCollection) : setFeatureCollection({
+            type: "FeatureCollection",
+            features: []
+        })
+
+        console.log("getFeatureCollection", getFeatureCollection())
+        return getFeatureCollection()
+    })
 
     let map: Map | undefined;
 
@@ -137,21 +151,19 @@ const GeoMap: Component<PROPS> = (props) => {
 
     // Memoized results for features
     const features = createMemo(() => {
-        try {
-            const collection = featureCollection();
-            console.log("135", collection)
-            if (collection) {
-                let ftr = new GeoJSON().readFeatures(collection);
 
-                console.log("ftr", ftr)
-                return ftr;
+        const collection = open() ? featureCollection() : {
+            type: "FeatureCollection",
+            features: []
+        };
 
-            }
-        } catch (error) {
-            console.error("Invalid feature collection:", error);
-            return [];
+        if (collection?.features?.length > 0) {
+            return new GeoJSON().readFeatures(collection);
+        } else {
+            return []
         }
-        return [];
+
+
     });
 
     function handleDrawer() {
@@ -225,7 +237,6 @@ const GeoMap: Component<PROPS> = (props) => {
                 setViewbox(() => extent);
 
 
-
                 let lat = coordinates[1];
                 let lon = coordinates[0]
 
@@ -253,7 +264,7 @@ const GeoMap: Component<PROPS> = (props) => {
 
             console.log('features', features())
             console.log('getViewbox', getViewbox())
-            setOpen(features()?.length > 0)
+
 
             const styleFunction = function (feature: any) {
                 return styles[feature?.getGeometry()?.getType() as keyof typeof styles];
@@ -283,14 +294,12 @@ const GeoMap: Component<PROPS> = (props) => {
                         const selIndex = features().indexOf(f);
                         if (selIndex < 0) {
 
-
                             features().push(f);
                             // selected.push(f);
                             // f.setStyle(styles["Point"]);
                             throttle(handleDrawer(), 1000)
                             console.log(f)
                         } else {
-
 
                             console.log('ff', features())
                             features().splice(selIndex, 1);
@@ -334,7 +343,11 @@ const GeoMap: Component<PROPS> = (props) => {
     })
 
 
-    createEffect(() => console.log('fArr', featuresArray()))
+    createEffect(() => {
+        setOpen(features()?.length > 0)
+        console.log('fArr', featuresArray())
+        console.log("getClear", getClear())
+    })
 
     return (
         <>
@@ -387,10 +400,10 @@ const GeoMap: Component<PROPS> = (props) => {
                                     <Show when={featureCollection()?.features?.[i()]?.id}>
                                         <PlaceCard
                                             geometry={featureCollection()?.features?.[i()]?.geometry}
-                                            properties={properties?.place}
+                                            properties={featureCollection()?.features?.[i()]?.properties?.place}
                                             type={"Feature"}
-                                            id={properties?.id}
-                                            bbox={properties?.place?.boundingbox}
+                                            id={featureCollection()?.features?.[i()]?.properties?.id}
+                                            bbox={featureCollection()?.features?.[i()]?.properties?.place?.boundingbox}
                                         />
                                     </Show>
                                 )}

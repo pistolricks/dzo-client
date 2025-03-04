@@ -1005,7 +1005,7 @@
     "id": "light_rail"
   },
   {
-    "key": "man made",
+    "key": "man_made",
     "label": "lighthouse",
     "id": "lighthouse"
   },
@@ -1050,7 +1050,7 @@
     "id": "massage"
   },
   {
-    "key": "man made",
+    "key": "man_made",
     "label": "maypole",
     "id": "maypole"
   },
@@ -1895,7 +1895,7 @@
     "id": "water_point"
   },
   {
-    "key": "man made",
+    "key": "man_made",
     "label": "water well",
     "id": "water_well"
   },
@@ -1925,7 +1925,7 @@
     "id": "wetland"
   },
   {
-    "key": "man made",
+    "key": "man_made",
     "label": "windmill",
     "id": "windmill"
   },

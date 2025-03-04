@@ -1,8 +1,8 @@
 import {Accessor, Component, createContext, createSignal, JSX, onMount, Setter, useContext} from "solid-js";
-import {Feature} from "~/lib/store";
+import {Feature, FeatureCollection} from "~/lib/store";
 
 import {createStore, SetStoreFunction, Store} from "solid-js/store";
-import {FeatureCollection} from "geojson";
+
 import ProfileIcon from '~/svgs/menu/profile.svg'
 import VendorsIcon from '~/svgs/menu/vendors.svg'
 import PlacesIcon from '~/svgs/menu/places.svg'
