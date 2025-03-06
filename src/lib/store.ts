@@ -1,6 +1,5 @@
-import {GeoJSON, GeoJsonObject, Geometry, GeometryCollection} from "geojson";
+import {GeoJsonObject} from "geojson";
 import {createStore} from "solid-js/store";
-import {SessionUser} from "~/lib/session";
 
 export type USER = {
     id: number;
@@ -249,7 +248,6 @@ export type ReverseLookupResults = {
     extratags?: any
 
 }
-
 
 
 export type AttendeeProps = {

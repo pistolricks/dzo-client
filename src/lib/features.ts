@@ -1,5 +1,5 @@
 import {Feature} from "~/lib/store";
-import {FeatureCollection} from "geojson";
+import {FeatureCollection} from "~/lib/store";
 import {SetStoreFunction} from "solid-js/store";
 
 export const updateCollection = (
@@ -11,7 +11,7 @@ export const updateCollection = (
 
     const updateFeature = (id: number, current: Feature) => {
         setStore("features",
-            ftr => ftr.id === id,
+            ftr => ftr.id === String(id),
             ftr => ({
                 ...ftr,
                 geometry: current.geometry,

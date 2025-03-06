@@ -1,4 +1,4 @@
-import {Component, JSXElement, ParentProps} from "solid-js";
+import {Component, ParentProps} from "solid-js";
 
 
 const ChatLayout: Component<ParentProps> = props => {

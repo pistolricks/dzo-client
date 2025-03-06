@@ -5,54 +5,35 @@ import {DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle}
 import DrawerPrimitive, {type ContentProps, type DynamicProps} from "@corvu/drawer";
 import {cn} from "~/lib/utils";
 
-export function BaseDrawer() {
+function BaseDrawer(props: {
+    side?: 'top' | 'right' | 'bottom' | 'left',
+    contextId?: string
+    children?: JSX.Element
+}) {
     const [goal, setGoal] = createSignal(250)
 
     const onClick = (change: number) => {
         setGoal(goal() + change)
     }
+    const side = () => props.side;
+    const contextId = () => props.contextId;
+    const children = () => props.children;
 
     return (
-        <DrawerPrimitive contextId={'bd1'} dialogId="base-drawer-1" breakPoints={[0.75]} side={"right"}>
-            <DrawerPrimitive.Trigger contextId={'bd1'} as={Button<"button">} variant="outline">
+        <DrawerPrimitive contextId={contextId()} dialogId="base-drawer-1" breakPoints={[0.75]} side={side()}>
+            <DrawerPrimitive.Trigger contextId={contextId()} as={Button<"button">} variant="outline">
                 Open Drawer
             </DrawerPrimitive.Trigger>
-            <DrawerPrimitive.Content contextId={'bd1'}>
+            <DrawerPrimitive.Content contextId={contextId()}>
                 <div class="mx-auto w-full max-w-sm">
                     <DrawerHeader>
-                        <DrawerTitle contextId={'bd1'}>Move Goal</DrawerTitle>
-                        <DrawerDescription contextId={'bd1'}>Set your daily activity goal.</DrawerDescription>
+                        <DrawerTitle contextId={contextId()}></DrawerTitle>
+                        <DrawerDescription contextId={contextId()}></DrawerDescription>
                     </DrawerHeader>
-                    <div class="p-4 pb-0">
-                        <div class="flex items-center justify-center space-x-2">
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                class="size-8 shrink-0 rounded-full"
-                                onClick={() => onClick(-10)}
-                                disabled={goal() <= 200}
-                            >
 
-                                <span class="sr-only">Decrease</span>
-                            </Button>
-                            <div class="flex-1 text-center">
-                                <div class="text-7xl font-bold tracking-tighter">{goal()}</div>
-                                <div class="text-[0.70rem] uppercase text-muted-foreground">Calories/day</div>
-                            </div>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                class="size-8 shrink-0 rounded-full"
-                                onClick={() => onClick(10)}
-                                disabled={goal() >= 400}
-                            >
-                                <span class="sr-only">Increase</span>
-                            </Button>
-                        </div>
-                    </div>
                     <DrawerFooter>
                         <Button>Submit</Button>
-                        <DrawerClose contextId={'bd1'} as={Button<"button">} variant="outline">
+                        <DrawerClose contextId={contextId()} as={Button<"button">} variant="outline">
                             Cancel
                         </DrawerClose>
                     </DrawerFooter>
@@ -61,6 +42,8 @@ export function BaseDrawer() {
         </DrawerPrimitive>
     )
 }
+
+export default BaseDrawer;
 
 type DrawerContentProps<T extends ValidComponent = "div"> = ContentProps<T> & {
     contextId?: string

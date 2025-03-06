@@ -9,13 +9,13 @@ type PROPS = {}
 
 const LogoutUserForm: Component<PROPS> = props => {
     const submission = useSubmission(logoutUserHandler);
-    const {storedCurrentUSer, setCurrentUser} = useLayoutContext();
+    const {storedCurrentUser, setCurrentUser} = useLayoutContext();
     createEffect(() => {
         if(submission.result) {
-           setCurrentUser(undefined)
+           setCurrentUser()
         }
 
-        console.log(storedCurrentUSer)
+        console.log(storedCurrentUser)
 
     })
 
